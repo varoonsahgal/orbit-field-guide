@@ -1,0 +1,8 @@
+{
+  "name": "orbit-field-academy-site",
+  "private": true,
+  "type": "module",
+  "description": "Builds the ORBIT Field Academy GitHub Pages site from the private student-labs markdown.",
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "marked": "^15.0.0", "highlight.js": "^11.10.0" }
+}

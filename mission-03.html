@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en" data-page="mission-03" style="--mc:#A78BFA;--mc2:#8B5CF6">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission 03 · The Knowledge Heist — ORBIT Field Academy</title>
+<meta name="description" content="A fictional retailer, ORBIT Outfitters, has lost control of its support answers. Your mission: prove what a foundation model actually knows, give it reliable policy evidence, and decide what should be an agent action ins">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#070B1A">
+<meta property="og:title" content="Mission 03 · The Knowledge Heist — ORBIT Field Academy"><meta property="og:description" content="A fictional retailer, ORBIT Outfitters, has lost control of its support answers. Your mission: prove what a foundation model actually knows, give it reliable policy evidence, and decide what should be an agent action ins"><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+</head>
+<body class="mission">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><a class="nav-m" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Mission 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Mission 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" aria-current="page" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m soon" href="index.html#missions" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast" style="--mc:#A78BFA;--mc2:#8B5CF6">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="148" height="148" aria-hidden="true" style="--mc:#A78BFA;--mc2:#8B5CF6">
+<defs><path id="arc-03-bl2ja" d="M19,60 A41,41 0 0,1 101,60"/><radialGradient id="garc-03-bl2ja" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#A78BFA" stop-opacity=".38"/><stop offset=".55" stop-color="#8B5CF6" stop-opacity=".10"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="60" r="57" class="p-disc"/><circle cx="60" cy="60" r="57" fill="url(#garc-03-bl2ja)"/>
+<circle cx="60" cy="60" r="52" class="p-ring"/><circle cx="60" cy="60" r="45" class="p-ring2"/>
+<text class="p-arc"><textPath href="#arc-03-bl2ja" startOffset="50%" text-anchor="middle">THE KNOWLEDGE HEIST</textPath></text>
+<text x="60" y="80" text-anchor="middle" class="p-num">03</text>
+<ellipse cx="60" cy="62" rx="56" ry="14" class="p-orbit" transform="rotate(-18 60 62)"/>
+<circle cx="8.5" cy="78" r="4.2" class="p-sat"/><circle cx="104" cy="44" r="2" class="p-star"/><circle cx="26" cy="30" r="1.4" class="p-star"/>
+</svg></div>
+    <div class="mast-text">
+      <p class="eyebrow">Mission 03 of 6 · Retrieval · Module 2 · Bedrock fundamentals</p>
+      <h1>The Knowledge Heist</h1>
+      <p class="sub">Amazon Bedrock, foundation models, and a real retrieval knowledge base</p>
+      <p class="story"><span class="story-k">The story</span>A fictional retailer, <strong>ORBIT Outfitters</strong>, has lost control of its support answers. Your mission: prove what a foundation model actually knows, give it reliable policy evidence, and decide what should be an <em>agent action</em> instead of a generated sentence.</p>
+      <div class="chips"><span class="chip"><b>Level</b>Discovery</span><span class="chip"><b>Time</b>75–90 minutes</span><span class="chip"><b>Where</b>AWS Management Console only</span><span class="chip"><b>Phases</b>6</span></div>
+      <div class="mast-actions"><a class="btn primary" href="#phase-1">Start the mission</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print handout</button><span class="mission-progress" data-progress="mission-03"><span class="mp-bar"><i></i></span><span class="mp-t">0%</span></span></div>
+    </div>
+  </div>
+</section>
+<div class="page" style="--mc:#A78BFA;--mc2:#8B5CF6">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#mission-outcomes" data-toc="mission-outcomes"><span class="toc-n toc-dot"></span><span class="toc-l">Mission outcomes</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#before-you-start-the-concepts-in-this-mission" data-toc="before-you-start-the-concepts-in-this-mission"><span class="toc-n toc-dot"></span><span class="toc-l">Before you start: the concepts in this mission</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#mission-launch-claim-your-namespace" data-toc="mission-launch-claim-your-namespace"><span class="toc-n toc-dot"></span><span class="toc-l">Mission launch: claim your namespace</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Catch an unsupported answer</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">Create a real policy knowledge base</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Ingest the evidence, in the browser</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-4" data-toc="phase-4"><span class="toc-n">4</span><span class="toc-l">Retrieve before you generate</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-5" data-toc="phase-5"><span class="toc-n">5</span><span class="toc-l">The evidence challenge</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-6" data-toc="phase-6"><span class="toc-n">6</span><span class="toc-l">Inspect the migration boundary</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#shared-account-guardrails-costs-and-cleanup" data-toc="shared-account-guardrails-costs-and-cleanup"><span class="toc-n toc-dot"></span><span class="toc-l">Shared-account guardrails, costs, and cleanup</span><span class="toc-p" aria-hidden="true"></span></a></li></ol>
+      <a class="side-link" href="notes-03.html">Field notes for Mission 03 →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="mission-03">
+<p><strong>You will actually use AWS.</strong> Everything in this mission happens in your web browser inside the AWS Management Console: the Amazon Bedrock <strong>Playground</strong> and the Amazon Bedrock AgentCore <strong>Knowledge Bases (KB)</strong> console. There is no terminal, no code to download, and nothing to install.</p>
+<aside class="callout note"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h.01M11 12h1v5h1"/><circle cx="12" cy="12" r="9"/></svg></div><div class="callout-body"><span class="callout-lbl">Note</span><p><strong>This guide was last verified against the live AWS Console on October 20, 2026</strong> in the US West (Oregon) Region. The screenshots show exactly what a participant with the example ID <code>s07x42</code> saw. AWS changes its console regularly, so if a button has moved, look for the same words nearby.</p>
+</div></aside>
+<section class="sec" data-sec="mission-outcomes"><h2 id="mission-outcomes"><span>Mission outcomes</span><a class="anchor" href="#mission-outcomes" aria-label="Link to this section">#</a></h2>
+<p>By the end, you will be able to:</p>
+<ul>
+<li>Explain <strong>foundation model vs. chatbot vs. workflow vs. agent</strong>, and why the differences matter.</li>
+<li>Tell apart <strong>model inference</strong>, <strong>retrieval</strong>, <strong>tool invocation</strong>, and <strong>an external side effect</strong>.</li>
+<li>Create a real <strong>managed knowledge base</strong>, add policy documents <strong>inline in the console</strong>, and inspect the retrieved evidence.</li>
+<li>Explain the difference between <strong>retrieval only</strong> and <strong>retrieval with answer generation</strong>.</li>
+<li>Describe what the old <strong>Bedrock Agents Classic</strong> service bundled together, and what AgentCore replaces it with.</li>
+</ul>
+</section><section class="sec" data-sec="before-you-start-the-concepts-in-this-mission"><h2 id="before-you-start-the-concepts-in-this-mission"><span>Before you start: the concepts in this mission</span><a class="anchor" href="#before-you-start-the-concepts-in-this-mission" aria-label="Link to this section">#</a></h2>
+<p>If you are new to AWS or to generative AI, read this section first. Everything you click later maps back to one of these ideas.</p>
+<h3 id="aws-basics-you-need-today">AWS basics you need today<a class="anchor" href="#aws-basics-you-need-today" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it means in plain language</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AWS account</strong></td>
+<td>The billing and security boundary everything lives in. In this class <strong>up to 30 people share one account</strong>, which is why every resource you create must carry your personal ID.</td>
+</tr>
+<tr>
+<td><strong>Region</strong></td>
+<td>A physical cluster of AWS data centres (for example <strong>US West (Oregon)</strong>, code <code>us-west-2</code>). Resources are created in one Region and are invisible from other Regions. Everyone in the class uses the <strong>same Region</strong>.</td>
+</tr>
+<tr>
+<td><strong>AWS Management Console</strong></td>
+<td>The web UI at <code>console.aws.amazon.com</code>. The top bar has a search box (type a service name such as <code>Bedrock</code>) and a Region selector at the top right.</td>
+</tr>
+<tr>
+<td><strong>IAM (Identity and Access Management)</strong></td>
+<td>The permission system. <em>Who</em> can do <em>what</em> to <em>which</em> resource. You sign in as an IAM identity; AWS services act through <strong>IAM roles</strong> that you will see created automatically.</td>
+</tr>
+<tr>
+<td><strong>Service role</strong></td>
+<td>An IAM role that an AWS service assumes to do work on your behalf. The knowledge base you create today gets its own role so that the Bedrock service can read your documents and write its index.</td>
+</tr>
+<tr>
+<td><strong>ARN</strong></td>
+<td><em>Amazon Resource Name</em>. A globally unique string such as <code>arn:aws:bedrock:us-west-2:123456789012:knowledge-base/ABC123</code> that identifies one resource. You will copy ARNs into other services in later missions.</td>
+</tr>
+</tbody></table></div>
+<h3 id="generative-ai-basics-you-need-today">Generative AI basics you need today<a class="anchor" href="#generative-ai-basics-you-need-today" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Foundation model (FM):</strong> A large neural network trained on huge amounts of public text. Given a prompt, it predicts the most likely continuation. Amazon Bedrock hosts many FMs from several providers (Amazon Nova, Anthropic Claude, Meta Llama, and more) behind one API, so you never run the model yourself.</li>
+<li><strong>Inference:</strong> One call to the model: prompt in, generated text out. Inference is billed by <strong>tokens</strong> (roughly 3/4 of an English word). The Playground shows the input and output token counts for every call so you can see the meter run.</li>
+<li><strong>Hallucination:</strong> When an FM produces a confident, fluent answer that is not grounded in any real source. The model does not &quot;know&quot; your company&#39;s return policy; it only knows language patterns.</li>
+<li><strong>Chatbot vs. workflow vs. agent:</strong><ul>
+<li>A <strong>chatbot</strong> holds a conversation and returns text. It cannot look anything up unless something else is wired in.</li>
+<li>A <strong>workflow</strong> is a fixed sequence of steps written by a developer. Deterministic, predictable, not adaptive.</li>
+<li>An <strong>agent</strong> uses a model to <em>decide</em> which tools to call, observes the results, and iterates until the task is done. Powerful, but it needs guard rails. Missions 04 and 05 build one.</li>
+</ul>
+</li>
+<li><strong>RAG (Retrieval-Augmented Generation):</strong> Instead of hoping the model memorised your policy, you store your documents in a <strong>knowledge base</strong>, find the most relevant passages for each question (<strong>retrieval</strong>), and hand those passages to the model together with the question (<strong>augmented generation</strong>). The answer is then <strong>grounded</strong> in evidence you control, and the model can <strong>cite</strong> which passage it used.</li>
+<li><strong>Embeddings and vector search:</strong> To find &quot;relevant&quot; passages, the knowledge base converts every chunk of text into a long list of numbers (an <strong>embedding</strong>) that captures meaning. Your question is embedded the same way, and the store returns the chunks whose numbers are closest. A <strong>managed knowledge base</strong> does the chunking, embedding, storage and search for you.</li>
+<li><strong>Tool vs. knowledge:</strong> Retrieval is <strong>read-only evidence</strong>. A <strong>tool</strong> is an action (look up an order, issue a refund). Keeping these separate is the single most important design idea in this course.</li>
+</ul>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    U[Customer question] --&gt; M[Foundation model]
+    M --&gt; D{Need external facts or action?}
+    D --&gt;|Policy evidence| K[Knowledge base retrieval]
+    D --&gt;|Order lookup| T[Tool / API]
+    K --&gt; M
+    T --&gt; M
+    M --&gt; R[Grounded response]
+    classDef focus fill:#0B243B,color:#FFFFFF,stroke:#24CAD5
+    class M,K,T focus">flowchart LR
+    U[Customer question] --&gt; M[Foundation model]
+    M --&gt; D{Need external facts or action?}
+    D --&gt;|Policy evidence| K[Knowledge base retrieval]
+    D --&gt;|Order lookup| T[Tool / API]
+    K --&gt; M
+    T --&gt; M
+    M --&gt; R[Grounded response]
+    classDef focus fill:#0B243B,color:#FFFFFF,stroke:#24CAD5
+    class M,K,T focus</pre></figure>
+<p><strong>Important:</strong> A model can <em>describe</em> a refund without actually issuing one. A tool call must be connected to authorized code or a service that performs the refund. Your task is to recognize the boundary.</p>
+</section><section class="sec" data-sec="mission-launch-claim-your-namespace"><h2 id="mission-launch-claim-your-namespace"><span>Mission launch: claim your namespace</span><span class="phase-time">5 minutes</span><a class="anchor" href="#mission-launch-claim-your-namespace" aria-label="Link to this section">#</a></h2>
+<p>You are sharing the <strong>same AWS account</strong> with up to 29 other people. Every resource name you type today must include your own suffix so that nothing collides and nobody edits anyone else&#39;s work.</p>
+<ol>
+<li>Sign in to the AWS Console with the credentials your instructor gave you.</li>
+<li>In the <strong>top-right Region selector</strong>, choose <strong>US West (Oregon)</strong>. Check it before every mission; the console sometimes remembers a different Region per service.</li>
+<li>Choose your unique identifier, <code>MY_ID</code>: your <strong>class seat number plus two random digits</strong>, all lowercase, no spaces, for example <code>s07x42</code>. Do not use your real name.</li>
+<li>Write it down. In this guide, every time you see <code>MY_ID</code>, type your actual value.</li>
+</ol>
+<p><strong>Naming convention for this mission</strong> (replace <code>MY_ID</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What</th>
+<th>Name you will type</th>
+<th>Allowed characters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge base</td>
+<td><code>orbit-MY_ID-kb</code></td>
+<td>letters, numbers, <code>-</code>, <code>_</code></td>
+</tr>
+<tr>
+<td>Knowledge base service role</td>
+<td><code>orbit-MY_ID-kb-role</code></td>
+<td>letters, numbers, <code>+=,.@-_</code></td>
+</tr>
+<tr>
+<td>Data source</td>
+<td><code>orbit-MY_ID-policies</code></td>
+<td>letters, numbers, <code>-</code>, <code>_</code></td>
+</tr>
+<tr>
+<td>Document IDs</td>
+<td><code>returns-MY_ID-v1</code>, <code>shipping-MY_ID-v1</code></td>
+<td>letters, numbers, <code>-</code>, <code>_</code></td>
+</tr>
+</tbody></table></div>
+<aside class="callout caution"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16h.01"/><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"/></svg></div><div class="callout-body"><span class="callout-lbl">Caution</span><p><strong>Shared-account rules.</strong> Never open, edit, test, or delete a resource that does not contain <em>your</em> <code>MY_ID</code>. The lists in the console show everyone&#39;s resources; filter by your ID. Keep the same <code>MY_ID</code> and the same Region for all of the missions.</p>
+</div></aside>
+<p><strong>Resource ledger</strong> (fill in as you go):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Your value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AWS Region</td>
+<td><code>us-west-2</code></td>
+</tr>
+<tr>
+<td><code>MY_ID</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Knowledge base name</td>
+<td></td>
+</tr>
+<tr>
+<td>Knowledge base ID</td>
+<td></td>
+</tr>
+<tr>
+<td>Data source name</td>
+<td></td>
+</tr>
+<tr>
+<td>Data source ID</td>
+<td></td>
+</tr>
+<tr>
+<td>Foundation model used in the Playground</td>
+<td></td>
+</tr>
+</tbody></table></div>
+</section><section class="sec" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-num">Phase 1</span><span class="phase-title">Catch an unsupported answer</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<p><strong>Concept:</strong> A foundation model predicts a response from the instructions and context you give it. It does <strong>not</strong> automatically know ORBIT&#39;s private, current return policy. Even when an answer sounds confident, it may be invented.</p>
+<ol>
+<li><p>In the console search box type <code>Bedrock</code> and open <strong>Amazon Bedrock</strong>.</p>
+</li>
+<li><p>In the left navigation choose <strong>Test → Playground</strong>. You will see an almost empty page with a <strong>Select model</strong> button.</p>
+</li>
+<li><p>Choose <strong>Select model</strong>. In the dialog:</p>
+<ul>
+<li><strong>1. Categories:</strong> keep <strong>Serverless model providers</strong> and choose <strong>Amazon</strong>.</li>
+<li><strong>2. Models:</strong> scroll down and choose <strong>Nova Lite 1.0</strong>. (Nova Lite is one of the cheapest text models on Bedrock and is plenty for this test. Leave the bigger models alone.)</li>
+<li><strong>3. Inference:</strong> keep <strong>On-demand</strong>.</li>
+<li>Choose <strong>Apply</strong>.</li>
+</ul>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-02-playground-select-model.webp" alt="Select model dialog with Amazon → Nova Lite highlighted" loading="lazy" decoding="async"></button><figcaption>Select model dialog with Amazon → Nova Lite highlighted</figcaption></figure>
+</li>
+<li><p>The Playground opens in <strong>Chat</strong> mode with a <strong>Configurations</strong> panel on the left (system prompt, maximum output tokens, temperature). Leave the defaults.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-03-playground-ready.webp" alt="Playground ready with Nova Lite selected" loading="lazy" decoding="async"></button><figcaption>Playground ready with Nova Lite selected</figcaption></figure>
+</li>
+<li><p>Click into the prompt box at the bottom (<em>Write a prompt…</em>), paste the text below, and press <strong>Enter</strong>:</p>
+<blockquote class="pull">
+<p>You are ORBIT Outfitters support. An order placed 35 days ago contains a tent with intact tags. Is it eligible for a refund? Give the exact policy and cite your source. If you do not have ORBIT&#39;s actual policy, say so.</p>
+</blockquote>
+</li>
+<li><p>Read the answer and look at the <strong>Input / Output / Latency</strong> counters at the top of the chat. In the verified run, Nova Lite used <strong>54 input tokens</strong> and <strong>159 output tokens</strong> and, to its credit, admitted it had no access to ORBIT&#39;s policy:</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-04-playground-response-1.webp" alt="Nova Lite admits it does not have ORBIT's refund policy" loading="lazy" decoding="async"></button><figcaption>Nova Lite admits it does not have ORBIT's refund policy</figcaption></figure>
+<p>Your model may instead invent a plausible 30-day or 60-day rule. <strong>Both outcomes are the lesson:</strong> nothing here is ORBIT&#39;s real policy, because the model has no connection to ORBIT&#39;s documents.</p>
+</li>
+<li><p>Send this follow-up in the same conversation:</p>
+<blockquote class="pull">
+<p>What specific data would you need before you could <em>actually</em> initiate this return? Separate information retrieval from an action that changes an order.</p>
+</blockquote>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-05-playground-response-2.webp" alt="Follow-up answer listing the data a return would need" loading="lazy" decoding="async"></button><figcaption>Follow-up answer listing the data a return would need</figcaption></figure>
+<p>Notice that the model lists <em>information</em> (order number, delivery date, product condition) but it cannot actually <em>do</em> anything with it. In the verified run it also blurred the line you asked it to draw, mixing &quot;look things up&quot; with &quot;process the refund&quot;. That blurring is exactly what an agent design must prevent.</p>
+</li>
+</ol>
+<div class="checkpoint"><div class="checkpoint-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>Investigation checkpoint</div><ul>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:0" aria-label="Mark done"><div class="task-t">I can point to the sentence in the first answer that was <strong>inference</strong> (the model&#39;s guess) rather than a verified company policy.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:1" aria-label="Mark done"><div class="task-t">I can name two <strong>read-only lookups</strong> (for example order date, item condition) and one <strong>write action</strong> (issue the refund) that a production support agent would need.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:2" aria-label="Mark done"><div class="task-t">I can explain why &quot;I have processed your refund&quot; is unacceptable text unless an authorized tool actually returned a success result.</div></li>
+</ul></div>
+<p><strong>Mini-debrief:</strong> A <strong>chatbot</strong> mainly converses; a <strong>workflow</strong> follows fixed steps; an <strong>agent</strong> lets a model choose tools and iterate on what it observes. These overlap in practice: a production system is often a deterministic workflow that contains an agent for the fuzzy parts.</p>
+</section><section class="sec" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-num">Phase 2</span><span class="phase-title">Create a real policy knowledge base</span><span class="phase-time">15 minutes</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<p><strong>Concept:</strong> A <strong>managed knowledge base</strong> is an AWS-run RAG store. You give it documents; it parses and chunks them, creates embeddings with a service-managed model (no extra charge), stores the vectors, and answers <strong>Retrieve</strong> calls with the most relevant chunks. You never see or manage the vector database.</p>
+<h3 id="step-a-open-the-agentcore-console">Step A: Open the AgentCore console<a class="anchor" href="#step-a-open-the-agentcore-console" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><p>In the console search box type <code>AgentCore</code> and open <strong>Amazon Bedrock AgentCore</strong>. The Overview page shows the building blocks you will use across all of the missions: <strong>Harness</strong>, <strong>Runtime</strong>, <strong>Gateways</strong>, <strong>Memory</strong>, <strong>Identity</strong>, and <strong>Built-in tools</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-01-agentcore-overview.webp" alt="AgentCore Overview page" loading="lazy" decoding="async"></button><figcaption>AgentCore Overview page</figcaption></figure>
+</li>
+<li><p>In the left navigation choose <strong>Built-in tools → Knowledge Bases (KB)</strong>. This list shows every knowledge base in the account, including your classmates&#39;. Yours does not exist yet.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-06-kb-list.webp" alt="Knowledge Bases (KB) list page with the Create Managed KB button" loading="lazy" decoding="async"></button><figcaption>Knowledge Bases (KB) list page with the Create Managed KB button</figcaption></figure>
+</li>
+</ol>
+<h3 id="step-b-create-the-managed-knowledge-base">Step B: Create the managed knowledge base<a class="anchor" href="#step-b-create-the-managed-knowledge-base" aria-label="Link to this section">#</a></h3>
+<ol start="3">
+<li><p>Choose <strong>Create Managed KB</strong> (the orange button).</p>
+</li>
+<li><p>Fill in the form exactly like this, replacing <code>MY_ID</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KB details</td>
+<td><strong>KB name</strong></td>
+<td><code>orbit-MY_ID-kb</code></td>
+</tr>
+<tr>
+<td>KB details → <strong>Additional configurations</strong> (expand it)</td>
+<td>KB description</td>
+<td><code>ORBIT support policies - MY_ID</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Embeddings model</td>
+<td><strong>Managed embeddings model</strong> (default, &quot;no additional cost&quot;)</td>
+</tr>
+<tr>
+<td></td>
+<td>IAM Permissions</td>
+<td><strong>Create and use a new service role</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Service role name</td>
+<td><code>orbit-MY_ID-kb-role</code> ← replace the random default so you can recognise your role later</td>
+</tr>
+<tr>
+<td></td>
+<td>KMS key</td>
+<td>leave <strong>Customize encryption settings</strong> unchecked</td>
+</tr>
+<tr>
+<td>Data source</td>
+<td><strong>Data source name</strong></td>
+<td><code>orbit-MY_ID-policies</code></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Data source type</strong></td>
+<td><strong>Custom</strong> (the last tile)</td>
+</tr>
+<tr>
+<td>Access control list</td>
+<td></td>
+<td>leave <strong>Disable</strong></td>
+</tr>
+<tr>
+<td>Content parsing and chunking</td>
+<td></td>
+<td>leave the defaults (Managed parser, Default chunking)</td>
+</tr>
+<tr>
+<td>Log deliveries</td>
+<td></td>
+<td>leave the pre-filled CloudWatch log group; AWS creates one per knowledge base</td>
+</tr>
+</tbody></table></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-07-kb-create-form.webp" alt="Create Managed Knowledge Base form filled in for s07x42" loading="lazy" decoding="async"></button><figcaption>Create Managed Knowledge Base form filled in for s07x42</figcaption></figure>
+<p><strong>Why Custom?</strong> The other tiles (Amazon S3, SharePoint, Web Crawler…) pull documents from somewhere else. <strong>Custom</strong> lets you type documents straight into the console, which is all we need and avoids creating storage buckets in a shared account.</p>
+</li>
+<li><p>Choose <strong>Create Knowledge Base</strong>. A blue banner says <em>Creation of Knowledge Base — &#39;orbit-MY_ID-kb&#39; is in progress</em>. In the verified run the knowledge base and data source were <strong>Available in under a minute</strong>; AWS documents up to 2–5 minutes.</p>
+</li>
+<li><p>When the page changes to the knowledge base detail view, record the <strong>Knowledge Base ID</strong> (a 10-character code such as <code>AHF5HPUOIX</code>) and confirm <strong>Status: Available</strong>. Note the <strong>Service role</strong> link: that is the IAM role AWS just created for this knowledge base.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-08-kb-detail.webp" alt="Knowledge base detail page showing status, ID, service role and the Custom data source" loading="lazy" decoding="async"></button><figcaption>Knowledge base detail page showing status, ID, service role and the Custom data source</figcaption></figure>
+</li>
+</ol>
+<aside class="callout tip"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="callout-body"><span class="callout-lbl">Tip</span><p><strong>If &quot;Create Managed KB&quot; fails with an IAM error</strong>, your sign-in identity cannot create roles. Ask the instructor; do not switch to a different storage type. Managed knowledge bases are the only option in this course because they have no always-on infrastructure to pay for.</p>
+</div></aside>
+</section><section class="sec" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-num">Phase 3</span><span class="phase-title">Ingest the evidence, in the browser</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<p><strong>Concept:</strong> <strong>Ingestion</strong> turns raw text into searchable chunks. For a Custom data source you add documents directly and each one is indexed on its own; there is no &quot;sync job&quot; to run.</p>
+<ol>
+<li><p>On the knowledge base detail page, in the <strong>Data source (1)</strong> table, click your data source name <strong><code>orbit-MY_ID-policies</code></strong>.</p>
+</li>
+<li><p>Scroll to <strong>Documents (0)</strong>, open the <strong>Add documents ▾</strong> menu and choose <strong>Add document directly</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-09-data-source-add-documents.webp" alt="Add documents menu on the data source page" loading="lazy" decoding="async"></button><figcaption>Add documents menu on the data source page</figcaption></figure>
+</li>
+<li><p>On the <strong>Add documents directly</strong> page fill in the first document:</p>
+<ul>
+<li><strong>Document identifier:</strong> <code>returns-MY_ID-v1</code></li>
+<li>Choose the <strong>Add document inline</strong> tile (not Upload).</li>
+<li><strong>Document format:</strong> Plain text.</li>
+<li><strong>Plain text:</strong> paste the fictional policy below.</li>
+</ul>
+<div class="code"><div class="code-bar"><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code class="hljs language-text">ORBIT OUTFITTERS — RETURNS POLICY (TRAINING DATA)
+Policy ID ORB-RET-101. Version 1.
+Unused tents with original tags may be returned within 30 calendar days of delivery.
+After 30 days, standard returns are not eligible unless the item is defective.
+A defective item may be escalated for review within 90 calendar days of delivery.
+A return case requires an order ID and verified customer authorization.
+Employees must not promise or issue a refund until the order system confirms eligibility.</code></pre></div>
+</li>
+<li><p>Choose <strong>Add document</strong> (the outlined button at the bottom) to add a second document block, then fill it in:</p>
+<ul>
+<li><strong>Document identifier:</strong> <code>shipping-MY_ID-v1</code></li>
+<li><strong>Add document inline</strong>, Plain text:</li>
+</ul>
+<div class="code"><div class="code-bar"><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code class="hljs language-text">ORBIT OUTFITTERS — SHIPPING POLICY (TRAINING DATA)
+Policy ID ORB-SHP-202. Version 1.
+Free standard shipping applies to eligible orders of $75 or more before tax.
+Express shipping is a paid option; no express delivery guarantee is made.
+Shipping estimates do not override inventory availability.</code></pre></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-10-add-documents-inline.webp" alt="Both policy documents entered inline before choosing Add" loading="lazy" decoding="async"></button><figcaption>Both policy documents entered inline before choosing Add</figcaption></figure>
+</li>
+<li><p>Choose the orange <strong>Add</strong> button. You return to the data source page with the banner <em>Document ingestion in progress</em> and both documents in status <strong>PENDING</strong>.</p>
+</li>
+<li><p>Wait about a minute and refresh the page (browser refresh is fine). Status moves <strong>PENDING → IN_PROGRESS → INDEXED</strong>. Do not continue until both say <strong>INDEXED</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-11-documents-indexed.webp" alt="Documents table showing both documents INDEXED" loading="lazy" decoding="async"></button><figcaption>Documents table showing both documents INDEXED</figcaption></figure>
+</li>
+</ol>
+<aside class="callout tip"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="callout-body"><span class="callout-lbl">Tip</span><p>Document IDs only have to be unique <em>inside your own data source</em>, but the surrounding knowledge base, data source and role live in a shared account, so they carry <code>MY_ID</code>. If you ever add a document with an identifier that already exists, the new text <strong>replaces</strong> the old one. You will use that on purpose in Phase 5.</p>
+</div></aside>
+</section><section class="sec" data-sec="phase-4"><h2 id="phase-4" class="phase-h"><span class="phase-num">Phase 4</span><span class="phase-title">Retrieve before you generate</span><span class="phase-time">15 minutes</span><a class="anchor" href="#phase-4" aria-label="Link to this section">#</a></h2>
+<p><strong>Concept:</strong> Test retrieval <em>first</em>. If the right chunk does not come back, no amount of clever generation will fix the answer. Only then add answer generation and look at the citations.</p>
+<ol>
+<li><p>Use the breadcrumb at the top to go back to <strong><code>orbit-MY_ID-kb</code></strong>, then choose <strong>Test</strong> (the button next to Delete). The <strong>Test Knowledge Base (KB)</strong> page opens with a <strong>Configurations</strong> column on the left and a <strong>Preview</strong> chat on the right.</p>
+</li>
+<li><p>Under <strong>Retrieval and response generation</strong> choose <strong>Standard retrieval only</strong>. This calls the <code>Retrieve</code> API: it returns raw chunks and nothing is generated.</p>
+</li>
+<li><p>In the prompt box type <code>What is the tent return window?</code> and press <strong>Enter</strong>.</p>
+</li>
+<li><p>Read the result. You should get the returns policy chunk, numbered <strong>1</strong>, with a <strong>[1]</strong> citation marker and a <strong>Details</strong> link that shows which document it came from.</p>
+</li>
+<li><p>Ask <code>Does free express shipping apply to an $80 order?</code> and confirm the <strong>shipping</strong> chunk comes back instead. Retrieval is matching <em>meaning</em>, not keywords: the chunk mentions &quot;standard&quot; and &quot;express&quot; shipping even though your question only said &quot;express&quot;.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-12-kb-test-retrieve.webp" alt="Standard retrieval returning the returns chunk and then the shipping chunk" loading="lazy" decoding="async"></button><figcaption>Standard retrieval returning the returns chunk and then the shipping chunk</figcaption></figure>
+</li>
+<li><p>Now switch to <strong>Agentic retrieval with answer generation</strong>. Two new settings appear: <strong>Model</strong> (a <em>Managed model</em>, &quot;equivalent to Claude Sonnet 4.6 or better&quot;) and <strong>Maximum agentic iterations</strong> (leave at 5). The service now plans the search, retrieves, and writes an answer that cites the chunks.</p>
+</li>
+<li><p>Ask <code>Can a non-defective tent be returned after 35 days?</code></p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-13-kb-test-agentic-answer.webp" alt="Agentic retrieval answering &quot;No&quot; with three citations into the policy" loading="lazy" decoding="async"></button><figcaption>Agentic retrieval answering &quot;No&quot; with three citations into the policy</figcaption></figure>
+<p>In the verified run the answer was a clear <strong>No</strong>, with citations <strong>[1] [2] [3]</strong> pointing at the 30-day rule, the &quot;not eligible after 30 days&quot; clause, and the 90-day defective exception. Choose <strong>View source chunks</strong> or <strong>Trace details</strong> to see the evidence behind each citation.</p>
+</li>
+</ol>
+<aside class="callout note"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h.01M11 12h1v5h1"/><circle cx="12" cy="12" r="9"/></svg></div><div class="callout-body"><span class="callout-lbl">Note</span><p>The option <strong>Standard retrieval with answer generation</strong> is greyed out: it is not supported for managed knowledge bases. Agentic retrieval is the generation path here, and it is billed per call (see the cost box at the end), so run the queries in this guide rather than chatting freely.</p>
+</div></aside>
+</section><section class="sec" data-sec="phase-5"><h2 id="phase-5" class="phase-h"><span class="phase-num">Phase 5</span><span class="phase-title">The evidence challenge</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-5" aria-label="Link to this section">#</a></h2>
+<p>Stay on the Test page in <strong>Agentic retrieval with answer generation</strong> mode. Record what you see for each test.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Query</th>
+<th>What good evidence looks like</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A · Policy vs guess</td>
+<td><code>Can a non-defective tent be returned after 35 days?</code></td>
+<td><strong>No</strong>, cites the 30-calendar-day rule</td>
+</tr>
+<tr>
+<td>B · Exception</td>
+<td><code>What about a defective tent after 35 days?</code></td>
+<td>Escalation for review within 90 days, <strong>not</strong> automatic approval</td>
+</tr>
+<tr>
+<td>C · Action boundary</td>
+<td><code>Refund order 12345 right now.</code></td>
+<td>The knowledge base <strong>cannot</strong> refund anything; it should ask for eligibility data</td>
+</tr>
+<tr>
+<td>D · Unsupported</td>
+<td><code>What is your lifetime backpack warranty?</code></td>
+<td>No warranty policy exists; the answer must say it could not find one</td>
+</tr>
+</tbody></table></div>
+<p>In the verified run, test C produced <em>&quot;I can&#39;t process an immediate refund without first verifying eligibility through our order system&quot;</em> and then asked for the delivery date and item condition, and test D said <em>&quot;I couldn&#39;t find any information about a lifetime backpack warranty in our knowledge base&quot;</em>:</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-14-kb-test-refund-request.webp" alt="Test C: the knowledge base refuses to refund and asks for eligibility data" loading="lazy" decoding="async"></button><figcaption>Test C: the knowledge base refuses to refund and asks for eligibility data</figcaption></figure>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-15-kb-test-warranty.webp" alt="Test D: the knowledge base reports that no warranty policy exists" loading="lazy" decoding="async"></button><figcaption>Test D: the knowledge base reports that no warranty policy exists</figcaption></figure>
+<p><strong>Boss challenge — policy change.</strong> Go back to your data source and add a document with the <strong>same identifier</strong> <code>returns-MY_ID-v1</code>, but change <em>Version 1</em> to <em>Version 2</em> and both <strong>30</strong>-day figures to <strong>45</strong>. Choose <strong>Add</strong>, wait for the status to return to <strong>INDEXED</strong> (about a minute), then re-run test A. The answer flips to <strong>Yes, within 45 days</strong>, with new citations:</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-17-kb-test-after-update.webp" alt="After the document update the same question is answered Yes, within 45 calendar days" loading="lazy" decoding="async"></button><figcaption>After the document update the same question is answered Yes, within 45 calendar days</figcaption></figure>
+<p>Ask yourself what changed: the model weights, the indexed evidence, or an external tool? (Only the evidence.) <strong>Restore the 30-day Version 1 text afterwards</strong>, exactly as in Phase 3, so the remaining missions see the original policy.</p>
+<p><strong>Critical distinction:</strong> A knowledge base can hold stale, wrong or even malicious text. Retrieval makes data <em>available</em>; it does not make it <em>true</em>, <em>current</em>, <em>trusted</em>, or <em>authorized to issue commands</em>.</p>
+</section><section class="sec" data-sec="phase-6"><h2 id="phase-6" class="phase-h"><span class="phase-num">Phase 6</span><span class="phase-title">Inspect the migration boundary</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-6" aria-label="Link to this section">#</a></h2>
+<p><strong>Concept:</strong> Before AgentCore existed, AWS offered <strong>Amazon Bedrock Agents</strong>, now called <strong>Agents Classic</strong>. It bundled the model, the instructions, the tools (&quot;action groups&quot;) and the knowledge bases into one managed object. As of <strong>July 30, 2026</strong> that service is in <strong>maintenance mode</strong>: existing customers keep what they have, new accounts cannot create agents, and AWS recommends the AgentCore <strong>Harness</strong> (which you will build in Mission 04) as the replacement.</p>
+<ol>
+<li><p>Open <strong>Amazon Bedrock</strong> again and choose <strong>Build → Agents (classic)</strong> in the left navigation.</p>
+</li>
+<li><p>Read the blue banner <em>Migrate your Bedrock agent to AgentCore Harness</em>. In this training account the list is empty; that is expected and <strong>not</strong> a failure.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m03-16-agents-classic.webp" alt="Agents Classic page with the migration banner and an empty agent list" loading="lazy" decoding="async"></button><figcaption>Agents Classic page with the migration banner and an empty agent list</figcaption></figure>
+</li>
+<li><p>Study the map below. Each row is something Classic bundled; the right column is where it lives in AgentCore. You will touch every one of them in the next two missions.</p>
+</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>A Bedrock Agent (Classic) bundled…</th>
+<th>In AgentCore you configure…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent instructions</td>
+<td>The <strong>system prompt</strong> on a Harness</td>
+</tr>
+<tr>
+<td>Model and orchestration loop</td>
+<td>The Harness <strong>model</strong> setting; the loop itself is managed</td>
+</tr>
+<tr>
+<td>Action groups (Lambda / API tools)</td>
+<td><strong>Gateway targets</strong> exposed as MCP tools</td>
+</tr>
+<tr>
+<td>Associated knowledge bases</td>
+<td>Your KB added as a <strong>Gateway target</strong> (Mission 04 shows this)</td>
+</tr>
+<tr>
+<td>Session state and memory</td>
+<td>Harness <strong>Memory</strong> (short- and long-term)</td>
+</tr>
+<tr>
+<td>One agent service role</td>
+<td>Separate <strong>execution roles</strong> for the Harness, the Gateway, and each Lambda</td>
+</tr>
+<tr>
+<td>Invocation and traces</td>
+<td>Harness <strong>endpoints</strong>, <strong>inbound auth</strong> (IAM or JWT), and CloudWatch <strong>Observability</strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>Your migration decision:</strong> Which of these must be <em>recreated</em> rather than copied when moving from Classic to AgentCore: a prompt, an action group, or an IAM permission? <strong>All three need attention</strong> and none is copied verbatim: prompts move almost as-is, action groups become Gateway targets with a tool schema, and the single Classic role splits into several least-privilege roles.</p>
+<h3 id="exit-ticket-earn-the-retrieval-badge">Exit ticket · Earn the Retrieval Badge<a class="anchor" href="#exit-ticket-earn-the-retrieval-badge" aria-label="Link to this section">#</a></h3>
+<p>Write a four-line explanation, in your own words:</p>
+<ol>
+<li><strong>Model</strong> — what it does.</li>
+<li><strong>RAG</strong> — when it helps and what it does <em>not</em> prove.</li>
+<li><strong>Tool</strong> — what it can read or change.</li>
+<li><strong>AgentCore</strong> — what infrastructure it provides to an agent.</li>
+</ol>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:3" aria-label="Mark done"><div class="task-t">I completed at least one <strong>real foundation-model interaction</strong> in the Bedrock Playground and read its token counts.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:4" aria-label="Mark done"><div class="task-t">I created and tested <strong>my own managed knowledge base</strong> in the shared account, with my <code>MY_ID</code> in every name.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:5" aria-label="Mark done"><div class="task-t">I can explain why <strong>retrieved chunks are evidence</strong> and <strong>tool calls are actions</strong>.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-03:6" aria-label="Mark done"><div class="task-t">I recorded my knowledge base ID for Mission 04, where an agent will call this knowledge base through a Gateway.</div></li>
+</ul>
+</section><section class="sec" data-sec="shared-account-guardrails-costs-and-cleanup"><h2 id="shared-account-guardrails-costs-and-cleanup"><span>Shared-account guardrails, costs, and cleanup</span><a class="anchor" href="#shared-account-guardrails-costs-and-cleanup" aria-label="Link to this section">#</a></h2>
+<p><strong>Keep your knowledge base until the end of Mission 04.</strong> Mission 04 attaches it to an agent through a Gateway target, so deleting it now means rebuilding it later.</p>
+<p><strong>When the whole course is finished</strong>, delete only your own resources, in this order:</p>
+<ol>
+<li>AgentCore → Knowledge Bases (KB) → select <strong>only <code>orbit-MY_ID-kb</code></strong> → <strong>Delete</strong>. The data source and the managed vector store are removed with it.</li>
+<li>IAM → Roles → search for <code>orbit-MY_ID-kb-role</code> → delete it <strong>after</strong> the knowledge base is gone. Never delete a role that does not contain your ID.</li>
+</ol>
+<p><strong>What this mission costs</strong> (US West (Oregon) list prices, October 2026; verified against the AWS pricing pages):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Typical use in this mission</th>
+<th>Cost per participant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nova Lite in the Playground</td>
+<td>$0.06 per 1M input tokens, $0.24 per 1M output tokens</td>
+<td>about 300 input + 500 output tokens</td>
+<td>&lt; $0.001</td>
+</tr>
+<tr>
+<td>Managed knowledge base storage</td>
+<td>$5.00 per GB of raw data per month</td>
+<td>a few kilobytes</td>
+<td>&lt; $0.001</td>
+</tr>
+<tr>
+<td>Managed embeddings</td>
+<td>included</td>
+<td>2–3 small documents</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Standard retrieval (<code>Retrieve</code>)</td>
+<td>$1.00 per 1,000 calls</td>
+<td>2–4 calls</td>
+<td>&lt; $0.01</td>
+</tr>
+<tr>
+<td>Agentic retrieval with answer generation</td>
+<td>$4.00 per 1,000 agentic calls + $1.00 per 1,000 underlying retrieves</td>
+<td>6–8 calls</td>
+<td>about $0.04</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td></td>
+<td><strong>about $0.05</strong> (budget $0.10 with retries)</td>
+</tr>
+</tbody></table></div>
+<p>A class of 25 therefore spends roughly <strong>$2–3</strong> on this mission. Nothing in it keeps billing while idle except the tiny storage charge, so a forgotten knowledge base costs cents per month, not dollars.</p>
+<p><strong>Quotas that matter with 25 people at once:</strong> the account allows thousands of managed knowledge bases and <strong>600 retrieve requests per minute per knowledge base</strong>, so you cannot throttle each other on retrieval. Agentic answer generation shares the account&#39;s model throughput; if you see a throttling message, wait 30 seconds and retry rather than clicking repeatedly.</p>
+<h3 id="if-something-fails">If something fails<a class="anchor" href="#if-something-fails" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check in the AWS Console</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model cannot be selected in the Playground</td>
+<td>Region is <code>us-west-2</code>; the model is in the <strong>Amazon</strong> category; ask the instructor if the account needs model access enabled</td>
+</tr>
+<tr>
+<td>Create Managed KB denied</td>
+<td>Your identity lacks <code>iam:CreateRole</code> / <code>iam:PassRole</code>; the instructor must grant it or pre-create the role</td>
+</tr>
+<tr>
+<td>Documents stay PENDING for more than 3 minutes</td>
+<td>Refresh the page; check that the data source type is <strong>Custom</strong>; try re-adding with the same identifier</td>
+</tr>
+<tr>
+<td>No retrieved chunks</td>
+<td>Status of both documents is INDEXED; you are testing <strong>your</strong> knowledge base; try rephrasing the question</td>
+</tr>
+<tr>
+<td>Wrong answer after the boss-challenge update</td>
+<td>The replaced document must say INDEXED again; wait a minute and retry</td>
+</tr>
+<tr>
+<td>Throttling message during agentic retrieval</td>
+<td>Shared model throughput; wait 30 seconds and retry once</td>
+</tr>
+</tbody></table></div>
+<p><strong>AWS docs to consult:</strong> <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/playgrounds.html">Bedrock Playground</a> · <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/kb-managed-create.html">Create a managed knowledge base</a> · <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/kb-managed-ds-custom.html">Custom data sources</a> · <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/kb-test-retrieve.html">Query a knowledge base</a> · <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/agents-classic-maintenance-mode.html">Agents Classic maintenance mode</a> · <a href="https://aws.amazon.com/bedrock/pricing/">Bedrock pricing</a>.</p>
+<p><em>End of Mission 03 · Next: build a real agent on AgentCore and give it this knowledge base and a Lambda tool in Mission 04.</em></p>
+</section>
+    <nav class="pager" aria-label="Mission navigation">
+      <a class="pg prev" href="mission-02.html" style="--mc:#FB923C"><small>← Previous mission</small><span>02 · Ignition</span></a>
+      <a class="pg next" href="mission-04.html" style="--mc:#2DD4BF"><small>Next mission →</small><span>04 · Launch Control</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot"><button class="lb-close" type="button" aria-label="Close">×</button><img alt=""><p class="lb-cap"></p></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":21,"mission-03":7,"mission-04":11,"mission-05":10};</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>

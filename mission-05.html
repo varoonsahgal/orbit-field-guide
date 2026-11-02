@@ -1,0 +1,1332 @@
+<!doctype html>
+<html lang="en" data-page="mission-05" style="--mc:#34D399;--mc2:#10B981">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission 05 · Identity Lockdown — ORBIT Field Academy</title>
+<meta name="description" content="ORBIT's AI assistant can answer requests, but who is allowed to invoke it? Can a stranger pass any token? Can an authenticated app claim permission to change an order? You will build a real Cognito-backed perimeter aroun">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#070B1A">
+<meta property="og:title" content="Mission 05 · Identity Lockdown — ORBIT Field Academy"><meta property="og:description" content="ORBIT's AI assistant can answer requests, but who is allowed to invoke it? Can a stranger pass any token? Can an authenticated app claim permission to change an order? You will build a real Cognito-backed perimeter aroun"><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+</head>
+<body class="mission">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><a class="nav-m" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Mission 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Mission 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" aria-current="page" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m soon" href="index.html#missions" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast" style="--mc:#34D399;--mc2:#10B981">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="148" height="148" aria-hidden="true" style="--mc:#34D399;--mc2:#10B981">
+<defs><path id="arc-05-7d86e" d="M19,60 A41,41 0 0,1 101,60"/><radialGradient id="garc-05-7d86e" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#34D399" stop-opacity=".38"/><stop offset=".55" stop-color="#10B981" stop-opacity=".10"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="60" r="57" class="p-disc"/><circle cx="60" cy="60" r="57" fill="url(#garc-05-7d86e)"/>
+<circle cx="60" cy="60" r="52" class="p-ring"/><circle cx="60" cy="60" r="45" class="p-ring2"/>
+<text class="p-arc"><textPath href="#arc-05-7d86e" startOffset="50%" text-anchor="middle">IDENTITY LOCKDOWN</textPath></text>
+<text x="60" y="80" text-anchor="middle" class="p-num">05</text>
+<ellipse cx="60" cy="62" rx="56" ry="14" class="p-orbit" transform="rotate(-18 60 62)"/>
+<circle cx="8.5" cy="78" r="4.2" class="p-sat"/><circle cx="104" cy="44" r="2" class="p-star"/><circle cx="26" cy="30" r="1.4" class="p-star"/>
+</svg></div>
+    <div class="mast-text">
+      <p class="eyebrow">Mission 05 of 6 · Identity · Module 5 · Authentication</p>
+      <h1>Identity Lockdown</h1>
+      <p class="sub">Cognito, OAuth, JWT, IAM, Secrets Manager, and a JWT-protected AgentCore agent</p>
+      <p class="story"><span class="story-k">The story</span>ORBIT&#39;s AI assistant can answer requests, but <em>who</em> is allowed to invoke it? Can a stranger pass any token? Can an authenticated app claim permission to change an order? You will build a real Cognito-backed perimeter around a second agent and prove it with successful <strong>and</strong> rejected requests sent from <strong>AWS Lambda in the AWS Console</strong>.</p>
+      <div class="chips"><span class="chip"><b>Level</b>Security Engineer</span><span class="chip"><b>Time</b>110–140 minutes</span><span class="chip"><b>Where</b>AWS Management Console only</span><span class="chip"><b>Phases</b>7</span></div>
+      <div class="mast-actions"><a class="btn primary" href="#phase-0">Start the mission</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print handout</button><span class="mission-progress" data-progress="mission-05"><span class="mp-bar"><i></i></span><span class="mp-t">0%</span></span></div>
+    </div>
+  </div>
+</section>
+<div class="page" style="--mc:#34D399;--mc2:#10B981">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#where-this-mission-fits" data-toc="where-this-mission-fits"><span class="toc-n toc-dot"></span><span class="toc-l">Where this mission fits</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#before-you-start-the-concepts-in-this-mission" data-toc="before-you-start-the-concepts-in-this-mission"><span class="toc-n toc-dot"></span><span class="toc-l">Before you start: the concepts in this mission</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-0" data-toc="phase-0"><span class="toc-n">0</span><span class="toc-l">Shared-account and pricing preflight</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Sketch the authentication rules</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">Set up Cognito with a unique app identity</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Store the secret in AWS, not in code</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-4" data-toc="phase-4"><span class="toc-n">4</span><span class="toc-l">Create the JWT-protected harness</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-5" data-toc="phase-5"><span class="toc-n">5</span><span class="toc-l">Build an AWS-only authenticated test client</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-6" data-toc="phase-6"><span class="toc-n">6</span><span class="toc-l">What you have secured, and what you have not</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#final-scorecard-earn-the-identity-badge" data-toc="final-scorecard-earn-the-identity-badge"><span class="toc-n toc-dot"></span><span class="toc-l">Final scorecard — Earn the Identity Badge</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#quotas-costs-and-cleanup-mandatory-in-a-shared-account" data-toc="quotas-costs-and-cleanup-mandatory-in-a-shared-account"><span class="toc-n toc-dot"></span><span class="toc-l">Quotas, costs, and cleanup — mandatory in a shared account</span><span class="toc-p" aria-hidden="true"></span></a></li></ol>
+      <a class="side-link" href="notes-05.html">Field notes for Mission 05 →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="mission-05">
+<p><strong>Nothing runs on your laptop.</strong> This mission uses Amazon Cognito, AgentCore Harness, AWS Secrets Manager, IAM, the Lambda browser editor and Test tab, and CloudWatch. There is no CLI, terminal, browser plug-in, or external HTTP tool.</p>
+<aside class="callout note"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h.01M11 12h1v5h1"/><circle cx="12" cy="12" r="9"/></svg></div><div class="callout-body"><span class="callout-lbl">Note</span><p><strong>Re-verified against the live AWS Console on October 25, 2026</strong> in US West (Oregon). Screenshots show the example IDs <code>s07x42</code> and <code>i25k10</code>; yours will show your own <code>MY_ID</code>. What changed in this edition: the test client now proves <strong>five</strong> outcomes instead of three (a tampered token and a wrong-scope token were added), the HTTP-status guide matches what AgentCore really returns, and the Harness form&#39;s new defaults (managed Memory switched on, <em>Allowed clients</em> pre-ticked) are called out where you will meet them.</p>
+</div></aside>
+<section class="sec" data-sec="where-this-mission-fits"><h2 id="where-this-mission-fits"><span>Where this mission fits</span><a class="anchor" href="#where-this-mission-fits" aria-label="Link to this section">#</a></h2>
+<p>In Mission 03 you gave ORBIT a <strong>memory of facts</strong> (a knowledge base). In Mission 04 you gave it <strong>hands</strong> (a harness that can call a Lambda tool through a gateway). Both of those agents could only be called by someone <strong>already signed in to this AWS account</strong>, because their front door used <strong>IAM</strong>. That is fine for engineers in the console, but ORBIT&#39;s real customers, partner apps and mobile apps will <strong>never</strong> have AWS credentials.</p>
+<p>Mission 05 builds the front door that the outside world will use. Look back at the Mission 04 migration map: the row <em>Inbound caller authentication</em> said <strong>&quot;IAM today, JWT in Mission 05&quot;</strong>. Today is that row.</p>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    subgraph inside[&quot;Inside your AWS account&quot;]
+        direction TB
+        H4[&quot;🤖 Mission 04 harness&lt;br/&gt;orbit_MY_ID&lt;br/&gt;front door: IAM&quot;]
+        GW[&quot;🌐 Gateway → Lambda tool&lt;br/&gt;+ Mission 03 knowledge base&quot;]
+        H4 --&gt; GW
+        H5[&quot;🤖 Mission 05 harness&lt;br/&gt;orbit_MY_ID_secure&lt;br/&gt;front door: JWT&quot;]
+    end
+    ENG[&quot;👩‍💻 Engineer signed in&lt;br/&gt;to the AWS console&quot;] --&gt;|&quot;AWS-signed request (IAM)&quot;| H4
+    APP[&quot;📱 Outside app&lt;br/&gt;(no AWS credentials)&quot;] --&gt;|&quot;① ask for a token&quot;| COG[&quot;🪪 Amazon Cognito&quot;]
+    COG --&gt;|&quot;② signed JWT&quot;| APP
+    APP --&gt;|&quot;③ Bearer JWT&quot;| H5
+    classDef today fill:#FF9900,color:#111,stroke:#c46f00
+    class H5,COG,APP today">flowchart LR
+    subgraph inside[&quot;Inside your AWS account&quot;]
+        direction TB
+        H4[&quot;🤖 Mission 04 harness&lt;br/&gt;orbit_MY_ID&lt;br/&gt;front door: IAM&quot;]
+        GW[&quot;🌐 Gateway → Lambda tool&lt;br/&gt;+ Mission 03 knowledge base&quot;]
+        H4 --&gt; GW
+        H5[&quot;🤖 Mission 05 harness&lt;br/&gt;orbit_MY_ID_secure&lt;br/&gt;front door: JWT&quot;]
+    end
+    ENG[&quot;👩‍💻 Engineer signed in&lt;br/&gt;to the AWS console&quot;] --&gt;|&quot;AWS-signed request (IAM)&quot;| H4
+    APP[&quot;📱 Outside app&lt;br/&gt;(no AWS credentials)&quot;] --&gt;|&quot;① ask for a token&quot;| COG[&quot;🪪 Amazon Cognito&quot;]
+    COG --&gt;|&quot;② signed JWT&quot;| APP
+    APP --&gt;|&quot;③ Bearer JWT&quot;| H5
+    classDef today fill:#FF9900,color:#111,stroke:#c46f00
+    class H5,COG,APP today</pre></figure>
+<blockquote class="pull">
+<p>🏢 <strong>An analogy to carry through the whole mission.</strong> Think of ORBIT HQ as an office building.</p>
+<ul>
+<li><strong>Cognito</strong> is the <strong>badge office</strong>. An app proves who it is (its ID and a password) and the office prints a <strong>visitor badge</strong>.</li>
+<li>The badge is a <strong>JWT</strong>. It says <em>who</em> it was issued to, <em>which floors</em> it opens (<strong>scopes</strong>), <em>when it expires</em>, and it carries a <strong>hologram</strong> (the <strong>signature</strong>) that only the badge office can produce.</li>
+<li>The <strong>AgentCore JWT authorizer</strong> is the <strong>guard at the elevator</strong>. The guard doesn&#39;t phone the badge office for every visitor. They check the hologram against the office&#39;s published sample, read the name and floor, check the date, and either wave you through or turn you away.</li>
+<li>The <strong>harness execution role</strong> is the <strong>staff keycard the agent itself carries</strong> inside the building to open the model room. A visitor&#39;s badge never turns into a staff keycard.</li>
+<li><strong>Secrets Manager</strong> is the <strong>locked safe</strong> where the app&#39;s password is kept, so it never sits on a sticky note (in code).</li>
+</ul>
+</blockquote>
+</section><section class="sec" data-sec="before-you-start-the-concepts-in-this-mission"><h2 id="before-you-start-the-concepts-in-this-mission"><span>Before you start: the concepts in this mission</span><a class="anchor" href="#before-you-start-the-concepts-in-this-mission" aria-label="Link to this section">#</a></h2>
+<p>You will meet a lot of new words today. Rather than memorizing definitions, keep asking one question: <strong>&quot;who is proving what, to whom?&quot;</strong> Every piece below answers that question for a different hop.</p>
+<h3 id="authentication-vs-authorization">Authentication vs. authorization<a class="anchor" href="#authentication-vs-authorization" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Authentication</strong> answers <em>who are you?</em> A caller proves its identity, for example by presenting a token that only a trusted issuer could have signed.</li>
+<li><strong>Authorization</strong> answers <em>what may you do?</em> Knowing who you are is only the start. This app must still be allowed to call <em>this</em> agent, with <em>this</em> scope, and the agent&#39;s tools must still decide whether <em>this</em> order may be touched.</li>
+</ul>
+<p><strong>Why the difference matters today:</strong> you will see a request that is perfectly <strong>authenticated</strong> (a genuine Cognito token from your own pool) and is still <strong>rejected</strong>, because it asked for the wrong permission. If you remember only one thing from this mission, make it this: <em>a real identity is not the same as permission.</em></p>
+<h3 id="why-not-just-use-iam-like-mission-04">Why not just use IAM like Mission 04?<a class="anchor" href="#why-not-just-use-iam-like-mission-04" aria-label="Link to this section">#</a></h3>
+<p>IAM is AWS&#39;s own identity system. To pass an IAM check, the caller must sign every request with AWS access keys. That works for code running <em>inside</em> AWS and for people in the console. It fails for:</p>
+<ul>
+<li>a mobile app on a customer&#39;s phone (you would have to ship AWS keys inside the app, where anyone can extract them);</li>
+<li>a partner company&#39;s server (you would have to create IAM users for another company);</li>
+<li>a web front-end whose users sign in with email, Google or a corporate login.</li>
+</ul>
+<p>The industry&#39;s answer is <strong>OAuth 2.0 tokens</strong>. A dedicated identity service hands out short-lived, signed tokens, and the API checks the token. AgentCore supports both styles, which is why every harness and gateway has an <strong>Inbound Auth</strong> setting with two choices: <strong>IAM</strong> or <strong>JSON Web Tokens</strong>.</p>
+<h3 id="oauth-2-0-in-two-minutes">OAuth 2.0 in two minutes<a class="anchor" href="#oauth-2-0-in-two-minutes" aria-label="Link to this section">#</a></h3>
+<p>OAuth 2.0 is the standard that lets an application obtain an <strong>access token</strong> from an <strong>authorization server</strong> and present it to a <strong>resource server</strong> (an API). Four roles matter today:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>OAuth role</th>
+<th>Today it is…</th>
+<th>In the building analogy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Client</strong></td>
+<td>Your Lambda test function, identified by an <strong>app client ID</strong> and a <strong>client secret</strong></td>
+<td>The visitor asking for a badge</td>
+</tr>
+<tr>
+<td><strong>Authorization server</strong></td>
+<td>Your Amazon Cognito <strong>user pool</strong> and its <strong>token endpoint</strong></td>
+<td>The badge office</td>
+</tr>
+<tr>
+<td><strong>Resource server</strong></td>
+<td>A name you register in Cognito (<code>orbit-MY_ID-api</code>) that owns one or more <strong>scopes</strong></td>
+<td>The department whose floors the badge can open</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>A permission string in the token, such as <code>orbit-MY_ID-api/invoke</code>, that the API checks</td>
+<td>A floor printed on the badge</td>
+</tr>
+</tbody></table></div>
+<p>The <strong>client credentials grant</strong> is the OAuth flow for <strong>machine-to-machine (M2M)</strong> calls. No human signs in: the client sends its ID and secret and gets back a token with custom scopes. A human user would use the <strong>authorization code</strong> grant with PKCE instead, typing a password into a Cognito-hosted sign-in page.</p>
+<p><strong>Why we use M2M today:</strong> it is the simplest flow that produces a real, signed token without needing a web page or a test user. The <em>checking</em> half, which is the part you configure on the harness, is identical for both flows. Once you have built today&#39;s front door, a human sign-in flow is just a different way of getting the badge.</p>
+<h3 id="json-web-tokens-jwt">JSON Web Tokens (JWT)<a class="anchor" href="#json-web-tokens-jwt" aria-label="Link to this section">#</a></h3>
+<p>An access token from Cognito is a <strong>JWT</strong> (say &quot;jot&quot;): three Base64URL strings separated by dots, <code>header.payload.signature</code>. Base64URL is just an encoding, <strong>not encryption</strong>, so anyone holding the token can read the payload. That is fine, because the payload holds <strong>claims</strong> about the caller, not secrets:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Meaning</th>
+<th>Where you will see it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>iss</code></td>
+<td>Issuer: the exact user pool URL</td>
+<td>Must match the pool behind your <strong>Discovery URL</strong></td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td>Which app client requested the token</td>
+<td><strong>Allowed clients</strong> on the harness</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>Space-separated scopes granted</td>
+<td><strong>Allowed scopes</strong> on the harness</td>
+</tr>
+<tr>
+<td><code>exp</code></td>
+<td>Expiry time (Cognito default 60 minutes)</td>
+<td>Expired tokens are rejected</td>
+</tr>
+<tr>
+<td><code>aud</code></td>
+<td>Audience: which API the token is for</td>
+<td>Cognito <strong>access tokens do not carry <code>aud</code></strong>; do not configure <em>Allowed audiences</em></td>
+</tr>
+</tbody></table></div>
+<p>The <strong>signature</strong> is what makes a readable token trustworthy. Cognito signs the header and payload with a <strong>private key</strong> that never leaves Cognito. It publishes the matching <strong>public keys</strong> at a well-known address. Anyone can use a public key to <em>check</em> a signature, but nobody can use it to <em>create</em> one. Change a single character of the payload or the signature, and the check fails.</p>
+<p><strong>How AgentCore finds those public keys:</strong> you give it one URL, the pool&#39;s <strong>OpenID Connect discovery URL</strong> (<code>…/.well-known/openid-configuration</code>). That small public JSON document tells AgentCore the pool&#39;s official <strong>issuer</strong> name and where its <strong>public keys</strong> (the <em>JWKS</em>) live. This is why the discovery URL is the single most important thing you type into the harness. It decides <em>whose</em> badges the guard trusts.</p>
+<h3 id="the-aws-services-and-why-each-one-is-here">The AWS services, and why each one is here<a class="anchor" href="#the-aws-services-and-why-each-one-is-here" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>What it is</th>
+<th>Why this mission needs it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Amazon Cognito user pool</strong></td>
+<td>An identity store plus an OAuth/OIDC authorization server</td>
+<td>It is the badge office. Today it holds <strong>no human users at all</strong>, just one M2M <strong>app client</strong>, one <strong>resource server</strong> and a <strong>domain</strong> (the hostname of its token endpoint).</td>
+</tr>
+<tr>
+<td><strong>AWS Secrets Manager</strong></td>
+<td>Encrypted storage for credentials, with its own IAM access control</td>
+<td>The client secret is a password. Code refers to the secret by <strong>ARN</strong> and reads the value at run time, so it never appears in source code, environment variables, screenshots or logs.</td>
+</tr>
+<tr>
+<td><strong>Lambda environment variables</strong></td>
+<td>Plain configuration that your function reads with <code>os.environ</code></td>
+<td>ARNs and Region names are <em>addresses</em>, not secrets. Anyone who can view the function can read them.</td>
+</tr>
+<tr>
+<td><strong>AgentCore inbound auth</strong></td>
+<td>The gatekeeper in front of every harness and gateway</td>
+<td><em>Use IAM permissions</em> (Mission 04) accepts AWS-signed requests. <em>Use JSON Web Tokens</em> accepts a <code>Bearer</code> token that matches the discovery URL, allowed clients and allowed scopes you configure.</td>
+</tr>
+<tr>
+<td><strong>AWS Lambda</strong></td>
+<td>Code that runs on demand without a server</td>
+<td>We need <em>something</em> to play the outside app. A Lambda in the console lets you send real HTTPS requests without installing anything.</td>
+</tr>
+</tbody></table></div>
+<h3 id="who-is-proving-what-to-whom-the-three-hops">Who is proving what, to whom: the three hops<a class="anchor" href="#who-is-proving-what-to-whom-the-three-hops" aria-label="Link to this section">#</a></h3>
+<p>The same request crosses <strong>three different security checks</strong>, each run by a different service with different credentials. Most debugging confusion today comes from fixing the wrong hop.</p>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    L[&quot;🧪 Lambda test client&quot;] --&gt;|&quot;Hop 1 · IAM&lt;br/&gt;Lambda role may read ONE secret&quot;| SM[&quot;🔒 Secrets Manager&quot;]
+    L --&gt;|&quot;Hop 2 · OAuth&lt;br/&gt;client ID + secret → token&quot;| C[&quot;🪪 Cognito&quot;]
+    L --&gt;|&quot;Hop 3 · JWT&lt;br/&gt;Bearer token → allowed?&quot;| A[&quot;🛡️ AgentCore JWT authorizer&quot;]
+    A --&gt; H[&quot;🤖 Secure harness&quot;]
+    H --&gt;|&quot;Hop 4 · IAM&lt;br/&gt;harness role may call the model&quot;| B[&quot;🧠 Bedrock model&quot;]">flowchart LR
+    L[&quot;🧪 Lambda test client&quot;] --&gt;|&quot;Hop 1 · IAM&lt;br/&gt;Lambda role may read ONE secret&quot;| SM[&quot;🔒 Secrets Manager&quot;]
+    L --&gt;|&quot;Hop 2 · OAuth&lt;br/&gt;client ID + secret → token&quot;| C[&quot;🪪 Cognito&quot;]
+    L --&gt;|&quot;Hop 3 · JWT&lt;br/&gt;Bearer token → allowed?&quot;| A[&quot;🛡️ AgentCore JWT authorizer&quot;]
+    A --&gt; H[&quot;🤖 Secure harness&quot;]
+    H --&gt;|&quot;Hop 4 · IAM&lt;br/&gt;harness role may call the model&quot;| B[&quot;🧠 Bedrock model&quot;]</pre></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Hop</th>
+<th>Who proves</th>
+<th>To whom</th>
+<th>With what</th>
+<th>Configured in</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Lambda&#39;s execution role</td>
+<td>Secrets Manager</td>
+<td>AWS signature (IAM)</td>
+<td>Phase 5, Step B</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Your app client</td>
+<td>Cognito</td>
+<td>Client ID + client secret</td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The token holder</td>
+<td>AgentCore JWT authorizer</td>
+<td>Signed JWT</td>
+<td>Phase 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The harness&#39;s execution role</td>
+<td>Amazon Bedrock</td>
+<td>AWS signature (IAM)</td>
+<td>Phase 4 (default role)</td>
+</tr>
+</tbody></table></div>
+<p>Notice that IAM appears <strong>twice</strong>, on hops 1 and 4, and that neither IAM check knows anything about the JWT. That is by design.</p>
+<h3 id="know-the-difference">Know the difference<a class="anchor" href="#know-the-difference" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Protects</th>
+<th>Does <strong>not</strong> automatically protect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>IAM for you in the console</strong></td>
+<td>Who may create or change resources</td>
+<td>App end users</td>
+</tr>
+<tr>
+<td><strong>Harness execution role (IAM)</strong></td>
+<td>Which AWS APIs the agent process may call</td>
+<td>Whether an external JWT is valid</td>
+</tr>
+<tr>
+<td><strong>Cognito user pool and M2M app client</strong></td>
+<td>Token issuance, client identity, scopes</td>
+<td>IAM access to Bedrock or Secrets Manager</td>
+</tr>
+<tr>
+<td><strong>AgentCore inbound JWT authorizer</strong></td>
+<td>Which tokens may invoke the harness</td>
+<td>Business rules inside each tool</td>
+</tr>
+<tr>
+<td><strong>Gateway and target roles</strong> (Mission 04)</td>
+<td>Which tools may be invoked</td>
+<td>Whether <em>this</em> customer may touch <em>this</em> order</td>
+</tr>
+</tbody></table></div>
+</section><section class="sec" data-sec="phase-0"><h2 id="phase-0" class="phase-h"><span class="phase-num">Phase 0</span><span class="phase-title">Shared-account and pricing preflight</span><span class="phase-time">5 minutes</span><a class="anchor" href="#phase-0" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Use the <strong>same <code>MY_ID</code> and Region</strong> as Missions 03–04.</li>
+<li><strong>Cost facts (verified October 2026):</strong> Cognito bills <strong>$0.00225 per successful M2M token request</strong>, with no free tier and <strong>no charge per app client</strong>. You will make roughly 5–15 token requests. Secrets Manager bills <strong>$0.40 per secret per month</strong>, prorated hourly. The protected harness bills like Mission 04. The whole mission costs a few cents per participant; the only thing worth deleting promptly afterwards is the secret.</li>
+<li>Create a <strong>new</strong> harness for this mission. Do not switch the Mission 04 harness to JWT. Keeping both lets you compare an IAM front door with a JWT front door side by side, and it avoids breaking the Mission 04 gateway test.</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Name you will type</th>
+<th>Record ID / ARN</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cognito app client (created first, by the wizard)</td>
+<td><code>orbit-MY_ID-m2m</code></td>
+<td>app client ID</td>
+</tr>
+<tr>
+<td>Cognito user pool (renamed after the wizard)</td>
+<td><code>orbit-MY_ID-pool</code></td>
+<td>user pool ID, OIDC configuration URL</td>
+</tr>
+<tr>
+<td>Cognito resource server and scope</td>
+<td><code>orbit-MY_ID-api</code> with scope <code>invoke</code></td>
+<td>full scope <code>orbit-MY_ID-api/invoke</code></td>
+</tr>
+<tr>
+<td>Cognito domain</td>
+<td>created automatically, unique per pool</td>
+<td><code>https://….auth.us-west-2.amazoncognito.com</code></td>
+</tr>
+<tr>
+<td>Secrets Manager secret</td>
+<td><code>orbit/MY_ID/cognito-m2m</code></td>
+<td>secret ARN</td>
+</tr>
+<tr>
+<td>JWT-protected harness</td>
+<td><code>orbit_MY_ID_secure</code></td>
+<td>harness ARN</td>
+</tr>
+<tr>
+<td>Harness execution role</td>
+<td><code>orbit-MY_ID-secure-role</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Lambda test client</td>
+<td><code>orbit-MY_ID-jwt-test</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Inline policy on the Lambda role</td>
+<td><code>orbit-MY_ID-read-secret</code></td>
+<td></td>
+</tr>
+</tbody></table></div>
+</section><section class="sec" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-num">Phase 1</span><span class="phase-title">Sketch the authentication rules</span><span class="phase-time">5 minutes</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<p><strong>Why plan first?</strong> Security engineers write down the rule <em>before</em> building the lock. If you can&#39;t say what a valid caller looks like, you can&#39;t tell whether a rejection is a bug or the system working.</p>
+<p>Write the rule set you intend to enforce:</p>
+<ul>
+<li><code>iss</code> must be <strong>my</strong> user pool (only badges from <em>my</em> badge office).</li>
+<li><code>client_id</code> must be <strong>my</strong> app client (only badges issued to <em>my</em> app).</li>
+<li><code>scope</code> must include <code>orbit-MY_ID-api/invoke</code> (the badge must open <em>this</em> floor).</li>
+<li><code>exp</code> must be in the future (no expired badges).</li>
+<li>The signature must verify against my pool&#39;s public keys (no photocopied or altered badges).</li>
+<li><code>aud</code> is <strong>not</strong> checked (Cognito access tokens do not carry it).</li>
+</ul>
+<p>Now write the <strong>evidence plan</strong>: the five requests your test client will send in Phase 5, and what each one should prove.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test</th>
+<th>What it sends</th>
+<th>Proves the authorizer checks…</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>good</code></td>
+<td>A genuine token with the right scope</td>
+<td>the happy path works</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td><code>missing</code></td>
+<td>No token</td>
+<td>that a token is required at all</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td><code>forged</code></td>
+<td>A string that isn&#39;t a JWT</td>
+<td>the token&#39;s structure</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td><code>tampered</code></td>
+<td>A genuine token with an altered signature</td>
+<td>the signature</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td><code>wrong-scope</code></td>
+<td>A genuine token for a different scope</td>
+<td>the <strong>scope</strong>: authentication ≠ authorization</td>
+<td>rejected</td>
+</tr>
+</tbody></table></div>
+<p><strong>Checkpoint:</strong> if a valid app sends a Cognito JWT to AgentCore, does the caller gain <code>secretsmanager:*</code> or <code>bedrock:*</code> privileges? <strong>No.</strong> The token only opens the harness&#39;s front door. What the agent may do inside AWS comes from its execution role, which is enforced separately (hop 4).</p>
+</section><section class="sec" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-num">Phase 2</span><span class="phase-title">Set up Cognito with a unique app identity</span><span class="phase-time">25 minutes</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    S[&quot;🔒 Secrets Manager&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class C now
+    class S,T,G,H,M todo">flowchart LR
+    S[&quot;🔒 Secrets Manager&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class C now
+    class S,T,G,H,M todo</pre></figure>
+<p><strong>What you are building and why:</strong> the badge office. By the end of this phase Cognito will know about one app (<code>orbit-MY_ID-m2m</code>), one API it may get badges for (<code>orbit-MY_ID-api</code>) with one permission (<code>invoke</code>), and it will have a public web address where apps go to collect badges (the <strong>domain</strong> + <code>/oauth2/token</code>).</p>
+<h3 id="step-a-create-the-user-pool-and-m2m-app-client-in-one-wizard">Step A: Create the user pool and M2M app client in one wizard<a class="anchor" href="#step-a-create-the-user-pool-and-m2m-app-client-in-one-wizard" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><p>Console search → <strong>Cognito</strong> → <strong>User pools</strong> → <strong>Create user pool</strong>. The wizard is titled <em>Set up resources for your application</em>.</p>
+</li>
+<li><p>Under <strong>Application type</strong> choose <strong>Machine-to-machine application</strong>. The other options (web, SPA, mobile) are for human sign-in and add fields you do not need.</p>
+</li>
+<li><p><strong>Name your application:</strong> <code>orbit-MY_ID-m2m</code>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-01-cognito-wizard-m2m.webp" alt="Cognito wizard with Machine-to-machine application selected and the app named" loading="lazy" decoding="async"></button><figcaption>Cognito wizard with Machine-to-machine application selected and the app named</figcaption></figure>
+</li>
+<li><p>Choose <strong>Create user directory</strong>. The confirmation page shows that <strong>both</strong> an app client and a user pool were created. The pool gets an automatic name such as <em>User pool - edwkah</em>; you will rename it next. Read the page: Cognito also created a <strong>default resource server</strong> (<code>default-m2m-resource-server-xxxxxx/read</code>) and shows a sample <code>curl</code> command with your <strong>client ID</strong> in it. <strong>Write down that default scope name</strong>; you will use it as the &quot;wrong&quot; scope in Phase 5.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-02-cognito-created.webp" alt="Confirmation page listing the created app, pool, default resource server and sample token request" loading="lazy" decoding="async"></button><figcaption>Confirmation page listing the created app, pool, default resource server and sample token request</figcaption></figure>
+</li>
+</ol>
+<blockquote class="pull">
+<p>💡 <strong>Why is it called a &quot;user pool&quot; if there are no users?</strong> Cognito began as a sign-in service for people, so its container is a <em>user pool</em>. An app client is also an identity, a &quot;user&quot; that happens to be a program. One pool can serve human sign-in and M2M apps at the same time, and both get tokens signed by the same keys.</p>
+</blockquote>
+<h3 id="step-b-rename-the-pool-and-record-the-issuer">Step B: Rename the pool and record the issuer<a class="anchor" href="#step-b-rename-the-pool-and-record-the-issuer" aria-label="Link to this section">#</a></h3>
+<ol start="5">
+<li><p>Choose <strong>Go to overview</strong>. Choose <strong>Rename</strong>, enter <code>orbit-MY_ID-pool</code>, and <strong>Save changes</strong>. (In a shared account, a name that carries <code>MY_ID</code> is how you, your classmates and your instructor tell 30 pools apart.)</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-03-cognito-rename.webp" alt="Rename dialog for the user pool" loading="lazy" decoding="async"></button><figcaption>Rename dialog for the user pool</figcaption></figure>
+</li>
+<li><p>On the <strong>Overview</strong> page record three values:</p>
+<ul>
+<li>the <strong>User pool ID</strong> (such as <code>us-west-2_7vX2h98jw</code>);</li>
+<li>the <strong>OpenID Connect configuration URL</strong>, which is your <strong>discovery URL</strong>, shaped like <code>https://cognito-idp.us-west-2.amazonaws.com/USER_POOL_ID/.well-known/openid-configuration</code>;</li>
+<li>the <strong>Token signing key URL</strong>, the JWKS endpoint holding the public keys AgentCore will fetch.</li>
+</ul>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-04-cognito-overview.webp" alt="User pool overview with the pool ID and the OIDC configuration URL" loading="lazy" decoding="async"></button><figcaption>User pool overview with the pool ID and the OIDC configuration URL</figcaption></figure>
+<p>Open the OIDC configuration URL in a new browser tab. It is public JSON metadata: no sign-in is needed, because public keys are <em>meant</em> to be public. Find two lines:</p>
+<ul>
+<li><code>&quot;issuer&quot;</code> is <code>https://cognito-idp.us-west-2.amazonaws.com/USER_POOL_ID</code>. Every token from this pool carries exactly this string in <code>iss</code>.</li>
+<li><code>&quot;token_endpoint&quot;</code> points at a <strong>different</strong> hostname, <code>https://&lt;prefix&gt;.auth.us-west-2.amazoncognito.com/oauth2/token</code>.</li>
+</ul>
+<p><strong>That difference is today&#39;s most common mistake.</strong> The <strong>issuer</strong> (the pool&#39;s identity, used for <em>checking</em> tokens) is not the <strong>domain</strong> (the web address where apps <em>collect</em> tokens). AgentCore needs the first; your Lambda needs the second.</p>
+</li>
+</ol>
+<h3 id="step-c-create-your-resource-server-and-scope">Step C: Create your resource server and scope<a class="anchor" href="#step-c-create-your-resource-server-and-scope" aria-label="Link to this section">#</a></h3>
+<ol start="7">
+<li><p>In the left navigation choose <strong>Applications → Resource servers → Create resource server</strong>.</p>
+</li>
+<li><p><strong>Resource server name</strong> <code>orbit-MY_ID-api</code> · <strong>Resource server identifier</strong> <code>orbit-MY_ID-api</code> · choose <strong>Add custom scope</strong> → <strong>Scope name</strong> <code>invoke</code>, <strong>Description</strong> <code>Invoke my ORBIT training agent</code> → <strong>Create resource server</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-05-resource-server-form.webp" alt="Create resource server form with the invoke scope" loading="lazy" decoding="async"></button><figcaption>Create resource server form with the invoke scope</figcaption></figure>
+<p>The list now shows two resource servers: the wizard&#39;s default one and yours. Your fully qualified scope is <strong><code>orbit-MY_ID-api/invoke</code></strong>: a bare <code>invoke</code> is not the same string.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-06-resource-servers.webp" alt="Resource servers list with the default and the orbit-s07x42-api servers" loading="lazy" decoding="async"></button><figcaption>Resource servers list with the default and the orbit-s07x42-api servers</figcaption></figure>
+</li>
+</ol>
+<blockquote class="pull">
+<p>💡 <strong>&quot;Resource server&quot; sounds like you just deployed a server. You didn&#39;t.</strong> It is only a <strong>name</strong> in Cognito that groups permissions for one API. The real API is your harness. Why bother? Because in a real company one pool issues tokens for many APIs: <code>orders-api/read</code>, <code>orders-api/refund</code>, <code>agent-api/invoke</code>. The prefix keeps their permissions from colliding, and each API checks only its own. Today you are inventing a permission called <code>invoke</code> and, in Phase 4, teaching the harness to demand it.</p>
+</blockquote>
+<h3 id="step-d-authorize-the-scope-on-your-app-client-and-find-the-token">Step D: Authorize the scope on your app client, and find the token endpoint and secret<a class="anchor" href="#step-d-authorize-the-scope-on-your-app-client-and-find-the-token" aria-label="Link to this section">#</a></h3>
+<p><strong>Why this step?</strong> Defining a scope (Step C) only says <em>the permission exists</em>. You must also say <em>which apps may ask for it</em>. Defining a floor in the building isn&#39;t the same as putting it on someone&#39;s badge.</p>
+<ol start="9">
+<li><p><strong>Applications → App clients → <code>orbit-MY_ID-m2m</code></strong>. The <em>App client information</em> panel shows the <strong>Client ID</strong> and a masked <strong>Client secret</strong> with a <em>Show client secret</em> link. The client ID is like a username and is not secret. The client secret is the password. Look at the secret only when you copy it into Secrets Manager in Phase 3; never paste it into chat, a screenshot, a Lambda test event or an environment variable.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-07-app-client.webp" alt="App client page with client ID and masked client secret" loading="lazy" decoding="async"></button><figcaption>App client page with client ID and masked client secret</figcaption></figure>
+</li>
+<li><p>Open the <strong>Login pages</strong> tab. Under <em>Managed login pages configuration</em>, note <strong>OAuth grant types: Client credentials grant</strong> and <strong>Custom scopes</strong> (only the default scope so far). Choose <strong>Edit</strong>.</p>
+</li>
+<li><p>In <strong>Custom scopes</strong> open <em>Select custom scopes</em> and add <strong><code>orbit-MY_ID-api/invoke</code></strong>. Leave the client credentials grant as the only grant. <strong>Save changes</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-08-app-client-scopes.webp" alt="Edit managed login pages: client credentials grant with both custom scopes selected" loading="lazy" decoding="async"></button><figcaption>Edit managed login pages: client credentials grant with both custom scopes selected</figcaption></figure>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-09-app-client-login-pages.webp" alt="Login pages tab now listing orbit-s07x42-api/invoke" loading="lazy" decoding="async"></button><figcaption>Login pages tab now listing orbit-s07x42-api/invoke</figcaption></figure>
+<p>Your app may now ask for <strong>two</strong> scopes: the wizard&#39;s default <code>…/read</code> and your <code>orbit-MY_ID-api/invoke</code>. Only one of them will open the harness. That is exactly what the <code>wrong-scope</code> test proves later.</p>
+</li>
+<li><p><strong>Branding → Domain</strong>. The wizard already created a <strong>Cognito domain</strong> with a unique prefix (for example <code>https://us-west-27vx2h98jw.auth.us-west-2.amazoncognito.com</code>). Record it. Your <strong>token endpoint</strong> is that domain plus <code>/oauth2/token</code>. You do not need to create a custom domain.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-10-cognito-domain.webp" alt="Domain page showing the automatically created Cognito domain" loading="lazy" decoding="async"></button><figcaption>Domain page showing the automatically created Cognito domain</figcaption></figure>
+</li>
+</ol>
+<aside class="callout note"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h.01M11 12h1v5h1"/><circle cx="12" cy="12" r="9"/></svg></div><div class="callout-body"><span class="callout-lbl">Note</span><p>Because the wizard generates the domain prefix, 30 participants cannot collide on it. Everything else you typed carries <code>MY_ID</code>. Cognito&#39;s per-account quotas (1,000 pools, 150 token requests per second) are far above what the class needs.</p>
+</div></aside>
+<p><strong>🔍 What you have now:</strong> a badge office that will issue a signed token to exactly one app, for the scopes you allowed it, at <code>https://&lt;your-domain&gt;/oauth2/token</code>. Nothing can <em>use</em> those tokens yet: no API is checking them. That comes in Phase 4.</p>
+</section><section class="sec" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-num">Phase 3</span><span class="phase-title">Store the secret in AWS, not in code</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    S[&quot;🔒 Secrets Manager&lt;br/&gt;◀ YOU ARE HERE&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class S now
+    class C done
+    class T,G,H,M todo">flowchart LR
+    S[&quot;🔒 Secrets Manager&lt;br/&gt;◀ YOU ARE HERE&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class S now
+    class C done
+    class T,G,H,M todo</pre></figure>
+<p><strong>Why not just paste the secret into the code?</strong> Code gets copied into Git repositories, shared in chat, pasted into tickets and shown on screen in classes like this one. A secret in code is a secret you can&#39;t take back. Secrets Manager gives you three things code can&#39;t:</p>
+<ul>
+<li><strong>Encryption at rest</strong> with a KMS key.</li>
+<li><strong>A separate permission</strong> (<code>secretsmanager:GetSecretValue</code>), so being able to <em>edit</em> a function doesn&#39;t automatically mean being able to <em>read</em> its password.</li>
+<li><strong>Rotation</strong>: you can change the password in one place without redeploying code.</li>
+</ul>
+<p>The code holds only the secret&#39;s <strong>ARN</strong>, which is an address. An address is useless without permission to open the door.</p>
+<ol>
+<li><p>Console search → <strong>Secrets Manager</strong> → <strong>Store a new secret</strong>.</p>
+</li>
+<li><p><strong>Secret type:</strong> <strong>Other type of secret</strong>. Under <strong>Key/value pairs</strong> add four rows (use <strong>+ Add row</strong>). The keys must match the test code exactly:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Is it secret?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>client_id</code></td>
+<td>your app client ID</td>
+<td>no (like a username)</td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td>your client secret (from <em>Show client secret</em> in Phase 2)</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td><code>token_url</code></td>
+<td>your domain + <code>/oauth2/token</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td><code>orbit-MY_ID-api/invoke</code></td>
+<td>no</td>
+</tr>
+</tbody></table></div>
+<p>Only one value is truly secret, but keeping all four together means the test client needs exactly <strong>one</strong> permission to get everything it needs to log in.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-11-secret-key-value.webp" alt="Key/value pairs for the secret (the secret value is a placeholder in this screenshot)" loading="lazy" decoding="async"></button><figcaption>Key/value pairs for the secret (the secret value is a placeholder in this screenshot)</figcaption></figure>
+</li>
+<li><p>Keep the default encryption key and choose <strong>Next</strong>. <strong>Secret name:</strong> <code>orbit/MY_ID/cognito-m2m</code>. Add a description. <strong>Next</strong>.</p>
+</li>
+<li><p>Leave <strong>Configure rotation</strong> off (a training secret you will delete today). <strong>Next</strong>, review, then <strong>Store</strong>.</p>
+</li>
+<li><p>Open the secret and copy its <strong>Secret ARN</strong>. Note that Secrets Manager appends six random characters to the ARN (<code>…:secret:orbit/MY_ID/cognito-m2m-AbCdEf</code>). You will need the exact ARN, or the name followed by <code>-*</code>, for the IAM policy in Phase 5.</p>
+</li>
+</ol>
+<blockquote class="pull">
+<p>💡 <strong>Why the random suffix?</strong> If you delete a secret and later create a new one with the same name, it gets a <strong>different</strong> ARN. An old IAM policy that named the exact ARN won&#39;t silently grant access to the new secret. It&#39;s a small safety feature that trips up almost everyone the first time.</p>
+</blockquote>
+<p><strong>Why this matters:</strong> the ARN is a pointer; the value is credential material. IAM controls who can read the value. Do not give any role <code>secretsmanager:*</code> on <code>*</code> because it is easier.</p>
+</section><section class="sec" data-sec="phase-4"><h2 id="phase-4" class="phase-h"><span class="phase-num">Phase 4</span><span class="phase-title">Create the JWT-protected harness</span><span class="phase-time">15 minutes</span><a class="anchor" href="#phase-4" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    S[&quot;🔒 Secrets Manager ✔&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&lt;br/&gt;◀ YOU ARE HERE&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class G,H now
+    class C,S done
+    class T,M todo">flowchart LR
+    S[&quot;🔒 Secrets Manager ✔&quot;] -.-&gt; T[&quot;🧪 Lambda test client&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness&lt;br/&gt;◀ YOU ARE HERE&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class G,H now
+    class C,S done
+    class T,M todo</pre></figure>
+<p><strong>What you are building and why:</strong> the guard at the elevator, and the agent behind it. This harness is a near copy of your Mission 04 agent, but with a <strong>different front door</strong>. Instead of trusting AWS signatures, it trusts badges from <em>your</em> Cognito pool, for <em>your</em> app, carrying <em>your</em> scope.</p>
+<p>Notice the dotted line from Cognito to the authorizer: the guard only reads the badge office&#39;s <strong>public</strong> keys. Cognito is <strong>not</strong> called for each request. That is the general trade-off of JWTs: checking them is fast and needs no call home, so the token&#39;s short lifetime (<code>exp</code>, 60 minutes by default) is what limits the damage if one ever leaks.</p>
+<ol>
+<li><p><strong>AgentCore → Build → Harness → Quick create Harness ▾ → Advanced create Harness</strong>.</p>
+</li>
+<li><p><strong>Harness name:</strong> <code>orbit_MY_ID_secure</code>.</p>
+</li>
+<li><p><strong>Model and system prompt:</strong> the form now defaults to <strong>Claude Sonnet 4.6</strong>. Change it to <strong>Anthropic → Claude Haiku 4.5</strong> (inference profile <em>US Anthropic Claude Haiku 4.5</em>). Haiku is cheaper and faster, and today&#39;s test needs a working agent, not a brilliant one. Set the system prompt:</p>
+<blockquote class="pull">
+<p>You are the ORBIT Outfitters customer support assistant. Answer in a warm, supportive voice. Never invent a returns or shipping policy, and never claim to have issued a refund or changed an order.</p>
+</blockquote>
+</li>
+<li><p><strong>Memory:</strong> expand it. The form now switches memory <strong>on</strong> by default (<em>Create new Memory (managed by Harness)</em>, which takes 3–5 minutes to provision and is one more resource to clean up). Switch <strong>Enable Memory</strong> <strong>off</strong>. A security test needs no conversation history.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-14-harness-secure-memory.webp" alt="Memory section switched on by default with Create new Memory selected; turn the Enable Memory toggle off" loading="lazy" decoding="async"></button><figcaption>Memory section switched on by default with Create new Memory selected; turn the Enable Memory toggle off</figcaption></figure>
+</li>
+<li><p>Skip <strong>Tools</strong>, <strong>Skills</strong>, <strong>Lifecycle hooks</strong> and <strong>Advanced configurations</strong>. This agent deliberately has <strong>no tools</strong>: today&#39;s question is <em>who can talk to it</em>, not <em>what it can do</em>.</p>
+</li>
+<li><p><strong>Inbound Auth:</strong> this is the heart of the mission. Choose <strong>Use JSON Web Tokens (JWT)</strong>. Under <strong>JWT schema configuration</strong> the form preselects <em>Quick create configurations with Cognito</em>; choose <strong>Use existing Identity provider configurations</strong> instead. Quick create would build a second pool that you don&#39;t control and haven&#39;t just learned. Then fill in:</p>
+<ul>
+<li><strong>Discovery URL:</strong> your OIDC configuration URL from Phase 2: the full <code>…/.well-known/openid-configuration</code> URL. Not the domain, not the JWKS URL. <em>(This decides whose badges are trusted.)</em></li>
+<li>Leave <strong>Allowed audiences</strong> unticked. <em>(Cognito access tokens have no <code>aud</code>, so this check would reject every token.)</em></li>
+<li><strong>Allowed clients:</strong> already ticked in the current form. Enter your <strong>app client ID</strong>. <em>(Only badges issued to your app.)</em></li>
+<li><strong>Allowed scopes:</strong> tick it and enter <code>orbit-MY_ID-api/invoke</code>. <em>(The badge must open this floor. The console&#39;s hint, &quot;at least one of the required scopes&quot;, means a token that carries <code>invoke</code> plus other scopes still passes.)</em></li>
+<li>Leave <strong>Custom claims</strong> unticked.</li>
+</ul>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-13-harness-secure-jwt.webp" alt="Inbound Auth section configured for JWT with discovery URL, allowed client and allowed scope" loading="lazy" decoding="async"></button><figcaption>Inbound Auth section configured for JWT with discovery URL, allowed client and allowed scope</figcaption></figure>
+</li>
+<li><p><strong>Permissions:</strong> <strong>Create default role</strong>, <strong>Role name</strong> <code>orbit-MY_ID-secure-role</code>. This is hop 4: the role the agent itself uses to call Bedrock. It has nothing to do with the JWT, and the caller never gets it.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-12-harness-secure-create.webp" alt="Advanced create Harness form for the secure harness" loading="lazy" decoding="async"></button><figcaption>Advanced create Harness form for the secure harness</figcaption></figure>
+</li>
+<li><p><strong>Create Harness</strong>. Wait for <strong>Ready</strong> (a few minutes: about 5 in the October 2026 run; refresh the page). On the detail page expand <strong>Inbound Auth</strong> and confirm it shows <strong>JSON Web Tokens (JWT)</strong>, your discovery URL, your client ID and your scope. Record the <strong>Harness ARN</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-15-harness-secure-inbound.webp" alt="Secure harness detail page with the Inbound Auth panel showing the JWT settings" loading="lazy" decoding="async"></button><figcaption>Secure harness detail page with the Inbound Auth panel showing the JWT settings</figcaption></figure>
+</li>
+</ol>
+<aside class="callout important"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v6M12 17h.01"/><path d="M5 4h14v12H9l-4 4z"/></svg></div><div class="callout-body"><span class="callout-lbl">Important</span><p>The console <strong>Harness playground signs requests with your own IAM identity</strong>, so it cannot exercise the JWT path and may simply refuse. <strong>Do not downgrade the harness to IAM to &quot;make the playground work.&quot;</strong> The Lambda client in the next phase is the valid test. That&#39;s the whole point: this front door no longer accepts AWS console identities.</p>
+</div></aside>
+<p><strong>🔍 What you have now:</strong> an agent whose only entrance checks five things about every badge: the signature, the issuer, the client, the scope and the expiry. It has its own IAM keycard (the execution role) for the model room. Nobody has knocked yet.</p>
+</section><section class="sec" data-sec="phase-5"><h2 id="phase-5" class="phase-h"><span class="phase-num">Phase 5</span><span class="phase-title">Build an AWS-only authenticated test client</span><span class="phase-time">30 minutes</span><a class="anchor" href="#phase-5" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    S[&quot;🔒 Secrets Manager ✔&quot;] -.-&gt; T[&quot;🧪 Lambda test client&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer ✔&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness ✔&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class T now
+    class C,S,G,H done
+    class M todo">flowchart LR
+    S[&quot;🔒 Secrets Manager ✔&quot;] -.-&gt; T[&quot;🧪 Lambda test client&lt;br/&gt;◀ YOU ARE HERE&quot;]
+    T &lt;--&gt;|&quot;① get token&quot;| C[&quot;🪪 Cognito ✔&quot;]
+    T --&gt;|&quot;② Bearer JWT&quot;| G[&quot;🛡️ JWT authorizer ✔&quot;]
+    C -.-&gt;|&quot;public keys&quot;| G
+    G --&gt; H[&quot;🤖 Secure harness ✔&quot;] --&gt; M[&quot;🧠 Model&quot;]
+    classDef now fill:#FF9900,color:#111,stroke:#c46f00,stroke-width:3px
+    classDef done fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef todo fill:#eef1f4,color:#555,stroke:#c3cad3
+    class T now
+    class C,S,G,H done
+    class M todo</pre></figure>
+<p><strong>Concept:</strong> a credible security test sends both <strong>permitted and forbidden</strong> requests to the <strong>same</strong> secured endpoint. A lock that has only been tested with the right key hasn&#39;t been tested. Your Lambda plays the &quot;outside app&quot;. It reads its credentials from Secrets Manager, gets a token from Cognito over HTTPS, and calls the harness&#39;s public invoke endpoint with an <code>Authorization: Bearer …</code> header. Then it returns only sanitized status information: never the token, never the secret.</p>
+<h3 id="step-a-create-the-function-and-its-configuration">Step A: Create the function and its configuration<a class="anchor" href="#step-a-create-the-function-and-its-configuration" aria-label="Link to this section">#</a></h3>
+<ol>
+<li><p><strong>Lambda → Create function → Author from scratch</strong>: <strong>Function name</strong> <code>orbit-MY_ID-jwt-test</code>, <strong>Runtime</strong> Python 3.13, default execution role. <strong>Create Event Function</strong>. (Newer runtimes such as 3.14 also appear and would work; 3.13 is what this guide was verified with.)</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-16-lambda-create.webp" alt="Create function form for the JWT test client" loading="lazy" decoding="async"></button><figcaption>Create function form for the JWT test client</figcaption></figure>
+</li>
+<li><p><strong>Configuration tab → Environment variables → Edit → Add environment variable</strong> three times, then <strong>Save</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SECRET_ARN</code></td>
+<td>the secret ARN from Phase 3</td>
+</tr>
+<tr>
+<td><code>HARNESS_ARN</code></td>
+<td>the secure harness ARN from Phase 4</td>
+</tr>
+<tr>
+<td><code>AWS_REGION_FOR_LAB</code></td>
+<td><code>us-west-2</code></td>
+</tr>
+</tbody></table></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-17-lambda-env-vars.webp" alt="Edit environment variables with the three keys" loading="lazy" decoding="async"></button><figcaption>Edit environment variables with the three keys</figcaption></figure>
+<p>These are <strong>ARNs and a Region name</strong>, not credentials. Anyone who can view the function can read them, and that&#39;s fine. The secret value is read at run time, only by code whose role is allowed to.</p>
+</li>
+<li><p><strong>Configuration → General configuration → Edit</strong>: set <strong>Timeout</strong> to <strong>1 min 0 sec</strong>. The default 3 seconds is too short for a token request plus a model call, which together took about 3 seconds in testing. <strong>Save</strong>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-18-lambda-timeout.webp" alt="General configuration edit with the timeout set to 1 minute" loading="lazy" decoding="async"></button><figcaption>General configuration edit with the timeout set to 1 minute</figcaption></figure>
+</li>
+</ol>
+<h3 id="step-b-give-the-function-least-privilege-access-to-the-secret">Step B: Give the function least-privilege access to the secret<a class="anchor" href="#step-b-give-the-function-least-privilege-access-to-the-secret" aria-label="Link to this section">#</a></h3>
+<p><strong>Why this step?</strong> This is hop 1. Lambda created a role for your function that can only write logs. Without the next policy, the very first line of the test (reading the secret) fails with <code>AccessDeniedException</code>. You will grant <strong>one action on one secret</strong>, nothing more. This is <em>least privilege</em>, the same principle the model will explain back to you in the <code>good</code> test.</p>
+<ol start="4">
+<li><p><strong>Configuration → Permissions</strong> → click the <strong>Role name</strong> link (<code>orbit-MY_ID-jwt-test-role-…</code>) to open IAM.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-19-iam-lambda-role.webp" alt="IAM role page for the Lambda test client" loading="lazy" decoding="async"></button><figcaption>IAM role page for the Lambda test client</figcaption></figure>
+</li>
+<li><p><strong>Add permissions ▾ → Create inline policy → JSON</strong>. Paste the policy below with <strong>your</strong> account ID, <code>MY_ID</code> and secret name. Keep the trailing <code>-*</code> (it matches the six random characters) or use the exact suffix:</p>
+<div class="code"><div class="code-bar"><span class="code-lang">JSON</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;Version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2012-10-17&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;Statement&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;Sid&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ReadMyOrbitTestSecretOnly&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;Effect&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Allow&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;Action&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;secretsmanager:GetSecretValue&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;Resource&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;arn:aws:secretsmanager:us-west-2:111122223333:secret:orbit/MY_ID/cognito-m2m-*&quot;</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-20-iam-inline-policy-json.webp" alt="Inline policy JSON allowing GetSecretValue on one secret" loading="lazy" decoding="async"></button><figcaption>Inline policy JSON allowing GetSecretValue on one secret</figcaption></figure>
+</li>
+<li><p><strong>Next</strong> → <strong>Policy name</strong> <code>orbit-MY_ID-read-secret</code> → <strong>Create policy</strong>.</p>
+</li>
+</ol>
+<p><strong>Why no <code>bedrock-agentcore:InvokeHarness</code> permission for this Lambda?</strong> Because it doesn&#39;t call the harness <em>as an AWS identity</em>. It calls it over plain HTTPS with a <strong>JWT bearer token</strong>, exactly as a phone app or partner server would. The JWT authorizer decides, not IAM. Adding <code>InvokeHarness</code> to this role would not help: this harness&#39;s front door is configured for JWTs, not AWS signatures. (The harness execution role separately needs permission to call the model, and the default role already has it.)</p>
+<h3 id="step-c-paste-the-test-code">Step C: Paste the test code<a class="anchor" href="#step-c-paste-the-test-code" aria-label="Link to this section">#</a></h3>
+<ol start="7">
+<li><strong>Code tab</strong>: select everything in <code>lambda_function.py</code>, paste the code below, and choose <strong>Deploy</strong>. It uses only Python&#39;s standard library plus the AWS SDK (<code>boto3</code>) that Lambda already includes.</li>
+</ol>
+<div class="code"><div class="code-bar"><span class="code-lang">Python</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code class="hljs language-python"><span class="hljs-keyword">import</span> base64
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> re
+<span class="hljs-keyword">import</span> urllib.error
+<span class="hljs-keyword">import</span> urllib.parse
+<span class="hljs-keyword">import</span> urllib.request
+<span class="hljs-keyword">import</span> uuid
+
+<span class="hljs-keyword">import</span> boto3
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">http_post</span>(<span class="hljs-params">url, body, headers</span>):
+    request = urllib.request.Request(url=url, data=body, headers=headers, method=<span class="hljs-string">&quot;POST&quot;</span>)
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">with</span> urllib.request.urlopen(request, timeout=<span class="hljs-number">55</span>) <span class="hljs-keyword">as</span> resp:
+            <span class="hljs-keyword">return</span> resp.status, resp.headers, resp.read(<span class="hljs-number">65536</span>).decode(<span class="hljs-string">&quot;utf-8&quot;</span>, <span class="hljs-string">&quot;replace&quot;</span>)
+    <span class="hljs-keyword">except</span> urllib.error.HTTPError <span class="hljs-keyword">as</span> exc:
+        <span class="hljs-comment"># Expected for missing, forged, tampered, or expired credentials.</span>
+        <span class="hljs-keyword">return</span> exc.code, exc.headers, exc.read(<span class="hljs-number">65536</span>).decode(<span class="hljs-string">&quot;utf-8&quot;</span>, <span class="hljs-string">&quot;replace&quot;</span>)
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_token</span>(<span class="hljs-params">secret, scope</span>):
+    <span class="hljs-comment"># OAuth 2.0 client credentials grant: prove WHO we are (id + secret), ask for WHAT we need (scope).</span>
+    pair = <span class="hljs-string">f&quot;<span class="hljs-subst">{secret[<span class="hljs-string">&#x27;client_id&#x27;</span>]}</span>:<span class="hljs-subst">{secret[<span class="hljs-string">&#x27;client_secret&#x27;</span>]}</span>&quot;</span>
+    basic_auth = base64.b64encode(pair.encode()).decode()
+    payload = urllib.parse.urlencode({
+        <span class="hljs-string">&quot;grant_type&quot;</span>: <span class="hljs-string">&quot;client_credentials&quot;</span>,
+        <span class="hljs-string">&quot;scope&quot;</span>: scope,
+    }).encode()
+    <span class="hljs-keyword">return</span> http_post(
+        secret[<span class="hljs-string">&quot;token_url&quot;</span>], payload,
+        {<span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>,
+         <span class="hljs-string">&quot;Authorization&quot;</span>: <span class="hljs-string">f&quot;Basic <span class="hljs-subst">{basic_auth}</span>&quot;</span>},
+    )
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">lambda_handler</span>(<span class="hljs-params">event, context</span>):
+    <span class="hljs-comment"># event mode: good, missing, forged, tampered, wrong-scope</span>
+    mode = (event <span class="hljs-keyword">or</span> {}).get(<span class="hljs-string">&quot;mode&quot;</span>, <span class="hljs-string">&quot;good&quot;</span>)
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;good&quot;</span>, <span class="hljs-string">&quot;missing&quot;</span>, <span class="hljs-string">&quot;forged&quot;</span>, <span class="hljs-string">&quot;tampered&quot;</span>, <span class="hljs-string">&quot;wrong-scope&quot;</span>):
+        <span class="hljs-keyword">return</span> {<span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;Choose good, missing, forged, tampered, or wrong-scope&quot;</span>}
+
+    <span class="hljs-comment"># Read the M2M client credentials from Secrets Manager (never from code).</span>
+    secret = json.loads(
+        boto3.client(<span class="hljs-string">&quot;secretsmanager&quot;</span>)
+        .get_secret_value(SecretId=os.environ[<span class="hljs-string">&quot;SECRET_ARN&quot;</span>])[<span class="hljs-string">&quot;SecretString&quot;</span>]
+    )
+
+    region = os.environ[<span class="hljs-string">&quot;AWS_REGION_FOR_LAB&quot;</span>]
+    harness_arn = os.environ[<span class="hljs-string">&quot;HARNESS_ARN&quot;</span>]
+    runtime_url = (
+        <span class="hljs-string">f&quot;https://bedrock-agentcore.<span class="hljs-subst">{region}</span>.amazonaws.com/harnesses/invoke&quot;</span>
+        <span class="hljs-string">f&quot;?harnessArn=<span class="hljs-subst">{urllib.parse.quote(harness_arn, safe=<span class="hljs-string">&#x27;&#x27;</span>)}</span>&quot;</span>
+    )
+
+    headers = {
+        <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>,
+        <span class="hljs-comment"># Every harness conversation needs a session id of 33+ characters.</span>
+        <span class="hljs-string">&quot;X-Amzn-Bedrock-AgentCore-Runtime-Session-Id&quot;</span>: <span class="hljs-string">f&quot;orbit-test-<span class="hljs-subst">{uuid.uuid4()}</span>&quot;</span>,
+    }
+    token_status = <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">if</span> mode <span class="hljs-keyword">in</span> (<span class="hljs-string">&quot;good&quot;</span>, <span class="hljs-string">&quot;tampered&quot;</span>, <span class="hljs-string">&quot;wrong-scope&quot;</span>):
+        <span class="hljs-comment"># wrong-scope: a genuine token for a scope the harness does NOT allow.</span>
+        scope = event.get(<span class="hljs-string">&quot;scope&quot;</span>, <span class="hljs-string">&quot;&quot;</span>) <span class="hljs-keyword">if</span> mode == <span class="hljs-string">&quot;wrong-scope&quot;</span> <span class="hljs-keyword">else</span> secret[<span class="hljs-string">&quot;scope&quot;</span>]
+        token_status, _, response_text = get_token(secret, scope)
+        <span class="hljs-keyword">if</span> token_status != <span class="hljs-number">200</span>:
+            <span class="hljs-keyword">return</span> {<span class="hljs-string">&quot;mode&quot;</span>: mode, <span class="hljs-string">&quot;token_status&quot;</span>: token_status,
+                    <span class="hljs-string">&quot;phase&quot;</span>: <span class="hljs-string">&quot;Cognito token issuance failed&quot;</span>,
+                    <span class="hljs-string">&quot;body_preview&quot;</span>: response_text[:<span class="hljs-number">300</span>]}
+        access_token = json.loads(response_text)[<span class="hljs-string">&quot;access_token&quot;</span>]
+        <span class="hljs-keyword">if</span> mode == <span class="hljs-string">&quot;tampered&quot;</span>:
+            <span class="hljs-comment"># A real, well-formed Cognito token whose signature no longer matches its contents.</span>
+            access_token = access_token[:-<span class="hljs-number">6</span>] + (<span class="hljs-string">&quot;AAAAAA&quot;</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> access_token.endswith(<span class="hljs-string">&quot;AAAAAA&quot;</span>) <span class="hljs-keyword">else</span> <span class="hljs-string">&quot;BBBBBB&quot;</span>)
+        headers[<span class="hljs-string">&quot;Authorization&quot;</span>] = <span class="hljs-string">f&quot;Bearer <span class="hljs-subst">{access_token}</span>&quot;</span>
+    <span class="hljs-keyword">elif</span> mode == <span class="hljs-string">&quot;forged&quot;</span>:
+        headers[<span class="hljs-string">&quot;Authorization&quot;</span>] = <span class="hljs-string">&quot;Bearer this.is.not.a.valid.jwt&quot;</span>
+
+    body = json.dumps({<span class="hljs-string">&quot;messages&quot;</span>: [{<span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;content&quot;</span>: [
+        {<span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;In one sentence, explain least privilege.&quot;</span>}]}]}).encode()
+    status, resp_headers, response_text = http_post(runtime_url, body, headers)
+
+    <span class="hljs-comment"># A successful harness call streams events; pull out just the model&#x27;s text.</span>
+    <span class="hljs-keyword">if</span> status == <span class="hljs-number">200</span>:
+        pieces = re.findall(<span class="hljs-string">r&#x27;&quot;text&quot;:&quot;((?:[^&quot;\\\\]|\\\\.)*)&quot;&#x27;</span>, response_text)
+        response_text = <span class="hljs-string">&quot;&quot;</span>.join(pieces).encode().decode(<span class="hljs-string">&quot;unicode_escape&quot;</span>, <span class="hljs-string">&quot;replace&quot;</span>) <span class="hljs-keyword">or</span> response_text
+
+    <span class="hljs-comment"># Keep credentials and JWTs out of logs and returned data.</span>
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-string">&quot;mode&quot;</span>: mode,
+        <span class="hljs-string">&quot;token_status&quot;</span>: token_status,
+        <span class="hljs-string">&quot;runtime_http_status&quot;</span>: status,
+        <span class="hljs-string">&quot;error_type&quot;</span>: (resp_headers.get(<span class="hljs-string">&quot;x-amzn-ErrorType&quot;</span>) <span class="hljs-keyword">or</span> <span class="hljs-string">&quot;&quot;</span>).split(<span class="hljs-string">&quot;:&quot;</span>)[<span class="hljs-number">0</span>] <span class="hljs-keyword">or</span> <span class="hljs-literal">None</span>,
+        <span class="hljs-string">&quot;body_preview&quot;</span>: response_text[:<span class="hljs-number">300</span>],
+    }</code></pre></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-21-lambda-code.webp" alt="Lambda code editor with the deployed JWT test client" loading="lazy" decoding="async"></button><figcaption>Lambda code editor with the deployed JWT test client</figcaption></figure>
+<p>   <strong>Read the code once before running it.</strong> Each piece maps to a box on the diagram:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>What it does</th>
+<th>Hop</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>get_secret_value(SecretId=os.environ[&quot;SECRET_ARN&quot;])</code></td>
+<td>Opens the safe using the Lambda role&#39;s one permission</td>
+<td>1 · IAM</td>
+</tr>
+<tr>
+<td><code>get_token()</code></td>
+<td>The client credentials grant: sends <code>client_id:client_secret</code> as HTTP <em>Basic</em> auth plus <code>grant_type</code> and <code>scope</code> to the token endpoint, and receives a signed JWT</td>
+<td>2 · OAuth</td>
+</tr>
+<tr>
+<td><code>headers[&quot;Authorization&quot;] = f&quot;Bearer {access_token}&quot;</code></td>
+<td>Presents the badge. <em>Bearer</em> means &quot;whoever bears this token is the caller&quot;, which is why tokens must be guarded like passwords</td>
+<td>3 · JWT</td>
+</tr>
+<tr>
+<td><code>runtime_url</code></td>
+<td>The harness&#39;s public invoke URL: <code>https://bedrock-agentcore.&lt;region&gt;.amazonaws.com/harnesses/invoke?harnessArn=&lt;URL-encoded ARN&gt;</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>X-Amzn-Bedrock-AgentCore-Runtime-Session-Id</code></td>
+<td>A harness conversation is a <strong>session</strong> (an isolated micro-VM, as in Mission 04), and each needs an ID of at least 33 characters</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>re.findall(r&#39;&quot;text&quot;:…&#39;)</code></td>
+<td>A successful answer arrives as a <strong>stream of events</strong>, the same way a chat UI shows words as they are generated, so the code stitches the text pieces together</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>error_type</code></td>
+<td>AgentCore names its rejection in an <code>x-amzn-ErrorType</code> response header. Often that header is the <em>only</em> clue, because the body is empty</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>return {…}</code></td>
+<td>Returns statuses and a short preview, and <strong>never</strong> the token or the secret</td>
+<td>–</td>
+</tr>
+</tbody></table></div>
+<p>   And the two &quot;attack&quot; modes:</p>
+<ul>
+<li><strong><code>tampered</code></strong> gets a <strong>genuine</strong> token from Cognito, then changes its last six characters (part of the signature). The header and payload still decode perfectly and still claim to be from your pool, client and scope. Only the cryptographic check can tell it was altered.</li>
+<li><strong><code>wrong-scope</code></strong> asks Cognito for a <strong>genuine</strong> token for a <strong>different</strong> scope that your app client <em>is</em> allowed: the wizard&#39;s default <code>…/read</code>. Cognito happily issues it. The question is whether the harness accepts a real badge for the wrong floor.</li>
+</ul>
+<h3 id="step-d-run-the-five-tests">Step D: Run the five tests<a class="anchor" href="#step-d-run-the-five-tests" aria-label="Link to this section">#</a></h3>
+<ol start="8">
+<li><p><strong>Test tab</strong>: with <strong>Create new event</strong> selected, set the Event JSON to <code>{&quot;mode&quot;: &quot;good&quot;}</code> and choose <strong>Test</strong>. You can also <strong>Save</strong> it as an event named <code>good</code> so you can rerun it later. Expand <strong>Details</strong> and read the <strong>Response</strong>. Repeat with <code>{&quot;mode&quot;: &quot;missing&quot;}</code>, <code>{&quot;mode&quot;: &quot;forged&quot;}</code> and <code>{&quot;mode&quot;: &quot;tampered&quot;}</code>.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-22-test-good.webp" alt="good: token_status 200 and runtime_http_status 200 with the model's one-sentence answer" loading="lazy" decoding="async"></button><figcaption>good: token_status 200 and runtime_http_status 200 with the model's one-sentence answer</figcaption></figure>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-23-test-missing.webp" alt="missing: runtime_http_status 403, AccessDeniedException, Missing Authentication Token" loading="lazy" decoding="async"></button><figcaption>missing: runtime_http_status 403, AccessDeniedException, Missing Authentication Token</figcaption></figure>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-24-test-forged.webp" alt="forged: runtime_http_status 403, AccessDeniedException, OAuth authorization failed: Failed to parse token" loading="lazy" decoding="async"></button><figcaption>forged: runtime_http_status 403, AccessDeniedException, OAuth authorization failed: Failed to parse token</figcaption></figure>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-25-test-tampered.webp" alt="tampered: token_status 200, runtime_http_status 500, UnrecognizedClientException, empty body" loading="lazy" decoding="async"></button><figcaption>tampered: token_status 200, runtime_http_status 500, UnrecognizedClientException, empty body</figcaption></figure>
+</li>
+<li><p><strong>The authorization test.</strong> Use the default scope you wrote down in Phase 2 (on <strong>Applications → Resource servers</strong> it is the <code>default-m2m-resource-server-xxxxxx</code> row, scope <code>read</code>):</p>
+<div class="code"><div class="code-bar"><span class="code-lang">JSON</span><button class="copy" type="button" aria-label="Copy code">Copy</button></div><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;mode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;wrong-scope&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;scope&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;default-m2m-resource-server-xxxxxx/read&quot;</span><span class="hljs-punctuation">}</span></code></pre></div>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-26-test-wrong-scope.webp" alt="wrong-scope: Cognito issues the token (200), the harness rejects it (500, UnrecognizedClientException)" loading="lazy" decoding="async"></button><figcaption>wrong-scope: Cognito issues the token (200), the harness rejects it (500, UnrecognizedClientException)</figcaption></figure>
+<p>Then try a scope that doesn&#39;t exist at all, such as <code>{&quot;mode&quot;: &quot;wrong-scope&quot;, &quot;scope&quot;: &quot;orbit-MY_ID-api/admin&quot;}</code>. This time it never reaches the harness: <strong>Cognito</strong> refuses to issue the token (<code>token_status: 400</code>, <code>invalid_scope</code>). The badge office won&#39;t print a floor that doesn&#39;t exist.</p>
+</li>
+</ol>
+<p><strong>Verified results (October 25, 2026):</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Test mode</th>
+<th>Cognito token exchange</th>
+<th>Which check said no</th>
+<th>Observed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>good</code></td>
+<td><code>200</code></td>
+<td>none: issuer, client, scope, signature and expiry all valid</td>
+<td><code>200</code>, preview: <em>&quot;Least privilege is the security principle of granting…&quot;</em></td>
+</tr>
+<tr>
+<td><code>missing</code></td>
+<td>not attempted</td>
+<td>AgentCore: no bearer token at all</td>
+<td><code>403</code>, <code>AccessDeniedException</code>, <code>{&quot;message&quot;:&quot;Missing Authentication Token&quot;}</code></td>
+</tr>
+<tr>
+<td><code>forged</code></td>
+<td>not attempted</td>
+<td>AgentCore: not even a JWT</td>
+<td><code>403</code>, <code>AccessDeniedException</code>, <code>{&quot;message&quot;:&quot;OAuth authorization failed: Failed to parse token&quot;}</code></td>
+</tr>
+<tr>
+<td><code>tampered</code></td>
+<td><code>200</code></td>
+<td>AgentCore: <strong>signature</strong> check</td>
+<td><code>500</code>, <code>UnrecognizedClientException</code>, empty body</td>
+</tr>
+<tr>
+<td><code>wrong-scope</code> (default <code>…/read</code>)</td>
+<td><code>200</code></td>
+<td>AgentCore: <strong>scope</strong> check</td>
+<td><code>500</code>, <code>UnrecognizedClientException</code>, empty body</td>
+</tr>
+<tr>
+<td><code>wrong-scope</code> (<code>…/admin</code>)</td>
+<td><code>400</code> <code>invalid_scope</code></td>
+<td><strong>Cognito</strong>: no such scope</td>
+<td>the harness was never called</td>
+</tr>
+</tbody></table></div>
+<h3 id="read-the-evidence-like-a-security-engineer">🔬 Read the evidence like a security engineer<a class="anchor" href="#read-the-evidence-like-a-security-engineer" aria-label="Link to this section">#</a></h3>
+<p>Here is where each request was stopped:</p>
+<figure class="diagram"><pre class="mermaid" data-src="sequenceDiagram
+    autonumber
+    participant L as 🧪 Lambda client
+    participant C as 🪪 Cognito
+    participant A as 🛡️ JWT authorizer
+    participant H as 🤖 Harness + model
+    Note over L,H: good
+    L-&gt;&gt;C: client ID + secret, scope …/invoke
+    C--&gt;&gt;L: 200 · signed JWT
+    L-&gt;&gt;A: Bearer JWT
+    A-&gt;&gt;H: ✅ signature, iss, client_id, scope, exp all OK
+    H--&gt;&gt;L: 200 · streamed answer (~3 s)
+    Note over L,H: missing / forged
+    L-&gt;&gt;A: no token, or &quot;this.is.not.a.valid.jwt&quot;
+    A--&gt;&gt;L: 403 AccessDeniedException (~0.3 s)
+    Note over L,H: tampered / wrong-scope
+    L-&gt;&gt;C: client ID + secret
+    C--&gt;&gt;L: 200 · genuine JWT
+    L-&gt;&gt;A: altered signature, or scope …/read
+    A--&gt;&gt;L: 500 UnrecognizedClientException, empty body (~0.6 s)
+    Note over L,H: scope that doesn't exist
+    L-&gt;&gt;C: scope …/admin
+    C--&gt;&gt;L: 400 invalid_scope (harness never called)">sequenceDiagram
+    autonumber
+    participant L as 🧪 Lambda client
+    participant C as 🪪 Cognito
+    participant A as 🛡️ JWT authorizer
+    participant H as 🤖 Harness + model
+    Note over L,H: good
+    L-&gt;&gt;C: client ID + secret, scope …/invoke
+    C--&gt;&gt;L: 200 · signed JWT
+    L-&gt;&gt;A: Bearer JWT
+    A-&gt;&gt;H: ✅ signature, iss, client_id, scope, exp all OK
+    H--&gt;&gt;L: 200 · streamed answer (~3 s)
+    Note over L,H: missing / forged
+    L-&gt;&gt;A: no token, or &quot;this.is.not.a.valid.jwt&quot;
+    A--&gt;&gt;L: 403 AccessDeniedException (~0.3 s)
+    Note over L,H: tampered / wrong-scope
+    L-&gt;&gt;C: client ID + secret
+    C--&gt;&gt;L: 200 · genuine JWT
+    L-&gt;&gt;A: altered signature, or scope …/read
+    A--&gt;&gt;L: 500 UnrecognizedClientException, empty body (~0.6 s)
+    Note over L,H: scope that doesn't exist
+    L-&gt;&gt;C: scope …/admin
+    C--&gt;&gt;L: 400 invalid_scope (harness never called)</pre></figure>
+<p>Three lessons are hiding in those results.</p>
+<ol>
+<li><strong>Two different &quot;No&quot; families.</strong> If the request has <em>no</em> token, or something that isn&#39;t a JWT, AgentCore answers <strong>403</strong> and tells you why. If it is a <strong>real, well-formed JWT</strong> that fails a check (bad signature, wrong client, wrong scope), AgentCore answers <strong>500 <code>UnrecognizedClientException</code> with an empty body</strong>. A 500 <em>usually</em> means &quot;server bug&quot;, so this surprises people. Here it means <em>the authorizer looked at your token and refused it</em>. Read the <code>error_type</code>, not just the number. The empty body is also good security practice: the caller isn&#39;t told <em>which</em> check failed, so an attacker gets no hints.</li>
+<li><strong>The model never ran for any rejection.</strong> Compare <strong>Duration</strong> under <em>Summary</em>. <code>good</code> took about 3 seconds because Claude actually generated an answer. Every rejection finished in under a second, including <code>tampered</code> and <code>wrong-scope</code>, which still spent time fetching a token from Cognito first. Rejection happens <strong>at the door</strong>, before the agent spends a single model token. That&#39;s what protects your bill as well as your data.</li>
+<li><strong>Authentication is not authorization.</strong> The <code>wrong-scope</code> token is 100% genuine: signed by your pool, issued to your app, not expired. It was still refused, because it carried permission for the wrong thing. Two different services enforced scope: <strong>Cognito</strong> won&#39;t <em>issue</em> a scope the client isn&#39;t allowed or that doesn&#39;t exist, and <strong>AgentCore</strong> won&#39;t <em>accept</em> a token whose scope isn&#39;t on its list.</li>
+</ol>
+<aside class="callout caution"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16h.01"/><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"/></svg></div><div class="callout-body"><span class="callout-lbl">Caution</span><p><strong>Do not paste token values</strong> into screenshots, chats, logs or this guide. The function deliberately does not print or return them. Restrict who may run or edit your test Lambda: the ability to invoke a client that holds a secret is itself sensitive. Anyone who can run it can get a valid token.</p>
+</div></aside>
+<h3 id="step-e-troubleshoot-the-right-side-of-the-boundary">Step E: Troubleshoot the right side of the boundary<a class="anchor" href="#step-e-troubleshoot-the-right-side-of-the-boundary" aria-label="Link to this section">#</a></h3>
+<p>First decide <strong>which hop</strong> failed: <code>token_status</code> belongs to Cognito (hop 2), <code>runtime_http_status</code> and <code>error_type</code> belong to AgentCore (hop 3), and a Lambda error before either belongs to IAM (hop 1).</p>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart TD
+    Start[&quot;Run a test&quot;] --&gt; E{&quot;Lambda error before&lt;br/&gt;any status?&quot;}
+    E --&gt;|&quot;AccessDeniedException&lt;br/&gt;on GetSecretValue&quot;| IAM[&quot;Hop 1 · IAM&lt;br/&gt;Check the inline policy's secret ARN&quot;]
+    E --&gt;|&quot;Task timed out&quot;| TO[&quot;Lambda timeout is still 3 s&quot;]
+    E --&gt;|no| T{&quot;token_status?&quot;}
+    T --&gt;|&quot;400&quot;| COG[&quot;Hop 2 · Cognito&lt;br/&gt;Read the error: invalid_client,&lt;br/&gt;invalid_scope, invalid_grant&quot;]
+    T --&gt;|&quot;200 or null&quot;| R{&quot;runtime_http_status&lt;br/&gt;+ error_type&quot;}
+    R --&gt;|&quot;200&quot;| OK[&quot;✅ Accepted&quot;]
+    R --&gt;|&quot;403 AccessDeniedException&quot;| NOTOK[&quot;Hop 3 · No token, or not a JWT&quot;]
+    R --&gt;|&quot;500 UnrecognizedClientException&quot;| JWT[&quot;Hop 3 · Real token refused:&lt;br/&gt;discovery URL, Allowed clients,&lt;br/&gt;Allowed scopes&quot;]
+    R --&gt;|&quot;other 5xx&quot;| RUN[&quot;Inside the harness:&lt;br/&gt;Ready? model access? CloudWatch&quot;]
+    classDef bad fill:#ffe7e7,stroke:#c74e4e,color:#5b2222
+    class IAM,TO,COG,NOTOK,JWT,RUN bad">flowchart TD
+    Start[&quot;Run a test&quot;] --&gt; E{&quot;Lambda error before&lt;br/&gt;any status?&quot;}
+    E --&gt;|&quot;AccessDeniedException&lt;br/&gt;on GetSecretValue&quot;| IAM[&quot;Hop 1 · IAM&lt;br/&gt;Check the inline policy's secret ARN&quot;]
+    E --&gt;|&quot;Task timed out&quot;| TO[&quot;Lambda timeout is still 3 s&quot;]
+    E --&gt;|no| T{&quot;token_status?&quot;}
+    T --&gt;|&quot;400&quot;| COG[&quot;Hop 2 · Cognito&lt;br/&gt;Read the error: invalid_client,&lt;br/&gt;invalid_scope, invalid_grant&quot;]
+    T --&gt;|&quot;200 or null&quot;| R{&quot;runtime_http_status&lt;br/&gt;+ error_type&quot;}
+    R --&gt;|&quot;200&quot;| OK[&quot;✅ Accepted&quot;]
+    R --&gt;|&quot;403 AccessDeniedException&quot;| NOTOK[&quot;Hop 3 · No token, or not a JWT&quot;]
+    R --&gt;|&quot;500 UnrecognizedClientException&quot;| JWT[&quot;Hop 3 · Real token refused:&lt;br/&gt;discovery URL, Allowed clients,&lt;br/&gt;Allowed scopes&quot;]
+    R --&gt;|&quot;other 5xx&quot;| RUN[&quot;Inside the harness:&lt;br/&gt;Ready? model access? CloudWatch&quot;]
+    classDef bad fill:#ffe7e7,stroke:#c74e4e,color:#5b2222
+    class IAM,TO,COG,NOTOK,JWT,RUN bad</pre></figure>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely layer</th>
+<th>Correct console check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lambda error <code>AccessDeniedException</code> on <code>GetSecretValue</code></td>
+<td>Lambda execution role (hop 1)</td>
+<td>Inline policy resource matches the <strong>exact</strong> secret ARN (or <code>-*</code>); same Region and account</td>
+</tr>
+<tr>
+<td><code>token_status</code> 400 <code>invalid_client</code></td>
+<td>Cognito app client (hop 2)</td>
+<td>Client ID and secret in the secret value come from the <strong>same</strong> app client; the client has <strong>client credentials</strong> enabled</td>
+</tr>
+<tr>
+<td><code>token_status</code> 400 <code>invalid_scope</code></td>
+<td>Cognito scope definition (hop 2)</td>
+<td>The scope doesn&#39;t exist as spelled. Check the resource server identifier and scope name: <code>orbit-MY_ID-api/invoke</code>, not <code>invoke</code> or <code>orbit-MY_ID-api/Invoke</code></td>
+</tr>
+<tr>
+<td><code>token_status</code> 400 <code>invalid_grant</code></td>
+<td>Cognito scope assignment (hop 2)</td>
+<td>The scope exists but isn&#39;t enabled on this app client: Phase 2, Step D</td>
+</tr>
+<tr>
+<td><code>token_status</code> 404 or a DNS error</td>
+<td>token URL</td>
+<td>Must be the <strong>domain</strong> + <code>/oauth2/token</code>, not the issuer URL</td>
+</tr>
+<tr>
+<td><code>good</code> returns <code>403</code> <code>AccessDeniedException</code></td>
+<td>AgentCore inbound (hop 3)</td>
+<td>The <code>Authorization</code> header wasn&#39;t sent. Did the code change?</td>
+</tr>
+<tr>
+<td><code>good</code> returns <code>500</code> <code>UnrecognizedClientException</code></td>
+<td>AgentCore inbound JWT (hop 3)</td>
+<td>A real token was refused. Discovery URL points at the <strong>same</strong> pool; <strong>Allowed clients</strong> has this exact client ID; <strong>Allowed scopes</strong> is <code>orbit-MY_ID-api/invoke</code>; <strong>Allowed audiences</strong> is <strong>unticked</strong></td>
+</tr>
+<tr>
+<td><code>good</code> returns another 5xx with a body</td>
+<td>Harness process or model (hop 4)</td>
+<td>Harness status Ready; execution role; CloudWatch log group <code>/aws/bedrock-agentcore/runtimes/harness_orbit_MY_ID_secure-…</code></td>
+</tr>
+<tr>
+<td><code>Task timed out after 3.00 seconds</code></td>
+<td>Lambda timeout</td>
+<td>Phase 5, Step A, item 3</td>
+</tr>
+<tr>
+<td><code>missing</code>, <code>forged</code>, <code>tampered</code> or <code>wrong-scope</code> returns <strong>200</strong></td>
+<td>Security misconfiguration</td>
+<td><strong>Stop.</strong> The harness is not enforcing JWT, or not checking scope. Check Phase 4</td>
+</tr>
+<tr>
+<td><em>The user pool cannot be deleted because deletion protection is activated</em></td>
+<td>Cognito cleanup</td>
+<td>Tick <strong>Deactivate deletion protection</strong> (and <strong>Delete Cognito domain</strong>) in the Delete dialog (cleanup step 4)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Boss challenge — audience confusion:</strong> a teammate sets <strong>Allowed audiences</strong> to the app client ID but leaves <strong>Allowed clients</strong> empty. Why is a perfectly good Cognito access token rejected? Because the authorizer compares <em>Allowed audiences</em> with the <code>aud</code> claim, and Cognito <strong>access</strong> tokens carry <code>client_id</code> instead (Cognito <em>ID</em> tokens, which are for humans, do carry <code>aud</code>). The two checks validate <strong>different claims</strong>. Predict the <code>runtime_http_status</code> and <code>error_type</code> they would see, using what you learned above.</p>
+<p><strong>Boss challenge — issuer mismatch (analysis only):</strong> an app&#39;s token is signed by Pool A but the harness&#39;s discovery URL points at Pool B. What should AgentCore do? Reject it: the signature cannot be verified with Pool B&#39;s keys, and <code>iss</code> does not match. It&#39;s the same family of failure as your <code>tampered</code> test. Do not modify your working authorizer to prove this; reason it through from the Inbound Auth panel.</p>
+</section><section class="sec" data-sec="phase-6"><h2 id="phase-6" class="phase-h"><span class="phase-num">Phase 6</span><span class="phase-title">What you have secured, and what you have not</span><span class="phase-time">10 minutes</span><a class="anchor" href="#phase-6" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    X[&quot;🌍 Anyone on the internet&quot;] --&gt;|&quot;no token / junk&quot;| G
+    Y[&quot;🦹 Attacker with an altered token&quot;] --&gt;|&quot;bad signature&quot;| G
+    Z[&quot;📱 Real app, wrong permission&quot;] --&gt;|&quot;wrong scope&quot;| G
+    APP[&quot;✅ Your app, right scope&quot;] --&gt;|&quot;valid JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    G --&gt;|&quot;only this one passes&quot;| H[&quot;🤖 Secure harness&quot;]
+    H --&gt; M[&quot;🧠 Model&quot;]
+    H -.-&gt;|&quot;NOT covered today&quot;| TOOL[&quot;🔧 Tools: may THIS caller&lt;br/&gt;refund THIS order?&quot;]
+    classDef stop fill:#ffe7e7,stroke:#c74e4e,color:#5b2222
+    classDef ok fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef gap fill:#fff4d6,stroke:#d9a400,color:#5a4500
+    class X,Y,Z stop
+    class APP ok
+    class TOOL gap">flowchart LR
+    X[&quot;🌍 Anyone on the internet&quot;] --&gt;|&quot;no token / junk&quot;| G
+    Y[&quot;🦹 Attacker with an altered token&quot;] --&gt;|&quot;bad signature&quot;| G
+    Z[&quot;📱 Real app, wrong permission&quot;] --&gt;|&quot;wrong scope&quot;| G
+    APP[&quot;✅ Your app, right scope&quot;] --&gt;|&quot;valid JWT&quot;| G[&quot;🛡️ JWT authorizer&quot;]
+    G --&gt;|&quot;only this one passes&quot;| H[&quot;🤖 Secure harness&quot;]
+    H --&gt; M[&quot;🧠 Model&quot;]
+    H -.-&gt;|&quot;NOT covered today&quot;| TOOL[&quot;🔧 Tools: may THIS caller&lt;br/&gt;refund THIS order?&quot;]
+    classDef stop fill:#ffe7e7,stroke:#c74e4e,color:#5b2222
+    classDef ok fill:#d9f2e3,color:#14532d,stroke:#3a9d63
+    classDef gap fill:#fff4d6,stroke:#d9a400,color:#5a4500
+    class X,Y,Z stop
+    class APP ok
+    class TOOL gap</pre></figure>
+<p>Complete the threat map in your notes. The <em>Your evidence</em> column is filled in for the threats you actually tested:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Which control helps?</th>
+<th>Your evidence</th>
+<th>Remaining question</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Random internet caller tries the invoke URL</td>
+<td>JWT inbound authorizer</td>
+<td><code>missing</code> → 403</td>
+<td>Are issuer, client and scope checks all configured?</td>
+</tr>
+<tr>
+<td>Attacker fabricates a token</td>
+<td>JWT structure check</td>
+<td><code>forged</code> → 403</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Attacker alters a real token (e.g. edits its scope)</td>
+<td>Signature verification via the discovery URL</td>
+<td><code>tampered</code> → 500 <code>UnrecognizedClientException</code></td>
+<td>Are the signing keys fetched from the right pool?</td>
+</tr>
+<tr>
+<td>A genuine app asks for more than it should</td>
+<td>Allowed scopes, plus Cognito scope assignment</td>
+<td><code>wrong-scope</code> → 500; <code>…/admin</code> → 400 <code>invalid_scope</code></td>
+<td>Does every app client get only the scopes it needs?</td>
+</tr>
+<tr>
+<td>A valid app tries an unauthorized refund</td>
+<td>Tool-level authorization + business policy</td>
+<td>not tested: no tools today</td>
+<td>Does the refund tool check the customer&#39;s identity and order?</td>
+</tr>
+<tr>
+<td>The agent process reads secrets unrelated to it</td>
+<td>Execution role scoped by ARN</td>
+<td></td>
+<td>Did anyone attach <code>secretsmanager:*</code>?</td>
+</tr>
+<tr>
+<td>&quot;Ignore your rules&quot; text hidden in a retrieved document</td>
+<td>Treat retrieval as untrusted data</td>
+<td></td>
+<td>Does the agent separate instructions from source text?</td>
+</tr>
+<tr>
+<td>One student&#39;s token used against another&#39;s harness</td>
+<td>Different app clients, scopes and authorizers</td>
+<td></td>
+<td>Is <strong>Allowed clients</strong> specific to your <code>MY_ID</code>?</td>
+</tr>
+<tr>
+<td>A valid token is stolen and replayed</td>
+<td>Short <code>exp</code> (60 min), TLS, never logging tokens</td>
+<td></td>
+<td>How long would a stolen token work?</td>
+</tr>
+</tbody></table></div>
+<p><strong>Key insight:</strong> <em>Authenticated</em> is not <em>authorized for every action</em>. A token proves an approved app is calling, and scopes narrow <em>what kind</em> of call it may make. A production refund tool would still have to decide whether this app, on behalf of <strong>this</strong> customer, may touch <strong>this order</strong> and run <strong>this refund</strong>.</p>
+<h3 id="how-this-looks-in-a-real-orbit-deployment">How this looks in a real ORBIT deployment<a class="anchor" href="#how-this-looks-in-a-real-orbit-deployment" aria-label="Link to this section">#</a></h3>
+<p>Today&#39;s M2M flow is how one <strong>service</strong> talks to another (a partner&#39;s order system calling ORBIT&#39;s agent, say). When <strong>people</strong> use the agent through a website, the front door is identical, but the badge is collected differently:</p>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    U[&quot;🧑 Customer on the&lt;br/&gt;ORBIT website or app&quot;] --&gt;|&quot;① sign in, get token&lt;br/&gt;authorization code + PKCE&quot;| COG[&quot;🪪 Cognito user pool&quot;]
+    P[&quot;🏭 Partner order system&quot;] --&gt;|&quot;① get token&lt;br/&gt;client credentials · today's flow&quot;| COG
+    U --&gt;|&quot;② Bearer JWT&quot;| A[&quot;🛡️ JWT authorizer&lt;br/&gt;same settings as today&quot;]
+    P --&gt;|&quot;② Bearer JWT&quot;| A
+    A --&gt; H[&quot;🤖 ORBIT agent&quot;] --&gt; GW[&quot;🌐 Gateway → order tools&lt;br/&gt;Mission 04&quot;]
+    classDef today fill:#FF9900,color:#111,stroke:#c46f00
+    class P,A today">flowchart LR
+    U[&quot;🧑 Customer on the&lt;br/&gt;ORBIT website or app&quot;] --&gt;|&quot;① sign in, get token&lt;br/&gt;authorization code + PKCE&quot;| COG[&quot;🪪 Cognito user pool&quot;]
+    P[&quot;🏭 Partner order system&quot;] --&gt;|&quot;① get token&lt;br/&gt;client credentials · today's flow&quot;| COG
+    U --&gt;|&quot;② Bearer JWT&quot;| A[&quot;🛡️ JWT authorizer&lt;br/&gt;same settings as today&quot;]
+    P --&gt;|&quot;② Bearer JWT&quot;| A
+    A --&gt; H[&quot;🤖 ORBIT agent&quot;] --&gt; GW[&quot;🌐 Gateway → order tools&lt;br/&gt;Mission 04&quot;]
+    classDef today fill:#FF9900,color:#111,stroke:#c46f00
+    class P,A today</pre></figure>
+<p>Three things change in production, and you&#39;ve already met each one:</p>
+<ul>
+<li><strong>Human sign-in</strong> uses the <em>authorization code</em> grant, so a customer&#39;s token carries <strong>their</strong> identity, which tools can use to restrict which orders they can see.</li>
+<li><strong>The Mission 04 gateway</strong> has the same <strong>Inbound Auth</strong> choice as a harness, so tools can be locked behind JWTs too.</li>
+<li><strong>Outbound identity</strong> (next section) handles the opposite direction: the agent proving <em>itself</em> to someone else&#39;s API.</li>
+</ul>
+<h3 id="optional-inspection-outbound-identity">Optional inspection — outbound identity<a class="anchor" href="#optional-inspection-outbound-identity" aria-label="Link to this section">#</a></h3>
+<p>Open <strong>AgentCore → Identity</strong> and look at the workload identities and credential providers. Do not create providers for outside services. Answer: how is <strong>inbound JWT validation</strong> (who may call me) different from <strong>outbound OAuth credentials</strong> (what I may call downstream)? <em>Hint: today the badge office was Cognito and the guard was AgentCore. For outbound calls, AgentCore becomes the visitor collecting badges from someone else&#39;s office.</em></p>
+</section><section class="sec" data-sec="final-scorecard-earn-the-identity-badge"><h2 id="final-scorecard-earn-the-identity-badge"><span>Final scorecard — Earn the Identity Badge</span><a class="anchor" href="#final-scorecard-earn-the-identity-badge" aria-label="Link to this section">#</a></h2>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:0" aria-label="Mark done"><div class="task-t">I used <strong>only the AWS Console</strong> and AWS-hosted execution.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:1" aria-label="Mark done"><div class="task-t">I created my <strong>own Cognito user pool</strong>, M2M app client, resource server and scope, all carrying <code>MY_ID</code>.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:2" aria-label="Mark done"><div class="task-t">I can explain why the <strong>issuer</strong> (discovery URL) and the <strong>domain</strong> (token endpoint) are different addresses, and which service uses each.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:3" aria-label="Mark done"><div class="task-t">I stored the client secret in <strong>Secrets Manager</strong>, never in code or environment variables, and gave the Lambda role access to <strong>one</strong> secret.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:4" aria-label="Mark done"><div class="task-t">I created an AgentCore <strong>Harness with a JWT inbound authorizer</strong> pointing at my pool, my client and my scope.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:5" aria-label="Mark done"><div class="task-t">My Lambda test obtained an M2M token and got <strong>200</strong> from the secured harness.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:6" aria-label="Mark done"><div class="task-t">I captured <strong>403</strong> for the missing and forged tokens, and <strong>500 <code>UnrecognizedClientException</code></strong> for the tampered and wrong-scope tokens, and can explain why the two families differ.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:7" aria-label="Mark done"><div class="task-t">I can explain why a <strong>genuine</strong> token with the wrong scope is rejected: authentication ≠ authorization.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:8" aria-label="Mark done"><div class="task-t">I can explain <code>iss</code>, <code>client_id</code>, <code>scope</code>, <code>exp</code>, why <code>aud</code> is absent, and the four hops with their separate credentials.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="mission-05:9" aria-label="Mark done"><div class="task-t">I can explain why M2M authentication is <strong>not</strong> interactive user sign-in.</div></li>
+</ul>
+</section><section class="sec" data-sec="quotas-costs-and-cleanup-mandatory-in-a-shared-account"><h2 id="quotas-costs-and-cleanup-mandatory-in-a-shared-account"><span>Quotas, costs, and cleanup — mandatory in a shared account</span><a class="anchor" href="#quotas-costs-and-cleanup-mandatory-in-a-shared-account" aria-label="Link to this section">#</a></h2>
+<p><strong>What this mission costs</strong> (US West (Oregon) list prices, October 2026):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Price</th>
+<th>Typical use</th>
+<th>Cost per participant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cognito M2M token requests</td>
+<td>$0.00225 per successful request, no free tier</td>
+<td>5–15 requests</td>
+<td>$0.01–0.03</td>
+</tr>
+<tr>
+<td>Cognito user pool (Essentials tier)</td>
+<td>free up to 10,000 monthly active users</td>
+<td>0 users</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>Secrets Manager</td>
+<td>$0.40 per secret per month, prorated hourly</td>
+<td>one secret for a few hours</td>
+<td>&lt; $0.01 (<strong>$0.40 per month if left behind</strong>)</td>
+</tr>
+<tr>
+<td>Secure harness: Claude Haiku 4.5 + Runtime sessions</td>
+<td>as in Mission 04</td>
+<td>3–6 short successful calls (rejected calls never reach the model)</td>
+<td>about $0.03</td>
+</tr>
+<tr>
+<td>Lambda and CloudWatch</td>
+<td>per request and per GB</td>
+<td>a handful of invocations</td>
+<td>&lt; $0.01</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td></td>
+<td><strong>about $0.05</strong> (budget $0.10)</td>
+</tr>
+</tbody></table></div>
+<p>A class of 25 spends roughly <strong>$2</strong> on this mission. The one recurring item is the secret: 25 forgotten secrets cost about <strong>$10 per month</strong>, so delete yours at the end.</p>
+<p><strong>Shared-account checklist:</strong></p>
+<ul>
+<li>Cognito token requests are rate-limited per account (150 per second). You will not hit that, but do not loop the test.</li>
+<li>15 secure harnesses plus 15 Mission 04 harnesses are well within the account&#39;s limits; stagger creation in waves of five if the instructor asks.</li>
+<li>Never enable payload or token logging to debug authentication.</li>
+</ul>
+<p><strong>Delete only your own resources, in this order:</strong></p>
+<ol>
+<li><p><strong>Lambda:</strong> delete <code>orbit-MY_ID-jwt-test</code>.</p>
+</li>
+<li><p><strong>Harness:</strong> delete <code>orbit_MY_ID_secure</code> (its runtime and endpoint go with it).</p>
+</li>
+<li><p><strong>Secrets Manager:</strong> open <code>orbit/MY_ID/cognito-m2m</code> → <strong>Actions → Delete secret</strong>. The default is a 7-day recovery window, which is fine; billing stops when the deletion is scheduled.</p>
+</li>
+<li><p><strong>Cognito:</strong> open <code>orbit-MY_ID-pool</code> and choose <strong>Delete user pool</strong> (top right of the overview). The wizard switched on <strong>deletion protection</strong> and created a <strong>domain</strong>, and the dialog offers to handle both: tick <strong>Delete Cognito domain … that you assigned</strong> and <strong>Deactivate deletion protection</strong>, type the pool name, and choose <strong>Delete</strong>. The app client and resource servers are removed with the pool.</p>
+<figure class="shot"><button class="zoom" type="button" aria-label="Enlarge screenshot"><img src="img/m05-27-cognito-delete-pool.webp" alt="Delete user pool dialog with both prerequisite actions ticked and the pool name typed" loading="lazy" decoding="async"></button><figcaption>Delete user pool dialog with both prerequisite actions ticked and the pool name typed</figcaption></figure>
+</li>
+<li><p><strong>IAM:</strong> delete <code>orbit-MY_ID-secure-role</code> and the auto-created <code>orbit-MY_ID-jwt-test-role-…</code> only after their resources are gone. Before deleting each role, open its <strong>Permissions</strong> tab and note the customer-managed policy the console created alongside it (<code>AmazonBedrockAgentCoreHarnessExecutionPolicy_…</code> and <code>AWSLambdaBasicExecutionRole-…</code>). Deleting a role does not delete those, so remove them afterwards from <strong>IAM → Policies</strong>.</p>
+</li>
+<li><p>Return to the Mission 04 and Mission 03 cleanup lists for the gateway, Lambda tool, first harness and knowledge base.</p>
+</li>
+</ol>
+<p><strong>AWS docs to consult:</strong> <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-define-resource-servers.html">Cognito resource servers and scopes</a> · <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html">Cognito app clients</a> · <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html">Cognito token endpoint</a> · <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/inbound-jwt-authorizer.html">AgentCore inbound JWT authorizer</a> · <a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-security.html">Harness security and access controls</a> · <a href="https://aws.amazon.com/cognito/pricing/">Cognito pricing</a> · <a href="https://aws.amazon.com/secrets-manager/pricing/">Secrets Manager pricing</a>.</p>
+<p><em>End of Mission 05 · ORBIT&#39;s agent perimeter is now something you can prove with real AWS requests, not merely describe.</em></p>
+</section>
+    <nav class="pager" aria-label="Mission navigation">
+      <a class="pg prev" href="mission-04.html" style="--mc:#2DD4BF"><small>← Previous mission</small><span>04 · Launch Control</span></a>
+      <a class="pg next" href="index.html"><small>All done →</small><span>Mission control</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot"><button class="lb-close" type="button" aria-label="Close">×</button><img alt=""><p class="lb-cap"></p></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":21,"mission-03":7,"mission-04":11,"mission-05":10};</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>
