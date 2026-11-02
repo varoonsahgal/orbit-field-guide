@@ -1296,6 +1296,7 @@ because <mark class="w4">no identity-based policy allows</mark> the bedrock:Invo
   }
 ]</code></pre></div>
     <div class="box tidbit"><span class="k">Tidbit · what your Lambda receives</span><p>The gateway passes the tool's input properties as the <code>event</code> (so <code>event["order_id"]</code>) and puts the tool name and gateway IDs in <code>context.client_context.custom</code>. The same code works from a manual Test and from the agent.</p></div>
+    <div class="box trap"><span class="k">Trap · the pre-filled Lambda ARN</span><p>The target form opens with <code>arn:aws:lambda:us-west-2:123456789012:function:my-function:$LATEST</code> already typed in the Lambda ARN box, a <code>target-quick-start-…</code> name and a <code>DefaultTool</code> schema. All three are real values, not hints. Replace all three, and read the ARN before you submit: it must show <strong>your</strong> account number and <code>orbit-MY_ID-order-lookup</code>.</p></div>
     <div class="box analogy"><span class="k">Why the description matters</span><p>The model chooses tools by reading their <code>description</code>. “Read-only … never issues a refund” is both a routing hint and a promise the code keeps. A vague description is the most common reason an agent never calls a tool that is perfectly wired.</p></div>
   </div>
 
@@ -1331,10 +1332,11 @@ because <mark class="w4">no identity-based policy allows</mark> the bedrock:Invo
   </figure>
 
   <div class="entry">
-    <div class="entry-h"><h3>The two errors you are meant to hit</h3><span class="chip">Expected · teachable</span></div>
+    <div class="entry-h"><h3>The two errors you are meant to hit, and one trap</h3><span class="chip">Expected · teachable</span></div>
     <div class="faults">
       <div class="fault expected"><span class="n">E1</span><h4>Gateway service is not authorized to perform AssumeRole on Gateway role</h4><span class="where">Create gateway wizard · yellow banner · gateway exists with 0 targets</span><p>The wizard created the gateway role and used it in the same second, before IAM had propagated it (eventual consistency). Your settings are fine. <b>Fix: wait 30–60 s, then Targets → Add, and enter the same target again.</b></p></div>
       <div class="fault expected"><span class="n">E2</span><h4>Failed to load tool … Client error '403 Forbidden' for url '…/mcp'</h4><span class="where">Harness playground · red Error box · after adding the gateway (Version 2)</span><p>The <strong>harness execution role</strong> tried to list the gateway's tools and has no <code>bedrock-agentcore:InvokeGateway</code>. <b>Fix: inline policy <code>orbit-MY_ID-invoke-gateway</code> on <code>orbit-MY_ID-harness-role</code>, wait ~30 s, start a new session.</b></p></div>
+      <div class="fault"><span class="n">T</span><h4>Gateway execution role lacks permission to invoke Lambda function arn:aws:lambda:us-west-2:123456789012:function:my-function:$LATEST</h4><span class="where">Create gateway wizard or Targets → Add · yellow banner · looks like IAM, is a wrong ARN</span><p>The <strong>Lambda ARN</strong> box opens <em>pre-filled</em> with AWS's example ARN, which names a made-up account, and the wizard also scopes the gateway role's <code>lambda:InvokeFunction</code> to that example. Widening the role cannot help while the target still points at a function that does not exist. <b>Fix: Targets → Add, select all in the Lambda ARN box, paste your ARN. If the gateway was created with the example, also edit the role's <code>AmazonBedrockAgentCoreGatewayLambdaProd_…</code> policy so its Resource is your function.</b></p></div>
     </div>
     <div class="prompt"><pre><code>{
   "Version": "2012-10-17",
@@ -1349,6 +1351,7 @@ because <mark class="w4">no identity-based policy allows</mark> the bedrock:Invo
   </div>
   <div class="pair">
     <figure class="shot"><img src="assets/shots/m04-18-gateway-created-target-error.webp" alt="Gateway created but target failed on the AssumeRole race" loading="lazy" width="1440" height="900"><figcaption><b>E1.</b> Gateway created, target failed. Retry the target.</figcaption></figure>
+    <figure class="shot"><img src="assets/shots/m04-19a-gateway-target-prefilled-arn.webp" alt="Add target form opening with the example Lambda ARN already filled in" loading="lazy" width="1440" height="900"><figcaption><b>T.</b> The Lambda ARN box is pre-filled with an example from a made-up account. Replace it with yours before you submit.</figcaption></figure>
     <figure class="shot"><img src="assets/shots/m04-23-harness-tool-403.webp" alt="Harness playground error: failed to load tool, 403 Forbidden from the gateway URL" loading="lazy" width="1440" height="900"><figcaption><b>E2.</b> The 403 comes from the gateway's <code>/mcp</code> URL: rung 2, tool loading.</figcaption></figure>
   </div>
   <div class="pair">
@@ -1621,6 +1624,7 @@ because <mark class="w4">no identity-based policy allows</mark> the bedrock:Invo
       <tr data-m="m4"><td><code>Model produced invalid sequence as part of ToolUse</code></td><td><span class="tag m4">04</span></td><td>Model choice</td><td>Harness is on Amazon Nova: switch to Claude Haiku 4.5</td></tr>
       <tr data-m="m4 m5"><td><code>Memory ARN is required when memory is enabled</code></td><td><span class="tag m4">04</span> <span class="tag m5">05</span></td><td>Harness config</td><td>Select <em>Create new Memory (managed by Harness)</em>, or untick Enable Memory</td></tr>
       <tr data-m="m4"><td><code>Gateway service is not authorized to perform AssumeRole on Gateway role</code></td><td><span class="tag m4">04</span></td><td>Trust · propagation</td><td>Expected race. Wait 30–60 s, then Targets → Add the same target</td></tr>
+      <tr data-m="m4"><td><code>Gateway execution role lacks permission to invoke Lambda function …123456789012:function:my-function…</code></td><td><span class="tag m4">04</span></td><td>Wrong ARN · trap</td><td>The pre-filled example ARN was submitted. Targets → Add with <em>your</em> ARN; if the wizard ran with the example, also set the gateway role's Lambda policy Resource to your function</td></tr>
       <tr data-m="m4"><td><code>At least one gateway ARN is required when gateway is enabled</code></td><td><span class="tag m4">04</span></td><td>Harness config</td><td>Gateway toggle is on but nothing selected in the dropdown</td></tr>
       <tr data-m="m4"><td><code>Failed to load tool … 403 Forbidden … /mcp</code></td><td><span class="tag m4">04</span></td><td>Tool loading</td><td>Harness role needs <code>bedrock-agentcore:InvokeGateway</code> on your gateway ARN; new session</td></tr>
       <tr data-m="m4"><td>Tool exists but the agent never calls it</td><td><span class="tag m4">04</span></td><td>Session · schema</td><td>Start a new session; make the tool description say when to use it</td></tr>
