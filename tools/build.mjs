@@ -37,7 +37,7 @@ const MISSIONS = [
   { n: '03', slug: 'mission-03', hue: '#A78BFA', hue2: '#8B5CF6', tag: 'Retrieval', module: 'Module 2 · Bedrock fundamentals' },
   { n: '04', slug: 'mission-04', hue: '#2DD4BF', hue2: '#14B8A6', tag: 'Agent + tools', module: 'Modules 3, 4, 6 · AgentCore' },
   { n: '05', slug: 'mission-05', hue: '#34D399', hue2: '#10B981', tag: 'Identity', module: 'Module 5 · Authentication' },
-  { n: '06', slug: 'mission-06', hue: '#F472B6', hue2: '#EC4899', tag: 'Production', module: 'Production readiness' },
+  { n: '06', slug: 'mission-06', hue: '#F472B6', hue2: '#EC4899', tag: 'Guardrails + evals', module: 'Capstone · Production readiness' },
 ];
 const DEFAULT_NAMES = { '06': 'MISSION ASSURANCE' };
 const NOTES = ['03', '04', '05'];

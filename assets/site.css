@@ -437,3 +437,6 @@ dialog::backdrop { background: rgba(2, 4, 12, .72); backdrop-filter: blur(4px); 
 
 html[data-theme="light"] .callout { --k-t: color-mix(in srgb, var(--k) 55%, #0B1020); }
 html[data-theme="light"] .callout-ico { color: color-mix(in srgb, var(--k) 70%, #0B1020); }
+
+/* Prose-like text blocks (prompts, rubrics) wrap instead of scrolling */
+.code pre:has(> code.language-text) { white-space: pre-wrap; overflow-wrap: anywhere; }
