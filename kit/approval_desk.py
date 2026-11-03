@@ -6,7 +6,7 @@ type APPROVE or REJECT. Your answer goes back to the agent as the tool result.
 
     python3 approval_desk.py MY_ID                       # run the storm mission
     python3 approval_desk.py MY_ID "your own mission text"
-    python3 approval_desk.py MY_ID --system-prompt reckless.txt "..."   # Phase 7 drill
+    python3 approval_desk.py MY_ID --system-prompt reckless.txt "..."   # Phase 6 drill
 """
 import json
 import sys

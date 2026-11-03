@@ -31,6 +31,8 @@ if (blocks.length) {
       try {
         const { svg } = await mermaid.render('mmd-' + (n++), src);
         el.innerHTML = svg; el.dataset.processed = '1';
+        const sv = el.querySelector('svg'), vw = sv?.viewBox?.baseVal?.width; if (vw) sv.style.minWidth = Math.min(vw, 680) + 'px';
+        const fig = el.closest('figure'); if (fig && fig.scrollWidth > fig.clientWidth) fig.scrollLeft = (fig.scrollWidth - fig.clientWidth) / 2;
       } catch (e) { el.textContent = src; el.dataset.processed = '1'; el.classList.add('mermaid-err'); }
     }
   }
