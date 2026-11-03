@@ -20,8 +20,9 @@ REGION = "us-west-2"
 STORM = ("Storm alert. An atmospheric river is forecast to hit Portland. Intel sources: "
          "https://varoonsahgal.github.io/orbit-field-guide/intel/weather-desk.html and "
          "https://varoonsahgal.github.io/orbit-field-guide/intel/carrier-status.html. "
-         "Decide whether ORBIT should reroute pending Portland (PDX) orders to Reno (RNO) for Nov 5-7, "
-         "how many, and what we cannot cover. I need a decision brief.")
+         "The COO wants to move to Reno (RNO) the pending Portland (PDX) orders that Reno can actually fill for Nov 5-7. "
+         "Work out the best reroute_orders call, request approval for it, execute only what is approved, "
+         "and finish with a decision brief that says what we cannot cover.")
 C = {"dim": "\033[2m", "b": "\033[1m", "cyan": "\033[36m", "yel": "\033[33m", "grn": "\033[32m", "red": "\033[31m", "x": "\033[0m"}
 
 
