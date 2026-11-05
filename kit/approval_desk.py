@@ -2,7 +2,7 @@
 
 Runs a mission on your commander agent, streams what the crew is doing, and stops
 whenever the commander calls request_human_approval. You read the exact plan and
-type APPROVE or REJECT. Your answer goes back to the agent as the tool result.
+type APPROVE, or REJECT and a reason. Your answer goes back to the agent as the tool result.
 
     python3 approval_desk.py MY_ID                       # run the storm mission
     python3 approval_desk.py MY_ID "your own mission text"
@@ -11,6 +11,7 @@ type APPROVE or REJECT. Your answer goes back to the agent as the tool result.
 import json
 import sys
 import textwrap
+import time
 import uuid
 
 import boto3
@@ -21,9 +22,16 @@ STORM = ("Storm alert. An atmospheric river is forecast to hit Portland. Intel s
          "https://varoonsahgal.github.io/orbit-field-guide/intel/weather-desk.html and "
          "https://varoonsahgal.github.io/orbit-field-guide/intel/carrier-status.html. "
          "The COO wants to move to Reno (RNO) the pending Portland (PDX) orders that Reno can actually fill for Nov 5-7. "
-         "Work out the best reroute_orders call, request approval for it, execute only what is approved, "
+         "Work out the best reroute_orders call. Even if no option is perfect, request approval for the one you "
+         "recommend and state its risks: the duty manager decides. Execute only what is approved, "
          "and finish with a decision brief that says what we cannot cover.")
+NAMES = {}  # toolUseId -> tool name, kept across turns so a result can be labelled
 C = {"dim": "\033[2m", "b": "\033[1m", "cyan": "\033[36m", "yel": "\033[33m", "grn": "\033[32m", "red": "\033[31m", "x": "\033[0m"}
+
+
+def short(tool_name):
+    """Gateway tools are named <target>___<tool>; show just the tool."""
+    return tool_name.split("___")[-1]
 
 
 def find_commander(my_id):
@@ -45,16 +53,17 @@ def stream(response):
             if "toolUse" in start:
                 current = {"name": start["toolUse"]["name"], "id": start["toolUse"]["toolUseId"], "input": ""}
                 tools.append(current)
-                short = current["name"].split("___")[-1]
-                print(f"\n{C['cyan']}📡 commander → {short}{C['x']}", flush=True)
+                NAMES[current["id"]] = current["name"]
+                print(f"\n{C['cyan']}📡 commander → {short(current['name'])}{C['x']}", flush=True)
+            elif "toolResult" in start:  # one result block per tool call (its text then streams in chunks)
+                name = NAMES.get(start["toolResult"].get("toolUseId"), "tool")
+                print(f"{C['dim']}   ↳ {short(name)} result received{C['x']}", flush=True)
         elif "contentBlockDelta" in event:
             delta = event["contentBlockDelta"]["delta"]
             if "text" in delta:
                 print(delta["text"], end="", flush=True)
             elif "toolUse" in delta and current:
                 current["input"] += delta["toolUse"].get("input", "")
-            elif "toolResult" in delta:
-                print(f"{C['dim']}   ↳ result received{C['x']}", flush=True)
         elif "messageStop" in event:
             stop = event["messageStop"].get("stopReason")
         elif "metadata" in event:
@@ -77,11 +86,17 @@ def ask_human(call):
     print(textwrap.indent(textwrap.fill(str(req.get("justification", "")), 90), "   "))
     print(f"{C['yel']}{'═' * 70}{C['x']}")
     while True:
-        answer = input("Type APPROVE, or REJECT followed by a reason: ").strip()
-        if answer.upper() == "APPROVE":
+        try:
+            answer = input("Type APPROVE, or REJECT followed by a reason: ").strip()
+        except EOFError:
+            sys.exit("\nNo answer given: nothing was approved.")
+        word, _, reason = answer.partition(" ")
+        word = word.upper().rstrip(".,:;!")
+        if word in ("APPROVE", "APPROVED"):
             return "APPROVED by the duty manager. Execute exactly the parameters above, nothing else."
-        if answer.upper().startswith("REJECT"):
-            return "REJECTED by the duty manager. Reason: " + (answer[6:].strip() or "none given") + ". Do not execute it."
+        if word in ("REJECT", "REJECTED"):
+            return "REJECTED by the duty manager. Reason: " + (reason.strip() or "none given") + ". Do not execute it."
+        print(f"{C['red']}Not understood. Type APPROVE, or REJECT and a reason, e.g.  REJECT cap max_orders at 30{C['x']}")
 
 
 def main():
@@ -100,6 +115,7 @@ def main():
     extra = {"systemPrompt": [{"text": system_prompt}]} if system_prompt else {}
     print(f"{C['b']}🛰️  ORBIT approval desk{C['x']}  harness {harness_arn.split('/')[-1]}  session {session}\n")
     print(f"{C['dim']}Mission: {mission}{C['x']}\n")
+    started = time.time()
 
     response = agentcore.invoke_harness(harnessArn=harness_arn, runtimeSessionId=session,
                                         messages=[{"role": "user", "content": [{"text": mission}]}], **extra)
@@ -112,7 +128,8 @@ def main():
             messages=[{"role": "user", "content": [{"toolResult": {"toolUseId": pending[0]["id"], "status": "success",
                                                                     "content": [{"text": decision}]}}]}])
         stop, pending = stream(response)
-    print(f"\n\n{C['dim']}Session {session} finished with stop reason: {stop}{C['x']}")
+    print(f"\n\n{C['dim']}Session {session} finished in {time.time() - started:.0f} s "
+          f"(including the time you took to answer), stop reason: {stop}{C['x']}")
 
 
 if __name__ == "__main__":

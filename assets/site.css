@@ -546,6 +546,27 @@ pre .myid, html[data-theme="light"] pre .myid { color: var(--gold) !important; b
 .prose td code { white-space: normal; overflow-wrap: anywhere; }
 .prose td:first-child { color: var(--head); }
 
+/* Expected result: the success criterion of a step */
+.expect { position: relative; max-width: 56rem; margin: 6px 0 18px; padding: 11px 16px 11px 44px; border-radius: 12px; --k: #34D399;
+  border: 1px solid color-mix(in srgb, var(--k) 30%, transparent); background: color-mix(in srgb, var(--k) 8%, transparent); }
+.expect::before { content: ""; position: absolute; left: 14px; top: 12px; width: 18px; height: 18px; border-radius: 50%; background: color-mix(in srgb, var(--k) 22%, transparent);
+  -webkit-mask: none; box-shadow: 0 0 0 1px color-mix(in srgb, var(--k) 45%, transparent) inset; }
+.expect::after { content: ""; position: absolute; left: 19px; top: 16px; width: 8px; height: 4px; border-left: 2px solid var(--k); border-bottom: 2px solid var(--k); transform: rotate(-45deg); }
+.expect > strong:first-child { font: 700 10.5px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--k); margin-right: 4px; }
+html[data-theme="light"] .expect { --k: #0F9F6E; background: color-mix(in srgb, #34D399 10%, #fff); }
+li .expect { margin-top: 8px; }
+.proved { position: relative; max-width: 56rem; margin: 6px 0 18px; padding: 11px 16px 11px 44px; border-radius: 12px; --k: #FBBF24;
+  border: 1px solid color-mix(in srgb, var(--k) 32%, transparent); background: color-mix(in srgb, var(--k) 8%, transparent); }
+.proved::before { content: "★"; position: absolute; left: 14px; top: 11px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 11px; line-height: 1; color: var(--k); background: color-mix(in srgb, var(--k) 20%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--k) 45%, transparent) inset; }
+.proved > strong:first-child { font: 700 10.5px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--k); margin-right: 4px; }
+html[data-theme="light"] .proved { --k: #B45309; background: color-mix(in srgb, #FBBF24 12%, #fff); }
+li .proved { margin-top: 8px; }
+.cue-pill { display: inline-block; font: 700 10px/1 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: 5px 9px 4px; margin-right: 6px; border-radius: 999px; vertical-align: 1px; white-space: nowrap; }
+.cue-pill.predict { --k: #A78BFA; color: color-mix(in srgb, var(--k) 70%, white); background: color-mix(in srgb, var(--k) 16%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--k) 42%, transparent) inset; }
+.cue-pill.predict::before { content: "? "; }
+html[data-theme="light"] .cue-pill.predict { color: #6D28D9; background: color-mix(in srgb, #A78BFA 14%, #fff); }
+
 /* Callouts */
 .callout { position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 14px; margin: 10px 0 26px; padding: 18px 22px 18px 18px; border-radius: 16px; max-width: 58rem; --k: #38BDF8; border: 1px solid color-mix(in srgb, var(--k) 32%, transparent); background: linear-gradient(120deg, color-mix(in srgb, var(--k) 13%, var(--solid)), color-mix(in srgb, var(--k) 3%, var(--solid)) 60%); overflow: hidden; }
 .callout::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--k); box-shadow: 0 0 14px var(--k); }
@@ -820,6 +841,7 @@ dialog::backdrop { background: rgba(2, 4, 12, .78); backdrop-filter: blur(6px); 
   .code pre { white-space: pre-wrap; font-size: 8.6pt; color: #111; }
   .hljs-keyword, .hljs-string, .hljs-attr, .hljs-number, .hljs-title, .hljs-comment, .hljs-built_in, .hljs-literal, .hljs-property, .hljs-variable, .hljs-params, .hljs-meta { color: #111 !important; }
   .callout { background: none !important; border-color: #999; }
+  .expect, .proved { background: none; border-color: #999; padding-left: 16px; } .expect::before, .expect::after, .proved::before { display: none; } .cue-pill { box-shadow: none; border: 1px solid #999; color: #000; background: none; }
   .callout-ico { background: none; box-shadow: none; color: #000; }
   details.reveal > .reveal-body { display: block !important; }
   figure.shot { max-width: 15cm; }

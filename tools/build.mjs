@@ -156,7 +156,7 @@ function quotes(html) {
 function reveals(html) {
   return html.replace(/<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g, (m, sum, body) => {
     const t = strip(sum);
-    const cls = /hint/i.test(t) ? 'hint' : /answer|solution|key|reveal/i.test(t) ? 'answer' : 'plain';
+    const cls = /hint/i.test(t) ? 'hint' : /answer|solution|key|reveal|compare|red flags/i.test(t) ? 'answer' : 'plain';
     return `<details class="reveal ${cls}"><summary><span>${sum}</span></summary><div class="reveal-body">${body}</div></details>`;
   });
 }
@@ -166,6 +166,16 @@ function checkpoints(html) {
   html = html.replace(/<p><strong>([^<]*?(?:checkpoint|Checkpoint)[^<]*?)<\/strong><\/p>\s*(<ul>[\s\S]*?<\/ul>)/g,
     (m, title, list) => `<div class="checkpoint"><div class="checkpoint-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>${esc(dropEmoji(strip(title)))}<span class="checkpoint-n" aria-hidden="true"></span></div>${list}</div>`);
   return html;
+}
+
+// A paragraph that starts with "**Expected:**" (or "**Expected** (…):") is the success criterion for a step:
+// give it a check badge so learners can confirm a step at a glance.
+// Two more learning cues: "**What you just proved:**" closes a step (gold box), "**Predict first:**" is an inline pill.
+function expects(html) {
+  return html
+    .replace(/<p>(\s*<strong>Expected(?:[^<]{0,40})?<\/strong>)/g, '<p class="expect">$1')
+    .replace(/<p>(\s*<strong>What you just proved:<\/strong>)/g, '<p class="proved">$1')
+    .replace(/<strong>Predict first:<\/strong>/g, '<strong class="cue-pill predict">Predict first</strong>');
 }
 
 // Task-list checkboxes become persistent, interactive checks
@@ -418,7 +428,7 @@ for (const m of MISSIONS) {
   const imgs = new Set();
   const marked = makeMarked(imgs);
   let html = marked.parse(m.rest);
-  html = alerts(html); html = quotes(html); html = reveals(html); html = checkpoints(html);
+  html = alerts(html); html = quotes(html); html = reveals(html); html = checkpoints(html); html = expects(html);
   html = tasks(html, m.slug); html = figures(html, m.n); html = wrapTables(html);
   const { html: secHtml, toc } = sections(html);
   html = secHtml;
