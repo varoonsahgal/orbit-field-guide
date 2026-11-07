@@ -27,7 +27,8 @@ const SANITIZE = [
   [/`?Orbit-Recruit-2026!`?/g, 'the temporary password your instructor gives you'],
   [/`?Ignition-Recruit-2026!`?/g, 'the temporary password your instructor gives you'],
 ];
-const FORBIDDEN = ['962804699607', 'TZHtlxeIE', '5eq3s8mpp6j5506lq11pu5g0kl', 'wn4dc', 'Recruit-2026!'];
+// OrbitOps break-fix class values (AM01 roster): pool, domain prefix and console alias must never be published either.
+const FORBIDDEN = ['962804699607', 'TZHtlxeIE', '5eq3s8mpp6j5506lq11pu5g0kl', 'wn4dc', 'Recruit-2026!', 'IDiqMUxKo', 'orbit-am01-96280469', 'dc-lab.signin'];
 const sanitize = s => SANITIZE.reduce((t, [re, rep]) => t.replace(re, rep), s);
 
 // ── Missions ────────────────────────────────────────────────────────────────
@@ -79,12 +80,36 @@ const MISSIONS = nums.map((n, i) => {
 });
 const MAIN = MISSIONS.filter(m => m.track !== 'foundation');
 const PRE = MISSIONS.filter(m => m.track === 'foundation');
+MISSIONS.forEach(m => { m.label = `${m.track === 'foundation' ? 'Pre-flight' : 'Mission'} ${m.n}`; });
+
+// ── Break-fix track (OrbitOps: Cosmic Cargo Rescue) ─────────────────────────
+// `AMnn-ORBITOPS-*.md` in LABS/break-fix become break-fix-amnn.html; `00-ORBITOPS-*.md` is the track's start guide.
+// These are hint-only handouts: never put answers or debrief content in this folder.
+const BF_DIR = path.resolve(process.env.BREAKFIX_DIR || path.join(LABS, 'break-fix'));
+const BF_REGISTRY = {
+  AM01: { letter: 'A', hue: '#FB923C', hue2: '#F97316', tag: 'Identity', emblem: 'lock', diff: 3 },
+  AM02: { letter: 'B', hue: '#22D3EE', hue2: '#06B6D4', tag: 'Tools', emblem: 'route', diff: 2 },
+  AM03: { letter: 'C', hue: '#A3E635', hue2: '#84CC16', tag: 'Knowledge', emblem: 'book', diff: 4 },
+  AM04: { letter: 'D', hue: '#E879F9', hue2: '#D946EF', tag: 'Memory', emblem: 'chip', diff: 2 },
+  AM05: { letter: 'E', hue: '#60A5FA', hue2: '#3B82F6', tag: 'Networking', emblem: 'lanes', diff: 4 },
+  AM06: { letter: 'F', hue: '#FB7185', hue2: '#F43F5E', tag: 'Safety', emblem: 'eyeshield', diff: 2 },
+};
+const DIFF_WORD = ['', 'Warm-up', 'Easy', 'Medium', 'Hard', 'Expert', 'Expert'];
+const bfFiles = fs.existsSync(BF_DIR) ? fs.readdirSync(BF_DIR).sort() : [];
+const BF_START = bfFiles.find(f => /^00-ORBITOPS-.+\.md$/.test(f)) || null;
+const BF = bfFiles.map(f => /^(AM\d{2})-ORBITOPS-.+\.md$/.exec(f)).filter(Boolean).map(([f, code], i) => {
+  const r = BF_REGISTRY[code] || {};
+  const [fh, fh2] = FALLBACK_HUES[i % FALLBACK_HUES.length];
+  const letter = r.letter || code.slice(-1);
+  return { code, n: letter, slug: 'break-fix-' + code.toLowerCase(), file: f, hue: r.hue || fh, hue2: r.hue2 || fh2, tag: r.tag || 'Break-fix',
+    emblem: r.emblem || 'star', diff: r.diff || 3, track: 'breakfix', present: true, arc: `BREAK-FIX · ${letter}`, label: `Break-fix ${letter}`, skills: [] };
+});
 
 // ── Markdown helpers ────────────────────────────────────────────────────────
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const strip = s => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 const slugify = s => strip(s).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '').slice(0, 64) || 'section';
-const titleCase = s => s.toLowerCase().replace(/(^|[\s·—-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+const titleCase = s => s.toLowerCase().replace(/(^|[\s·—-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()).replace(/\bOrbitops\b/g, 'OrbitOps');
 const dropEmoji = s => s.replace(/^[\p{Extended_Pictographic}️‍\s]+/u, '').trim();
 
 const LANG_LABEL = { python: 'Python', py: 'Python', json: 'JSON', bash: 'Shell', sh: 'Shell', shell: 'Shell', text: 'Text', '': 'Text', sql: 'Logs Insights', cedar: 'Cedar', yaml: 'YAML', js: 'JavaScript', javascript: 'JavaScript', http: 'HTTP' };
@@ -108,6 +133,7 @@ function makeMarked(images) {
       code({ text, lang }) {
         const l = (lang || '').trim().split(/\s+/)[0].toLowerCase();
         if (l === 'mermaid') return `<figure class="diagram"><pre class="mermaid" data-src="${esc(text)}">${esc(text)}</pre></figure>\n`;
+        if (l === 'chat') return chatMock(text, (lang || '').trim().split(/\s+/).slice(1).join(' '));
         let body;
         const looksInsights = /^\s*(fields|filter|stats|sort)\b/m.test(text) && /\|/.test(text);
         const hl = l && hljs.getLanguage(l) ? l : (looksInsights ? 'sql' : null);
@@ -152,13 +178,47 @@ function quotes(html) {
   return html.replace(/<blockquote>/g, '<blockquote class="pull">');
 }
 
-// <details> reveals
+// <details> reveals. Break-fix hint ladders: "Hint 1/2/3 · …" get a strength level; "Big clue · …" is the last resort.
 function reveals(html) {
   return html.replace(/<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g, (m, sum, body) => {
     const t = strip(sum);
-    const cls = /hint/i.test(t) ? 'hint' : /answer|solution|key|reveal|compare|red flags/i.test(t) ? 'answer' : 'plain';
+    const lv = /^\s*Hint\s+([123])\b/i.exec(t);
+    const cls = /^\s*Big clue/i.test(t) ? 'clue' : lv ? `hint lvl lvl-${lv[1]}` : /hint/i.test(t) ? 'hint' : /answer|solution|key|reveal|compare|red flags/i.test(t) ? 'answer' : 'plain';
     return `<details class="reveal ${cls}"><summary><span>${sum}</span></summary><div class="reveal-body">${body}</div></details>`;
   });
+}
+
+// ```chat <caption> fences: a mock of the OrbitOps chat console (messages + the sidebar's status pills).
+// Lines: "you: …", "bot: …", "error: …", "note: …", "pill+ …" (green), "pill- …" (amber).
+function chatMock(text, caption) {
+  const log = [], pills = [];
+  let hasBot = false;
+  for (const raw of text.split('\n')) {
+    const line = raw.trim(); if (!line) continue;
+    const p = /^pill([+-])\s+(.*)$/.exec(line);
+    if (p) { pills.push(`<span class="cm-pill ${p[1] === '+' ? 'on' : 'off'}">${esc(p[2])}</span>`); continue; }
+    const mm = /^(you|bot|error|note):\s*(.*)$/.exec(line);
+    if (!mm) continue;
+    const [, who, body] = mm;
+    if (who === 'note') { log.push(`<p class="cm-note">${md1(body)}</p>`); continue; }
+    if (who === 'bot') hasBot = true;
+    const ph = who === 'bot' && /^\(.*\)$/.test(body);
+    log.push(`<div class="cm-msg ${who === 'error' ? 'err' : who}${ph ? ' ph' : ''}"><span class="cm-who">${who === 'you' ? 'You' : who === 'bot' ? 'Flight controller' : 'Error'}</span><span class="cm-text">${md1(body)}</span></div>`);
+  }
+  const tone = /broken|right now|exposed/i.test(caption) ? 'bad' : /done|fixed/i.test(caption) ? 'good' : 'info';
+  const side = pills.length ? `<div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills">${pills.join('')}</div></div>` : '';
+  return `<figure class="chatmock tone-${tone}"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span>${caption ? `<span class="cm-cap">${esc(caption)}</span>` : ''}</div><div class="cm-body${log.length ? '' : ' cm-only-side'}">${log.length ? `<div class="cm-log">${log.join('')}</div>` : ''}${side}</div>${hasBot ? '<figcaption class="cm-foot">Illustration: the flight controller\'s exact words will differ.</figcaption>' : ''}</figure>\n`;
+}
+
+// "### Goal N · title" → numbered goal banner (run after sections(), which adds ids and anchors)
+function goals(html) {
+  return html.replace(/<h3 id="([^"]+)">Goal (\d+) · ([\s\S]*?)(<a class="anchor"[^>]*>#<\/a>)<\/h3>/g,
+    (m, id, n, t, a) => `<h3 id="${id}" class="goal-h"><span class="goal-n"><small>Goal</small>${n}</span><span class="goal-t">${t}</span>${a}</h3>`);
+}
+// "**Your work order** …" paragraph + the numbered list after it → a work-order card
+function workOrders(html) {
+  return html.replace(/<p><strong>Your work order\.?<\/strong>\s*([\s\S]*?)<\/p>\s*(<ol>[\s\S]*?<\/ol>)/g,
+    (m, intro, list) => `<div class="workorder"><div class="wo-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>Your work order</div>${intro.trim() ? `<p class="wo-intro">${intro.trim()}</p>` : ''}${list}</div>`);
 }
 
 // "**🧩 Investigation checkpoint**" paragraphs + following task list → checkpoint card
@@ -181,9 +241,10 @@ function expects(html) {
 // Task-list checkboxes become persistent, interactive checks
 function tasks(html, page) {
   let i = 0;
-  return html.replace(/<li>\s*<input (?:checked="" )?disabled="" type="checkbox"(?: checked="")?>\s*([\s\S]*?)<\/li>/g, (m, body) => {
+  // Tight items: <li><input …> text</li>. Loose items (a task with a code block under it): <li><p><input …> text</p>…</li>.
+  return html.replace(/<li>\s*(<p>)?\s*<input (?:checked="" )?disabled="" type="checkbox"(?: checked="")?>\s*([\s\S]*?)<\/li>/g, (m, p, body) => {
     const id = `${page}:${i++}`;
-    return `<li class="task"><input type="checkbox" class="chk" data-k="${id}" aria-label="Mark done"><div class="task-t">${body}</div></li>`;
+    return `<li class="task${p ? ' task-loose' : ''}"><input type="checkbox" class="chk" data-k="${id}" aria-label="Mark done"><div class="task-t">${p || ''}${body}</div></li>`;
   });
 }
 
@@ -285,6 +346,14 @@ const EMBLEM = {
   breach: '<path d="M60 39l17 10v19L60 78 43 68V49z"/><path d="M57 40l-3 10 7 5-6 8 5 6-3 8" stroke-width="2.6"/><path d="M66 52l4-2M65 62l5 1"/>',
   crew: '<circle cx="60" cy="44" r="5.5"/><circle cx="45" cy="70" r="5"/><circle cx="75" cy="70" r="5"/><circle cx="60" cy="66" r="3"/><path d="M57 49 47.5 65.5M63 49 72.5 65.5M50 70h20M60 49.5V63"/>',
   star: '<path d="m60 41 5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/>',
+  // break-fix track
+  lock: '<rect x="46" y="55" width="28" height="22" rx="4"/><path d="M51 55v-6a9 9 0 0 1 18 0v6"/><circle cx="60" cy="64.5" r="2.6"/><path d="M60 67v4.5"/>',
+  route: '<circle cx="45" cy="47" r="4"/><circle cx="75" cy="47" r="4"/><circle cx="45" cy="73" r="4"/><circle cx="75" cy="73" r="4"/><path d="M49 47h22M49 73h8M63 73h8"/><path d="M48.5 50 71.5 70" stroke-dasharray="3 3"/>',
+  book: '<path d="M43 46c6-3 12-3 17 1v30c-5-4-11-4-17-1z"/><path d="M77 46c-6-3-12-3-17 1v30c5-4 11-4 17-1z"/><path d="M47 54h8M47 60h8M65 54h8M65 60h8"/>',
+  chip: '<rect x="48" y="48" width="24" height="24" rx="4"/><rect x="54" y="54" width="12" height="12" rx="2"/><path d="M54 43v5M60 43v5M66 43v5M54 72v5M60 72v5M66 72v5M43 54h5M43 60h5M43 66h5M72 54h5M72 60h5M72 66h5"/>',
+  lanes: '<path d="M60 40l17 9.5v21L60 80 43 70.5v-21z"/><path d="M49 60h22M53 53h14M53 67h14"/><circle cx="60" cy="60" r="2.6"/>',
+  eyeshield: '<path d="M60 39l16 6v11c0 11-7 19-16 23-9-4-16-12-16-23V45z"/><path d="M49.5 58c3-4.5 6.5-6.5 10.5-6.5s7.5 2 10.5 6.5c-3 4.5-6.5 6.5-10.5 6.5s-7.5-2-10.5-6.5z"/><circle cx="60" cy="58" r="2.6"/>',
+  wrench: '<path d="M71 43a9 9 0 0 0-11 11L45 69a3.5 3.5 0 0 0 5 5l15-15a9 9 0 0 0 11-11l-5.5 5.5-5-1-1-5z"/>',
 };
 let patchSeq = 0;
 function patch(m, size = 120, cls = 'patch') {
@@ -297,7 +366,7 @@ function patch(m, size = 120, cls = 'patch') {
 <circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#g${id})"/>
 <circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#r${id})"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
 <text class="p-arc"><textPath href="#t${id}" startOffset="50%" text-anchor="middle">${esc(name)}</textPath></text>
-<text class="p-arc p-arc-b"><textPath href="#b${id}" startOffset="50%" text-anchor="middle">ORBIT · ${m.n}</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#b${id}" startOffset="50%" text-anchor="middle">${esc(m.arc || 'ORBIT · ' + m.n)}</textPath></text>
 <circle cx="60" cy="60" r="31" class="p-core"/>
 <g class="p-emblem">${EMBLEM[m.emblem] || EMBLEM.star}</g>
 <ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
@@ -322,7 +391,7 @@ function nav(current) {
   const pre = PRE.length ? `<span class="nav-grp" aria-label="Pre-flight foundations">${PRE.map(item).join('')}</span><span class="nav-sep"></span>` : '';
   return `<header class="topbar"><div class="topbar-in">
   <a class="brand" href="index.html">${LOGO}<span class="brand-t">ORBIT <b>Field Academy</b></span></a>
-  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span>${pre}<span class="nav-lbl">Missions</span>${MAIN.map(item).join('')}<span class="nav-sep"></span><a class="nav-x" href="notes.html"${current?.startsWith('notes') ? ' aria-current="page"' : ''}>Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span>${pre}<span class="nav-lbl">Missions</span>${MAIN.map(item).join('')}<span class="nav-sep"></span>${BF.length ? `<a class="nav-x nav-bf" href="break-fix.html"${current?.startsWith('break-fix') ? ' aria-current="page"' : ''}><span class="nav-bf-ico" aria-hidden="true"></span>Break-fix</a>` : ''}<a class="nav-x" href="notes.html"${current?.startsWith('notes') ? ' aria-current="page"' : ''}>Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
   <div class="tools">
     <button class="id-chip" type="button" data-open-id aria-haspopup="dialog">${ICON.id}<span class="id-chip-v" data-myid-label>Set your ID</span></button>
     <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun">${ICON.sun}</span><span class="i-moon">${ICON.moon}</span></button>
@@ -369,7 +438,7 @@ ${body}
   <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
 </div></footer>
 ${ID_DIALOG}
-<script>window.ORBIT_PAGES=${JSON.stringify(PAGE_TOTALS)};window.ORBIT_MISSIONS=${JSON.stringify(MISSIONS.map(m => ({ n: m.n, slug: m.slug, name: titleCase(m.name || ''), hue: m.hue, track: m.track, present: m.present })))};</script>
+<script>window.ORBIT_PAGES=${JSON.stringify(PAGE_TOTALS)};window.ORBIT_MISSIONS=${JSON.stringify([...MISSIONS, ...BF].map(m => ({ n: m.n, slug: m.slug, name: titleCase(m.name || ''), hue: m.hue, track: m.track, present: m.present, label: m.label })))};</script>
 <script src="assets/site.js" defer></script>
 <script type="module" src="assets/diagrams.js"></script>
 </body></html>`;
@@ -438,6 +507,128 @@ for (const m of MISSIONS) {
   m.phases = toc.filter(t => t.kind === 'phase').length;
   m.html = html;
   m.imgCount = imgs.size;
+}
+
+// Break-fix bodies (same pipeline, plus goal banners and work-order cards)
+function renderBody(md, page, figPrefix) {
+  const imgs = new Set();
+  let html = makeMarked(imgs).parse(md);
+  html = alerts(html); html = quotes(html); html = reveals(html); html = checkpoints(html); html = expects(html); html = workOrders(html);
+  html = tasks(html, page); html = figures(html, figPrefix); html = wrapTables(html);
+  const { html: secHtml, toc } = sections(html);
+  imgs.forEach(i => allImages.add(i));
+  return { html: goals(secHtml), toc, imgCount: imgs.size };
+}
+for (const m of BF) {
+  const h = parseHeader(sanitize(fs.readFileSync(path.join(BF_DIR, m.file), 'utf8')));
+  m.name = (h.mission.split(/[·—]/)[1] || h.mission).trim();
+  m.subtitle = h.subtitle; m.meta = h.meta; m.story = h.story; m.skills = h.skills;
+  const r = renderBody(h.rest, m.slug, m.n);
+  Object.assign(m, r);
+  PAGE_TOTALS[m.slug] = (r.html.match(/class="chk"/g) || []).length;
+  m.phases = r.toc.filter(t => t.kind === 'phase').length;
+  m.goals = (r.html.match(/class="goal-h"/g) || []).length;
+  m.hints = (r.html.match(/class="reveal hint lvl/g) || []).length;
+}
+const BF_TRACK = (() => {
+  if (!BF_START) return null;
+  const h = parseHeader(sanitize(fs.readFileSync(path.join(BF_DIR, BF_START), 'utf8')));
+  return { title: (h.mission.split(/[·—]/)[1] || h.mission).trim(), subtitle: h.subtitle, ...renderBody(h.rest, 'break-fix', 'S') };
+})();
+
+function bfPage(m) {
+  const pos = BF.indexOf(m), prev = BF[pos - 1], next = BF[pos + 1];
+  const phases = m.toc.filter(t => t.kind === 'phase');
+  const tocHtml = m.toc.map(t => `<li class="toc-${t.kind}"><a href="#${t.id}" data-toc="${t.id}">${t.kind === 'phase' ? `<span class="toc-n">${t.num}</span>` : '<span class="toc-n toc-dot"></span>'}<span class="toc-l">${esc(t.label)}</span><span class="toc-p" aria-hidden="true"></span></a></li>`).join('');
+  const stepper = phases.length ? `<nav class="stepper" aria-label="Mission phases" style="--n:${phases.length}"><div class="stepper-in"><div class="stepper-now"><span class="stepper-k">Phase</span><b data-step-now>${esc(phases[0].num)}</b><span class="stepper-of">/ ${phases.length}</span><span class="stepper-t" data-step-title>${esc(phases[0].label)}</span></div><ol class="steps-rail">${phases.map(p => `<li><a href="#${p.id}" data-step="${p.id}" title="Phase ${esc(p.num)} · ${esc(p.label)}${p.time ? ' · ' + esc(p.time) : ''}"><span class="st-dot"><span>${esc(p.num)}</span></span><span class="st-l">${esc(p.label)}</span></a></li>`).join('')}</ol>${ring(m.slug, 34)}</div></nav>` : '';
+  const segs = 6, gap = 4, w = (180 - gap * (segs - 1)) / segs;
+  const diff = `<div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><g class="g-seg">${Array.from({ length: segs }, (_, i) => `<path d="${arcPath(50, 50, 38, i * (w + gap), i * (w + gap) + w)}" class="${i < m.diff ? 'on' : ''}"/>`).join('')}</g><text x="50" y="50" text-anchor="middle" class="g-big">${m.diff}<tspan class="g-of">/6</tspan></text></svg><div class="g-lbl"><b>Difficulty</b><span>${DIFF_WORD[m.diff] || ''}</span></div></div>`;
+  const checks = PAGE_TOTALS[m.slug];
+  const panel = `<div class="panel">${diff}${gaugeTime(m)}${counter(m.goals, 'Goals', 'to repair')}${counter(m.hints, 'Hints', 'open only if stuck')}${counter(checks, 'Checks', 'saved in this browser')}<div class="gauge gauge-ring">${ring(m.slug, 62)}<div class="g-lbl"><b>Progress</b><span data-progress-t="${m.slug}">not started</span></div></div></div>`;
+  const firstPhase = m.toc[0]?.id;
+  const body = `
+<section class="mast space bf" style="--mc:${m.hue};--mc2:${m.hue2}">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch">${patch(m, 200)}<span class="mast-earned" aria-hidden="true">★ Patch earned</span></div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Break-fix ${esc(m.n)}</span> ${esc(m.tag)} <span class="eb-sep">/</span> OrbitOps: Cosmic Cargo Rescue</p>
+      <h1>${esc(titleCase(m.name))}</h1>
+      <p class="sub">${md1(m.subtitle)}</p>
+      ${m.story ? `<p class="story"><span class="story-k">The emergency</span>${md1(m.story)}</p>` : ''}
+      ${m.meta.env ? `<p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>${md1(m.meta.env)}<span class="env-r">us-west-2</span></p>` : ''}
+      <div class="mast-actions"><a class="btn primary lg" href="#${firstPhase}">Start the mission ${ICON.arrow}</a><a class="btn ghost" href="break-fix.html#start-guide">First time? Start guide</a><button class="btn ghost" type="button" data-print>${ICON.print}Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel">${panel}</div>
+</section>
+${stepper}
+<div class="page" style="--mc:${m.hue};--mc2:${m.hue2}">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc">${tocHtml}</ol>
+      <a class="side-link" href="break-fix.html#start-guide"><span>Start guide</span>Chat console, trace and pills explained →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="${m.slug}">
+${m.html}
+    <section class="debrief" data-debrief="${m.slug}" style="--mc:${m.hue};--mc2:${m.hue2}">
+      <div class="debrief-patch">${patch(m, 132)}</div>
+      <div class="debrief-t"><p class="eyebrow">Mission debrief</p><h2 class="debrief-h" data-debrief-h>${checks} checks between you and the ${esc(titleCase(m.name))} patch</h2><p data-debrief-p>Tick every check above. Your progress is saved in this browser; finish them all to earn the patch.</p></div>
+      ${ring(m.slug, 92)}
+    </section>
+    <nav class="pager" aria-label="Break-fix navigation">
+      ${prev ? `<a class="pg prev" href="${prev.slug}.html" style="--mc:${prev.hue}"><small>← Previous</small><span>${prev.n} · ${esc(titleCase(prev.name))}</span></a>` : '<a class="pg prev" href="break-fix.html"><small>← Back</small><span>Break-fix track</span></a>'}
+      ${next ? `<a class="pg next" href="${next.slug}.html" style="--mc:${next.hue}"><small>Next break-fix →</small><span>${next.n} · ${esc(titleCase(next.name))}</span></a>` : '<a class="pg next" href="break-fix.html"><small>All done →</small><span>Break-fix track</span></a>'}
+    </nav>
+  </main>
+</div>`;
+  return shell({ id: m.slug, title: `Break-fix ${m.n} · ${titleCase(m.name)} — ${SITE}`, desc: strip(md1(m.story || m.subtitle)).slice(0, 220), body, hue: m.hue, hue2: m.hue2, bodyClass: 'mission breakfix' });
+}
+
+function bfCard(m, i) {
+  const t = (m.meta?.time || '').replace(/\s*\(.*\)\s*$/, '');
+  return `<li class="mcard bfcard" style="--mc:${m.hue};--mc2:${m.hue2};--i:${i}">
+    <a href="${m.slug}.html" class="mcard-in" data-page="${m.slug}">
+      <div class="mcard-top">${patch(m, 96, 'patch mc-patch')}<div class="mcard-h"><p class="mcard-k">Break-fix ${m.n} · ${esc(DIFF_WORD[m.diff] || '')}</p><h3>${esc(titleCase(m.name))}</h3><span class="mcard-tag">${esc(m.tag)}</span></div></div>
+      <p class="mcard-sub">${md1(m.subtitle)}</p>
+      <ul class="mcard-skills">${m.skills.slice(0, 4).map(s => `<li>${esc(s)}</li>`).join('')}</ul>
+      <div class="mcard-meta">${t ? `<span>${ICON.clock}${esc(t)}</span>` : ''}<span>${ICON.layers}${m.goals} goals</span><span>${m.hints} hints</span></div>
+      <div class="mcard-foot"><span class="mcard-go" aria-hidden="true">Open break-fix ${ICON.arrow}</span>${ring(m.slug, 46)}</div>
+      <span class="mcard-star" aria-label="Patch earned">★</span>
+    </a></li>`;
+}
+
+const BF_PATCH = { n: 'BF', name: 'Cosmic Cargo Rescue', arc: 'ORBITOPS · BREAK-FIX', hue: '#FBBF24', hue2: '#F97316', emblem: 'wrench' };
+
+function bfTrackPage() {
+  const tr = BF_TRACK || { title: 'OrbitOps: Cosmic Cargo Rescue', subtitle: '', html: '', toc: [] };
+  const tocHtml = tr.toc.map(t => `<li class="toc-${t.kind}"><a href="#${t.id}" data-toc="${t.id}"><span class="toc-n toc-dot"></span><span class="toc-l">${esc(t.label)}</span></a></li>`).join('');
+  const mins = BF.reduce((a, m) => a + avgMin(m), 0);
+  const body = `
+<section class="mast space bf bf-track" style="--mc:${BF_PATCH.hue};--mc2:${BF_PATCH.hue2}">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch">${patch(BF_PATCH, 200)}</div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Break-fix track</span> Practice for the AWS Agentic AI Demonstrated assessment</p>
+      <h1>${esc(titleCase(tr.title))}</h1>
+      <p class="sub">${md1(tr.subtitle)}</p>
+      <p class="story"><span class="story-k">How it works</span>Someone built a working AI agent platform on Amazon Bedrock AgentCore, then broke a different piece in each mission. You get the symptoms, a clear finish line and three levels of hints. You never get the answer: you find it.</p>
+      <div class="mast-actions"><a class="btn primary lg" href="#start-guide">Read the start guide ${ICON.arrow}</a>${BF[0] ? `<a class="btn ghost" href="${BF[0].slug}.html">Jump to Mission ${BF[0].n}</a>` : ''}</div>
+    </div>
+  </div>
+  <div class="mast-panel"><div class="panel">${counter(BF.length, 'Missions', 'independent, any order')}${counter('~' + Math.round(mins / 60 * 10) / 10 + ' h', 'Hands-on', 'about 40 minutes each')}${counter(BF.reduce((a, m) => a + m.hints, 0), 'Hints', 'never an answer')}${counter(BF.reduce((a, m) => a + PAGE_TOTALS[m.slug], 0), 'Checks', 'saved in this browser')}</div></div>
+</section>
+<main id="main">
+  <div class="home"><section class="band bf-band" id="missions"><div class="band-hd"><p class="eyebrow">Six missions</p><h2>Pick a broken system</h2><p>Each one is independent. Your instructor tells you which to run; each card's ring fills as you tick its checks.</p></div><ol class="mgrid">${BF.map(bfCard).join('')}</ol></section></div>
+  <div class="page bf-guide" id="start-guide" style="--mc:${BF_PATCH.hue};--mc2:${BF_PATCH.hue2}">
+    <aside class="side" aria-label="Start guide"><div class="side-in"><p class="side-h">Start guide</p><ol class="toc">${tocHtml}</ol></div></aside>
+    <div class="prose" data-page="break-fix">${tr.html}</div>
+  </div>
+</main>`;
+  return shell({ id: 'break-fix', title: `Break-fix track · ${titleCase(tr.title)} — ${SITE}`, desc: 'Six hint-only break-fix missions on Amazon Bedrock AgentCore: find the evidence, fix the fault, prove it works.', body, hue: BF_PATCH.hue, hue2: BF_PATCH.hue2, bodyClass: 'breakfix-track' });
 }
 
 function missionPage(m) {
@@ -645,6 +836,16 @@ function landing() {
     ${MAIN.length > 6 ? `<ol class="mgrid">${MAIN.slice(6).map((m, i) => missionCard(m, i + 6)).join('')}</ol>` : ''}
   </section>
 
+  ${BF.length ? `<section class="band bf-home" id="break-fix">
+    <div class="bf-home-in space">
+      <div class="bf-home-hd">
+        <div class="bf-home-patch">${patch(BF_PATCH, 150)}</div>
+        <div><p class="eyebrow"><span class="bf-tape">Break-fix track</span> OrbitOps: Cosmic Cargo Rescue</p><h2>Then prove it under pressure.</h2><p>Six AI systems, each broken on purpose. No step-by-step instructions: just symptoms, a clear finish line and hints when you're stuck. The best practice there is for the AWS Agentic AI Demonstrated assessment.</p><a class="btn primary" href="break-fix.html">Open the break-fix track ${ICON.arrow}</a></div>
+      </div>
+      <ol class="pgrid bf-grid">${BF.map(m => `<li class="pcard" style="--mc:${m.hue};--mc2:${m.hue2}"><a href="${m.slug}.html" data-page="${m.slug}">${patch(m, 58, 'patch pc-patch')}<span class="pcard-t"><span class="pcard-k">Break-fix ${m.n} · ${esc(m.tag)}</span><b>${esc(titleCase(m.name))}</b><span class="pcard-s">${md1(m.subtitle)}</span></span><span class="pcard-r">${ring(m.slug, 40)}<span class="pcard-time">${esc((m.meta?.time || '').replace(/\s*\(.*\)\s*$/, ''))}</span></span></a></li>`).join('')}</ol>
+    </div>
+  </section>` : ''}
+
   ${PRE.length ? `<section class="band preflight" id="preflight">
     <div class="pre-hd"><div><p class="eyebrow">Pre-flight · optional foundations</p><h2>New to AWS? Start on the launch pad.</h2></div><p>Two shorter missions on Regions, IAM, Lambda and CloudWatch. Skip them if you already work in AWS; Mission 03 assumes nothing beyond a console sign-in.</p></div>
     <ol class="pgrid">${preCards}</ol>
@@ -749,6 +950,8 @@ for (const m of MISSIONS) if (m.present) rendered[m.slug + '.html'] = missionPag
 for (const m of MISSIONS) if (m.notes) rendered[`notes-${m.n}.html`] = notesPage(m);
 rendered['index.html'] = landing();
 rendered['notes.html'] = notesIndex();
+for (const m of BF) rendered[m.slug + '.html'] = bfPage(m);
+if (BF.length) rendered['break-fix.html'] = bfTrackPage();
 
 // Sanitization gate: check every page (and the hand-written field guide) BEFORE writing anything.
 const bad = [];
@@ -758,10 +961,12 @@ for (const s of FORBIDDEN) if (fg.includes(s)) bad.push(`field-guide.html: ${s}`
 if (bad.length) { console.error('SANITIZATION FAILED — private values in output (nothing written):\n  ' + bad.join('\n  ')); process.exit(1); }
 for (const [f, html] of Object.entries(rendered)) fs.writeFileSync(path.join(ROOT, f), html);
 // A mission page whose markdown has gone away must not linger on the site.
-for (const f of fs.readdirSync(ROOT)) if (/^(mission-\d{2}|notes-\d{2})\.html$/.test(f) && !rendered[f]) { fs.unlinkSync(path.join(ROOT, f)); console.log(`  removed stale ${f}`); }
+for (const f of fs.readdirSync(ROOT)) if (/^(mission-\d{2}|notes-\d{2}|break-fix(-am\d{2})?)\.html$/.test(f) && !rendered[f]) { fs.unlinkSync(path.join(ROOT, f)); console.log(`  removed stale ${f}`); }
 
 const { made, missing } = convertImages();
 console.log(`built ${Object.keys(rendered).length} pages from ${LABS}`);
 for (const m of MISSIONS) console.log(`  ${m.present ? '✓' : '·'} ${m.track === 'foundation' ? 'pre-flight' : 'mission   '} ${m.n} ${m.name}${m.present ? ` — ${m.phases} phases, ${PAGE_TOTALS[m.slug]} checks, ${m.imgCount} images` : ' (no markdown yet: listed as in preparation)'}`);
+for (const m of BF) console.log(`  ✓ break-fix  ${m.n} ${m.name} — ${m.phases} phases, ${m.goals} goals, ${m.hints} hints, ${PAGE_TOTALS[m.slug]} checks, ${m.imgCount} images`);
+if (BF.length && !BF_START) console.warn('WARNING: no 00-ORBITOPS-*.md start guide in ' + BF_DIR);
 console.log(`images: ${allImages.size} referenced, ${made} converted${missing.length ? `, MISSING: ${missing.join(', ')}` : ''}`);
 if (missing.length) { console.warn(`WARNING: ${missing.length} referenced image(s) missing from ${path.join(LABS, 'images')}; those figures will be broken on the site.`); if (process.env.STRICT_IMAGES) process.exitCode = 1; }

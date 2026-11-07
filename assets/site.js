@@ -166,7 +166,7 @@
     });
     const litEl = $('[data-skills-lit]'); if (litEl) litEl.textContent = lit;
     // patches + next mission
-    const main = missions.filter(m => m.track !== 'foundation');
+    const main = missions.filter(m => m.track === 'main');
     const earned = main.filter(m => isDone(m.slug)).length;
     const pn = $('[data-patches-n]'); if (pn) pn.textContent = earned;
     $$('[data-shelf]').forEach(s => s.classList.toggle('earned', isDone(s.dataset.shelf)));
@@ -207,11 +207,12 @@
     const slot = $('.award-patch', aw); slot.innerHTML = '';
     if (src) slot.append(src.cloneNode(true));
     aw.style.setProperty('--mc', m.hue);
-    $('.award-sub', aw).textContent = `Mission ${m.n} · ${m.name}. Every checkpoint ticked. The patch now shows on your flight path.`;
-    const main = missions.filter(x => x.present);
-    const next = main[main.indexOf(m) + 1];
+    const bf = m.track === 'breakfix';
+    $('.award-sub', aw).textContent = `${m.label || 'Mission ' + m.n} · ${m.name}. Every check ticked. The patch now shows on ${bf ? 'the break-fix track' : 'your flight path'}.`;
+    const same = missions.filter(x => x.present && (bf ? x.track === 'breakfix' : x.track !== 'breakfix'));
+    const next = same[same.indexOf(m) + 1];
     const nl = $('[data-award-next]', aw);
-    if (next) { nl.href = next.slug + '.html'; nl.textContent = `On to ${next.n} · ${next.name}`; } else { nl.href = 'index.html#flight-path'; nl.textContent = 'Back to the flight path'; }
+    if (next) { nl.href = next.slug + '.html'; nl.textContent = `On to ${next.n} · ${next.name}`; } else { nl.href = bf ? 'break-fix.html' : 'index.html#flight-path'; nl.textContent = bf ? 'Back to the break-fix track' : 'Back to the flight path'; }
     aw.showModal();
     if (!reduceMotion()) confetti($('.award-fx', aw), m.hue);
   }
@@ -324,6 +325,16 @@
     ['Code Interpreter', /\bCode Interpreter\b/, 'AgentCore Code Interpreter: an isolated sandbox where an agent can write and run code.'],
     ['SigV4', /\bSigV4\b/, 'AWS Signature Version 4: how every AWS API request is signed with your credentials.'],
     ['OAuth', /\bOAuth(?: 2\.0)?\b/, 'OAuth 2.0: the standard for an app to obtain an access token, here with the client-credentials flow.'],
+    ['ARN', /\bARNs?\b/, 'Amazon Resource Name: the full, unique address of one AWS resource, such as arn:aws:lambda:us-west-2:…:function:my-function.'],
+    ['environment variable', /\benvironment variables?\b/i, 'A named setting (NAME=value) a program reads when it starts. Change it and the program behaves differently without new code.'],
+    ['VPC', /\bVPCs?\b/, 'Virtual Private Cloud: your own private network inside AWS, divided into subnets.'],
+    ['PrivateLink', /\bPrivateLink\b/, 'AWS PrivateLink: reach an AWS service through a private endpoint inside your VPC instead of over the internet.'],
+    ['interface endpoint', /\binterface endpoints?\b/i, 'A private network entrance to one AWS service, placed inside your subnets (AWS PrivateLink).'],
+    ['PII', /\bPII\b/, 'Personally identifiable information: data that identifies a person, such as a username, email address or password.'],
+    ['regex', /\bregex(?:es)?\b/i, 'Regular expression: a pattern that matches text. DISC-[A-Z]{3}-\\d{4} means DISC-, three capital letters, a dash, four digits.'],
+    ['embedding', /\bembeddings?\b/i, 'A list of numbers that captures the meaning of some text, so text with similar meaning gets similar numbers.'],
+    ['namespace', /\bnamespaces?\b/i, 'A folder-like path where AgentCore Memory files its records, for example supplychain/user/{actorId}/preferences.'],
+    ['authorizer', /\bauthorizers?\b/i, 'The part of a service that checks each incoming token before it lets the request through.'],
   ];
   const prose = $('main.prose');
   if (prose) {

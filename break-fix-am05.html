@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en" data-page="break-fix-am05" style="--mc:#60A5FA;--mc2:#3B82F6">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-fix E · Close The Exposed Hyperspace Lanes — ORBIT Field Academy</title>
+<meta name="description" content="OrbitOps works, but security command isn't happy: both AI agents send their traffic over public network paths. The order is to move them into private subnets with no route to the internet, and still keep every feature wo">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050816">
+<meta property="og:title" content="Break-fix E · Close The Exposed Hyperspace Lanes — ORBIT Field Academy"><meta property="og:description" content="OrbitOps works, but security command isn't happy: both AI agents send their traffic over public network paths. The order is to move them into private subnets with no route to the internet, and still keep every feature wo"><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+</head>
+<body class="mission breakfix">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span><span class="nav-grp" aria-label="Pre-flight foundations"><a class="nav-m pre" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Pre-flight 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m pre" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Pre-flight 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a></span><span class="nav-sep"></span><span class="nav-lbl">Missions</span><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-06.html" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-07.html" data-page="mission-07" style="--mc:#F87171" title="Mission 07 · Hull Breach"><span class="nav-dot"></span><span class="nav-n">07</span><span class="nav-name">Hull Breach</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-08.html" data-page="mission-08" style="--mc:#FBBF24" title="Mission 08 · Constellation"><span class="nav-dot"></span><span class="nav-n">08</span><span class="nav-name">Constellation</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x nav-bf" href="break-fix.html" aria-current="page"><span class="nav-bf-ico" aria-hidden="true"></span>Break-fix</a><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast space bf" style="--mc:#60A5FA;--mc2:#3B82F6">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="200" height="200" aria-hidden="true" style="--mc:#60A5FA;--mc2:#3B82F6" data-patch="E">
+<defs><path id="tpE-64" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpE-64" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpE-64" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#60A5FA" stop-opacity=".55"/><stop offset=".5" stop-color="#3B82F6" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpE-64" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpE-64)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpE-64)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpE-64" startOffset="50%" text-anchor="middle">CLOSE THE EXPOSED HYPERSPACE LANES</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpE-64" startOffset="50%" text-anchor="middle">BREAK-FIX · E</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><path d="M60 40l17 9.5v21L60 80 43 70.5v-21z"/><path d="M49 60h22M53 53h14M53 67h14"/><circle cx="60" cy="60" r="2.6"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg><span class="mast-earned" aria-hidden="true">★ Patch earned</span></div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Break-fix E</span> Networking <span class="eb-sep">/</span> OrbitOps: Cosmic Cargo Rescue</p>
+      <h1>Close The Exposed Hyperspace Lanes</h1>
+      <p class="sub">Both agents talk to AWS over the public internet. Move them into a private network and give them private lanes to every service they need.</p>
+      <p class="story"><span class="story-k">The emergency</span>OrbitOps works, but security command isn&#39;t happy: both AI agents send their traffic over public network paths. The order is to move them into <strong>private subnets</strong> with no route to the internet, and still keep every feature working. Cargo routes aren&#39;t the only routes that need protecting.</p>
+      <p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>AWS Console · your own VPC is already built for you<span class="env-r">us-west-2</span></p>
+      <div class="mast-actions"><a class="btn primary lg" href="#the-emergency">Start the mission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="break-fix.html#start-guide">First time? Start guide</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel"><div class="panel"><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><g class="g-seg"><path d="M12.00 50.00A38 38 0 0 1 16.04 32.95" class="on"/><path d="M17.31 30.62A38 38 0 0 1 29.49 18.01" class="on"/><path d="M31.77 16.66A38 38 0 0 1 48.67 12.02" class="on"/><path d="M51.33 12.02A38 38 0 0 1 68.23 16.66" class="on"/><path d="M70.51 18.01A38 38 0 0 1 82.69 30.62" class=""/><path d="M83.96 32.95A38 38 0 0 1 88.00 50.00" class=""/></g><text x="50" y="50" text-anchor="middle" class="g-big">4<tspan class="g-of">/6</tspan></text></svg><div class="g-lbl"><b>Difficulty</b><span>Hard</span></div></div><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><path d="M12.00 50.00A38 38 0 0 1 88.00 50.00" class="g-track"/><path d="M23.13 23.13A38 38 0 0 1 24.57 21.76" class="g-band"/><g class="g-ticks"><path d="M8.0 50.0L4.0 50.0"/><path d="M13.6 29.0L10.2 27.0"/><path d="M29.0 13.6L27.0 10.2"/><path d="M50.0 8.0L50.0 4.0"/><path d="M71.0 13.6L73.0 10.2"/><path d="M86.4 29.0L89.8 27.0"/><path d="M92.0 50.0L96.0 50.0"/></g><path d="M50 50L28.8 28.8" class="g-needle"/><circle cx="50" cy="50" r="3.2" class="g-hub"/></svg><div class="g-lbl"><b>Target time</b><span>45 min</span></div></div><div class="gauge gauge-n"><span class="g-num">3</span><div class="g-lbl"><b>Goals</b><span>to repair</span></div></div><div class="gauge gauge-n"><span class="g-num">9</span><div class="g-lbl"><b>Hints</b><span>open only if stuck</span></div></div><div class="gauge gauge-n"><span class="g-num">10</span><div class="g-lbl"><b>Checks</b><span>saved in this browser</span></div></div><div class="gauge gauge-ring"><span class="ring" data-ring="break-fix-am05" style="--s:62px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span><div class="g-lbl"><b>Progress</b><span data-progress-t="break-fix-am05">not started</span></div></div></div></div>
+</section>
+<nav class="stepper" aria-label="Mission phases" style="--n:3"><div class="stepper-in"><div class="stepper-now"><span class="stepper-k">Phase</span><b data-step-now>1</b><span class="stepper-of">/ 3</span><span class="stepper-t" data-step-title>Look before you touch</span></div><ol class="steps-rail"><li><a href="#phase-1" data-step="phase-1" title="Phase 1 · Look before you touch · 10 minutes"><span class="st-dot"><span>1</span></span><span class="st-l">Look before you touch</span></a></li><li><a href="#phase-2" data-step="phase-2" title="Phase 2 · Find and fix · 30 minutes"><span class="st-dot"><span>2</span></span><span class="st-l">Find and fix</span></a></li><li><a href="#phase-3" data-step="phase-3" title="Phase 3 · Flight test · 5 minutes"><span class="st-dot"><span>3</span></span><span class="st-l">Flight test</span></a></li></ol><span class="ring" data-ring="break-fix-am05" style="--s:34px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span></div></nav>
+<div class="page" style="--mc:#60A5FA;--mc2:#3B82F6">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#the-emergency" data-toc="the-emergency"><span class="toc-n toc-dot"></span><span class="toc-l">The emergency</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#the-finish-line" data-toc="the-finish-line"><span class="toc-n toc-dot"></span><span class="toc-l">The finish line</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#ideas-you-need-first" data-toc="ideas-you-need-first"><span class="toc-n toc-dot"></span><span class="toc-l">Ideas you need first</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#what-you-start-with" data-toc="what-you-start-with"><span class="toc-n toc-dot"></span><span class="toc-l">What you start with</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Look before you touch</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">Find and fix</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Flight test</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#stuck" data-toc="stuck"><span class="toc-n toc-dot"></span><span class="toc-l">Stuck?</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#key-takeaways" data-toc="key-takeaways"><span class="toc-n toc-dot"></span><span class="toc-l">Key takeaways</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#think-about-it" data-toc="think-about-it"><span class="toc-n toc-dot"></span><span class="toc-l">Think about it</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#after-the-mission" data-toc="after-the-mission"><span class="toc-n toc-dot"></span><span class="toc-l">After the mission</span><span class="toc-p" aria-hidden="true"></span></a></li></ol>
+      <a class="side-link" href="break-fix.html#start-guide"><span>Start guide</span>Chat console, trace and pills explained →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="break-fix-am05">
+<section class="sec" data-sec="the-emergency"><h2 id="the-emergency"><span>The emergency</span><a class="anchor" href="#the-emergency" aria-label="Link to this section">#</a></h2>
+<p>This mission starts the other way round: <strong>everything works</strong>, but in the wrong way.</p>
+<figure class="chatmock tone-bad"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Right now (works, but exposed)</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Where is shipment SHP-1002?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">SHP-1002 is delayed at the Jovian transfer point…</span></div><p class="cm-note">Both runtimes show Network mode: Public. Your VPC has only one endpoint (for S3).</p></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">gateway: 9 tools</span><span class="cm-pill on">tools called: logistics-target___track_shipment</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+<p><strong>The catch:</strong> the moment you move an agent into a private subnet, it can no longer reach the AWS services it needs: the model, its tools, the other agent, its logs. Your job is to build a <strong>private lane</strong> to each of them <em>before</em> things break, or fix them when they do.</p>
+</section><section class="sec" data-sec="the-finish-line"><h2 id="the-finish-line"><span>The finish line</span><a class="anchor" href="#the-finish-line" aria-label="Link to this section">#</a></h2>
+<p><strong>You&#39;re done when all of these are true:</strong></p>
+<ul>
+<li><strong>Both</strong> runtimes, the flight controller and the knowledge-base specialist, show <strong>Network mode: VPC</strong>, use your two <strong>private</strong> subnets, and are <code>READY</code>.</li>
+<li><em>Where is shipment SHP-1002?</em> returns shipment data through the Gateway (a <code>logistics-target___</code> tool).</li>
+<li><em>What does the quality manual say about cryogenic seals?</em> is answered by the specialist: the <strong>specialist</strong> pill is green.</li>
+<li>Both replies have <code>warnings: []</code>, and your private route table still has <strong>no</strong> route to the internet (<code>0.0.0.0/0</code>).</li>
+</ul>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">When you're done</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">What does the quality manual say about cryogenic seals?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">Cryogenic seals must show no micro-fractures under 40x magnification; a single fracture fails the batch…</span></div><p class="cm-note">Same answers as before, but now every byte travels inside your private network.</p></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">specialist: configured</span><span class="cm-pill on">tools called: consult_manuals</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+</section><section class="sec" data-sec="ideas-you-need-first"><h2 id="ideas-you-need-first"><span>Ideas you need first</span><a class="anchor" href="#ideas-you-need-first" aria-label="Link to this section">#</a></h2>
+<p>Picture a <strong>secure building</strong>.</p>
+<ul>
+<li><strong>VPC = your own private building in AWS.</strong> A <strong>Virtual Private Cloud</strong> is a private network that only you control.</li>
+<li><strong>Subnets = floors.</strong> Your VPC has <strong>public subnets</strong> (with a door to the internet) and <strong>private subnets</strong> (no outside door at all). The private ones are where security wants the agents.</li>
+<li><strong>VPC mode = moving the agent inside.</strong> Normally an AgentCore Runtime runs outside your network. In <strong>VPC mode</strong>, its <em>outgoing</em> calls start from inside your private subnets. Calls <em>coming in</em> to the agent (from the chat app) still arrive the same way as before.</li>
+<li><strong>Interface endpoint = a private tunnel to one AWS service.</strong> With no outside door, how does an agent reach Amazon Bedrock? Through an <strong>interface endpoint</strong> (<strong>AWS PrivateLink</strong>): a private entrance to <em>one</em> service, inside your subnets. One service, one endpoint.</li>
+<li><strong>Private DNS = updating the building directory.</strong> The agent&#39;s code calls services by their normal names, like <code>bedrock-runtime.us-west-2.amazonaws.com</code>. With <strong>private DNS</strong> switched on, that normal name leads to your private tunnel instead of the public internet, so the code doesn&#39;t need to change.</li>
+<li><strong>Gateway endpoint = a free side door for S3.</strong> Amazon S3 uses a different, free kind of endpoint. Yours already exists.</li>
+</ul>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    subgraph VPC[&quot;🏢 Your VPC · private subnets · no internet door&quot;]
+        O[&quot;🤖 Flight controller&quot;]
+        S[&quot;📚 Specialist&quot;]
+        EP[&quot;🚇 Interface endpoints&lt;br/&gt;(one per AWS service)&quot;]
+    end
+    O --&gt; EP
+    S --&gt; EP
+    EP --&gt; AWS[&quot;☁️ Bedrock · AgentCore ·&lt;br/&gt;CloudWatch Logs&quot;]">flowchart LR
+    subgraph VPC[&quot;🏢 Your VPC · private subnets · no internet door&quot;]
+        O[&quot;🤖 Flight controller&quot;]
+        S[&quot;📚 Specialist&quot;]
+        EP[&quot;🚇 Interface endpoints&lt;br/&gt;(one per AWS service)&quot;]
+    end
+    O --&gt; EP
+    S --&gt; EP
+    EP --&gt; AWS[&quot;☁️ Bedrock · AgentCore ·&lt;br/&gt;CloudWatch Logs&quot;]</pre></figure>
+<p><strong>Inventory the calls.</strong> From inside the VPC, the two agents call:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Who calls</th>
+<th>What for</th>
+<th>AWS service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Both agents</td>
+<td>Ask the AI model to think</td>
+<td>Amazon Bedrock Runtime</td>
+</tr>
+<tr>
+<td>Flight controller</td>
+<td>Find and call tools</td>
+<td>AgentCore <strong>Gateway</strong></td>
+</tr>
+<tr>
+<td>Flight controller</td>
+<td>Hand a question to the specialist</td>
+<td>AgentCore <strong>data plane</strong> (Runtime, Memory)</td>
+</tr>
+<tr>
+<td>Specialist</td>
+<td>Search the knowledge base</td>
+<td>Amazon Bedrock <strong>Agent</strong> Runtime</td>
+</tr>
+<tr>
+<td>Both agents</td>
+<td>Write logs</td>
+<td>Amazon CloudWatch Logs</td>
+</tr>
+<tr>
+<td>Both agents</td>
+<td>Read files</td>
+<td>Amazon S3 (already covered by the gateway endpoint)</td>
+</tr>
+</tbody></table></div>
+</section><section class="sec" data-sec="what-you-start-with"><h2 id="what-you-start-with"><span>What you start with</span><a class="anchor" href="#what-you-start-with" aria-label="Link to this section">#</a></h2>
+<p>From your mission card, under <code>solution_resources_vpc</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>VpcId</code>, <code>VpcCidr</code></td>
+<td>Your own VPC (DNS support and hostnames are on)</td>
+</tr>
+<tr>
+<td><code>PrivateSubnetIds</code></td>
+<td>Two private subnets, one per Availability Zone. No internet route; the S3 gateway endpoint is attached.</td>
+</tr>
+<tr>
+<td><code>PublicSubnetIds</code></td>
+<td>Two public subnets. <strong>Not</strong> for the agents.</td>
+</tr>
+<tr>
+<td><code>PrivateRouteTableId</code></td>
+<td>The private subnets&#39; route table</td>
+</tr>
+<tr>
+<td><code>SecurityGroupId</code></td>
+<td>Allows HTTPS (port 443) from inside the VPC, and all outbound traffic</td>
+</tr>
+</tbody></table></div>
+<p>You also have a working OrbitOps from Missions A to C: login, a Gateway with four targets, the flight controller, and a specialist with a synced knowledge base.</p>
+<aside class="callout warning"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div class="callout-body"><span class="callout-lbl">Warning</span><p>Interface endpoints cost about <strong>$0.01 per hour each</strong>, per Availability Zone. Create the <strong>five</strong> you need, in <strong>your</strong> VPC, with no duplicates. Each service can only have one private-DNS endpoint per VPC, which is why every student gets their own VPC.</p>
+</div></aside>
+</section><section class="sec sec-phase" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-big" aria-hidden="true">01</span><span class="phase-meta"><span class="phase-num">Phase 1</span><span class="phase-time">10 minutes</span></span><span class="phase-title">Look before you touch</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:0" aria-label="Mark done"><div class="task-t">Copy your VPC ID, the two <strong>private</strong> subnet IDs (and their Availability Zones) and the security group ID.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:1" aria-label="Mark done"><div class="task-t">Open your private route table (<strong>VPC → Route tables</strong>). Write down what&#39;s there, and notice what <em>isn&#39;t</em>.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:2" aria-label="Mark done"><div class="task-t">List the endpoints in your VPC (<strong>VPC → Endpoints</strong>, filter by your VPC ID): type, service name and state.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:3" aria-label="Mark done"><div class="task-t">Check the <strong>Network mode</strong> of both runtimes (<strong>Bedrock AgentCore → Runtime</strong>).</div></li>
+</ul>
+<p><strong class="cue-pill predict">Predict first</strong> you move the flight controller into a private subnet and create no endpoints. Which question fails first: a tool question, a manuals question, or <em>every</em> question? Why?</p>
+</section><section class="sec sec-phase" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-big" aria-hidden="true">02</span><span class="phase-meta"><span class="phase-num">Phase 2</span><span class="phase-time">30 minutes</span></span><span class="phase-title">Find and fix</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<div class="workorder"><div class="wo-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>Your work order</div><p class="wo-intro">This is how the assessment phrases the job. It tells you <em>what</em> must be true at the end; the hints help with <em>how</em>.</p><ol>
+<li><p>In your VPC, create <strong>interface endpoints</strong> for these five services (replace <code>&lt;region&gt;</code> with <code>us-west-2</code>):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>AWS service</th>
+<th>Service name to search for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AgentCore Gateway</td>
+<td><code>com.amazonaws.&lt;region&gt;.bedrock-agentcore.gateway</code></td>
+</tr>
+<tr>
+<td>AgentCore data plane (Runtime, Memory)</td>
+<td><code>com.amazonaws.&lt;region&gt;.bedrock-agentcore</code></td>
+</tr>
+<tr>
+<td>Amazon Bedrock Runtime</td>
+<td><code>com.amazonaws.&lt;region&gt;.bedrock-runtime</code></td>
+</tr>
+<tr>
+<td>Amazon Bedrock Agent Runtime</td>
+<td><code>com.amazonaws.&lt;region&gt;.bedrock-agent-runtime</code></td>
+</tr>
+<tr>
+<td>Amazon CloudWatch Logs</td>
+<td><code>com.amazonaws.&lt;region&gt;.logs</code></td>
+</tr>
+</tbody></table></div>
+</li>
+<li><p>Turn on <strong>private DNS</strong> for each one, and place each in <strong>both private subnets</strong>.</p>
+</li>
+<li><p>Attach the provided <strong>security group</strong> to the endpoints <strong>and</strong> to both runtimes.</p>
+</li>
+<li><p>Change <strong>each</strong> runtime&#39;s network mode from <strong>Public</strong> to <strong>VPC</strong>, using the <strong>private subnets</strong>.</p>
+</li>
+<li><p>Wait for <strong>both</strong> runtimes to return to <code>READY</code>.</p>
+</li>
+</ol></div>
+<p>No shortcuts: don&#39;t put the runtimes in the public subnets, and don&#39;t add a NAT gateway. The point is that every dependency is reachable privately.</p>
+<h3 id="goal-1-build-the-private-lanes" class="goal-h"><span class="goal-n"><small>Goal</small>1</span><span class="goal-t">Build the private lanes</span><a class="anchor" href="#goal-1-build-the-private-lanes" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> five new interface endpoints in your VPC, each <strong>Available</strong>, each with private DNS on, in both private subnets, with the lab security group.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>VPC → Endpoints → Create endpoint.</strong> Type the first word of a service name into the service search, and read <strong>all</strong> the results: some AWS services have more than one endpoint name.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Compare your call inventory with the endpoint list. S3 is already covered by a <em>gateway</em> endpoint; everything else needs an <em>interface</em> endpoint. Searching <code>bedrock-agentcore</code> returns two names. The flight controller calls two different AgentCore addresses (one for tools, one for the specialist): which name serves which?</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>For each endpoint: type <strong>AWS services</strong>, your VPC, <strong>both</strong> private subnets, the lab security group, and, under the extra settings, the option that makes the service&#39;s normal name resolve privately. Without that option the agent&#39;s code would need special addresses, which it doesn&#39;t use. A new endpoint shows <em>Pending</em> for a minute or two before <em>Available</em>.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:4" aria-label="Mark done"><div class="task-t">Five interface endpoints are <strong>Available</strong> in my VPC, all with private DNS, both private subnets and the lab security group.</div></li>
+</ul>
+<h3 id="goal-2-move-both-agents-inside" class="goal-h"><span class="goal-n"><small>Goal</small>2</span><span class="goal-t">Move both agents inside</span><a class="anchor" href="#goal-2-move-both-agents-inside" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> both runtimes show <strong>Network mode: VPC</strong>, your two private subnets and the lab security group, and are <code>READY</code>.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>Bedrock AgentCore → Runtime →</strong> a runtime <strong>→ Update runtime.</strong> The network section has two modes; the second asks for subnets and security groups.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Compare the subnet IDs the form offers with the two <strong>private</strong> IDs on your card: the public ones are there as a trap. Then count: how many runtimes do you have, and how many have you moved? The specialist answers from wherever <em>it</em> runs.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>Saving starts a new version, and the status shows <code>UPDATING</code> for several minutes. Don&#39;t judge anything until <strong>both</strong> runtimes read <code>READY</code>. If a runtime stays <code>UPDATING</code> for more than ten minutes, check that the subnets and the security group really are from <strong>your</strong> VPC.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:5" aria-label="Mark done"><div class="task-t">Both runtimes are in VPC mode, in my private subnets, and <code>READY</code>.</div></li>
+</ul>
+<h3 id="goal-3-check-every-lane" class="goal-h"><span class="goal-n"><small>Goal</small>3</span><span class="goal-t">Check every lane</span><a class="anchor" href="#goal-3-check-every-lane" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> a tool question and a manuals question both answer, with <code>warnings: []</code>.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p>The chat console&#39;s trace, and each runtime&#39;s CloudWatch logs (<strong>CloudWatch → Log groups →</strong> <code>/aws/bedrock-agentcore/runtimes/…</code>). Ask one tool question and one manuals question, and note <em>which</em> fails and <em>how</em>.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Each feature uses one service. Tools use the Gateway; manuals use the data plane <em>and</em> the knowledge-base search; every answer uses the model. Compare what failed with your call inventory: the missing lane is the one that feature needs.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>A missing lane usually shows up as a <strong>timeout</strong>, not a clear error. Look for a <code>gateway: &lt;urlopen error timed out&gt;</code> warning in the trace, or a chat error after about 100 seconds with no trace at all. The runtime&#39;s CloudWatch log names the exact address it couldn&#39;t reach, and that address matches exactly one endpoint name in the work order.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am05:6" aria-label="Mark done"><div class="task-t">A tool question and a manuals question both work, with no warnings.</div></li>
+</ul>
+</section><section class="sec sec-phase" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-big" aria-hidden="true">03</span><span class="phase-meta"><span class="phase-num">Phase 3</span><span class="phase-time">5 minutes</span></span><span class="phase-title">Flight test</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<ul>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am05:7" aria-label="Mark done"><div class="task-t"><p>Tool lane:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">Where is shipment SHP-1002?</code></pre></div>
+<p class="expect"><strong>Expected:</strong> shipment data through a <code>logistics-target___</code> tool, and <code>warnings: []</code>.</p>
+</div></li>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am05:8" aria-label="Mark done"><div class="task-t"><p>Manuals lane:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">What does the quality manual say about cryogenic seals?</code></pre></div>
+<p class="expect"><strong>Expected:</strong> an answer from the manuals; the <strong>specialist</strong> pill is green and <code>warnings</code> is <code>[]</code>.</p>
+</div></li>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am05:9" aria-label="Mark done"><div class="task-t"><p>In <strong>VPC → Route tables</strong>, your private route table has <strong>no</strong> <code>0.0.0.0/0</code> route.</p>
+</div></li>
+</ul>
+<p class="proved"><strong>What you just proved:</strong> both agents now run inside a network with no door to the internet, and every service they depend on is still reachable through a private lane.</p>
+</section><section class="sec" data-sec="stuck"><h2 id="stuck"><span>Stuck?</span><a class="anchor" href="#stuck" aria-label="Link to this section">#</a></h2>
+<h3 id="read-the-signals">Read the signals<a class="anchor" href="#read-the-signals" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What it usually means</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A runtime stuck in <code>UPDATING</code> for over 10 minutes</td>
+<td>Subnets or security group from the wrong VPC, or only one subnet chosen</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td><strong>Every</strong> question ends in a chat error after about 100 seconds, with no trace</td>
+<td>No lane to the AI model (<code>bedrock-runtime</code>), or private DNS is off</td>
+<td>Goal 1</td>
+</tr>
+<tr>
+<td>Trace warning <code>gateway: &lt;urlopen error timed out&gt;</code></td>
+<td>No lane to the Gateway (<code>…bedrock-agentcore.gateway</code>)</td>
+<td>Goal 1</td>
+</tr>
+<tr>
+<td>Tool questions work; manuals questions end in a chat error after about 100 seconds</td>
+<td>No lane to the data plane (<code>…bedrock-agentcore</code>) or to knowledge-base search (<code>…bedrock-agent-runtime</code>), or the specialist is still updating</td>
+<td>Goals 1 and 2</td>
+</tr>
+<tr>
+<td>Everything works, but a runtime still says <strong>Public</strong></td>
+<td>You moved only one runtime</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td>Endpoint state is <em>Pending</em></td>
+<td>Normal for a minute or two</td>
+<td>Wait</td>
+</tr>
+</tbody></table></div>
+<h3 id="don-t-waste-time-on">Don&#39;t waste time on<a class="anchor" href="#don-t-waste-time-on" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>A NAT gateway.</strong> It would make the timeouts disappear and fail the mission: nothing here needs the public internet.</li>
+<li><strong>A Cognito endpoint.</strong> The agents never call Cognito in this mission: the token is passed along.</li>
+<li><strong>The public subnets.</strong> They&#39;re there for contrast. The agents don&#39;t belong there.</li>
+<li><strong>Security group rules.</strong> The lab security group already allows what&#39;s needed.</li>
+<li><strong>An S3 interface endpoint.</strong> S3 is already covered by the gateway endpoint.</li>
+</ul>
+<h3 id="before-you-ask-for-help">Before you ask for help<a class="anchor" href="#before-you-ask-for-help" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>Five interface endpoints (<code>…bedrock-agentcore.gateway</code>, <code>…bedrock-agentcore</code>, <code>…bedrock-runtime</code>, <code>…bedrock-agent-runtime</code>, <code>…logs</code>), all <strong>Available</strong>?</li>
+<li>Each one: private DNS on, both private subnets, the lab security group?</li>
+<li>No duplicates, and none in the public subnets?</li>
+<li><strong>Both</strong> runtimes: VPC mode, the two private subnets, the lab security group, <code>READY</code>?</li>
+<li>The private route table still has no <code>0.0.0.0/0</code> route?</li>
+</ul>
+<details class="reveal clue"><summary><span>Big clue · the fault map</span></summary><div class="reveal-body">
+
+<p>This diagram marks <strong>what&#39;s missing and what&#39;s exposed</strong>. It doesn&#39;t tell you how to fix it. Use it only after the hints.</p>
+<figure class="shot" data-fig="E.01"><div class="shot-frame"><div class="shot-bar" aria-hidden="true"><span class="shot-dots"><i></i><i></i><i></i></span><span class="shot-fig">Fig E.01</span><span class="shot-zoom-hint">Click to enlarge</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot: The fault map for Mission E: runtimes outside the VPC and no interface endpoints"><img src="img/bf-am05-fault-map.webp" alt="The fault map for Mission E: runtimes outside the VPC and no interface endpoints" width="1600" height="1000" loading="lazy" decoding="async"></button></div><figcaption><span class="fig-n">Fig E.01</span>The fault map for Mission E: runtimes outside the VPC and no interface endpoints</figcaption></figure>
+</div></details>
+
+</section><section class="sec" data-sec="key-takeaways"><h2 id="key-takeaways"><span>Key takeaways</span><a class="anchor" href="#key-takeaways" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>VPC mode changes outgoing traffic, not incoming.</strong> Before you move an agent, list everything it calls.</li>
+<li><strong>One service, one interface endpoint.</strong> Agents that use both AgentCore tools and the AgentCore data plane need <strong>both</strong> AgentCore endpoints.</li>
+<li><strong>Private DNS keeps the code unchanged.</strong> The usual service names quietly lead to your private lanes.</li>
+<li><strong>No NAT needed</strong> when every dependency has its own endpoint and nothing needs the public internet.</li>
+</ul>
+</section><section class="sec" data-sec="think-about-it"><h2 id="think-about-it"><span>Think about it</span><a class="anchor" href="#think-about-it" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Why don&#39;t calls <em>into</em> the agents (from the chat app) need an endpoint in your VPC?</li>
+<li>What would go wrong if you created the endpoints without private DNS?</li>
+<li>A NAT gateway would also have fixed the timeouts. Why is it the wrong answer for this mission?</li>
+</ol>
+</section><section class="sec" data-sec="after-the-mission"><h2 id="after-the-mission"><span>After the mission</span><a class="anchor" href="#after-the-mission" aria-label="Link to this section">#</a></h2>
+<p>Your instructor walks through the fix live, then shares the debrief guide for this mission. Interface endpoints cost money every hour, so if you&#39;re practising in your own account, delete them when you&#39;re done.</p>
+</section>
+    <section class="debrief" data-debrief="break-fix-am05" style="--mc:#60A5FA;--mc2:#3B82F6">
+      <div class="debrief-patch"><svg class="patch" viewBox="0 0 120 120" width="132" height="132" aria-hidden="true" style="--mc:#60A5FA;--mc2:#3B82F6" data-patch="E">
+<defs><path id="tpE-65" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpE-65" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpE-65" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#60A5FA" stop-opacity=".55"/><stop offset=".5" stop-color="#3B82F6" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpE-65" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60A5FA"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpE-65)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpE-65)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpE-65" startOffset="50%" text-anchor="middle">CLOSE THE EXPOSED HYPERSPACE LANES</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpE-65" startOffset="50%" text-anchor="middle">BREAK-FIX · E</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><path d="M60 40l17 9.5v21L60 80 43 70.5v-21z"/><path d="M49 60h22M53 53h14M53 67h14"/><circle cx="60" cy="60" r="2.6"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg></div>
+      <div class="debrief-t"><p class="eyebrow">Mission debrief</p><h2 class="debrief-h" data-debrief-h>10 checks between you and the Close The Exposed Hyperspace Lanes patch</h2><p data-debrief-p>Tick every check above. Your progress is saved in this browser; finish them all to earn the patch.</p></div>
+      <span class="ring" data-ring="break-fix-am05" style="--s:92px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span>
+    </section>
+    <nav class="pager" aria-label="Break-fix navigation">
+      <a class="pg prev" href="break-fix-am04.html" style="--mc:#E879F9"><small>← Previous</small><span>D · The Forgetful Flight Computer</span></a>
+      <a class="pg next" href="break-fix-am06.html" style="--mc:#FB7185"><small>Next break-fix →</small><span>F · The Leaky Captain's Log</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer"><div class="lb-top"><span class="lb-n"></span><span class="lb-hint">← → to browse · click image for actual size · Esc to close</span><button class="lb-close" type="button" aria-label="Close">×</button></div><button class="lb-nav lb-prev" type="button" aria-label="Previous screenshot">‹</button><div class="lb-stage"><img alt=""></div><button class="lb-nav lb-next" type="button" aria-label="Next screenshot">›</button><p class="lb-cap"></p></dialog>
+<dialog class="award" id="award" aria-labelledby="aw-t"><div class="award-in"><canvas class="award-fx" aria-hidden="true"></canvas><div class="award-patch"></div><p class="eyebrow">Mission complete</p><h2 id="aw-t">Patch earned</h2><p class="award-sub"></p><div class="award-actions"><a class="btn primary" data-award-next href="index.html#flight-path">Back to the flight path</a><button class="btn ghost" type="button" data-award-close>Keep reading</button></div></div></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":22,"mission-03":7,"mission-04":11,"mission-05":10,"mission-06":26,"mission-07":23,"mission-08":18,"break-fix-am01":9,"break-fix-am02":11,"break-fix-am03":9,"break-fix-am04":8,"break-fix-am05":10,"break-fix-am06":9,"notes-03":6,"notes-04":8,"notes-05":12};window.ORBIT_MISSIONS=[{"n":"01","slug":"mission-01","name":"Ground Control","hue":"#38BDF8","track":"foundation","present":true,"label":"Pre-flight 01"},{"n":"02","slug":"mission-02","name":"Ignition","hue":"#FB923C","track":"foundation","present":true,"label":"Pre-flight 02"},{"n":"03","slug":"mission-03","name":"The Knowledge Heist","hue":"#A78BFA","track":"main","present":true,"label":"Mission 03"},{"n":"04","slug":"mission-04","name":"Launch Control","hue":"#2DD4BF","track":"main","present":true,"label":"Mission 04"},{"n":"05","slug":"mission-05","name":"Identity Lockdown","hue":"#34D399","track":"main","present":true,"label":"Mission 05"},{"n":"06","slug":"mission-06","name":"Mission Assurance","hue":"#F472B6","track":"main","present":true,"label":"Mission 06"},{"n":"07","slug":"mission-07","name":"Hull Breach","hue":"#F87171","track":"main","present":true,"label":"Mission 07"},{"n":"08","slug":"mission-08","name":"Constellation","hue":"#FBBF24","track":"main","present":true,"label":"Mission 08"},{"n":"A","slug":"break-fix-am01","name":"The Locked Launchpad","hue":"#FB923C","track":"breakfix","present":true,"label":"Break-fix A"},{"n":"B","slug":"break-fix-am02","name":"The Misrouted Cargo Droids","hue":"#22D3EE","track":"breakfix","present":true,"label":"Break-fix B"},{"n":"C","slug":"break-fix-am03","name":"The Vanishing Starport Manuals","hue":"#A3E635","track":"breakfix","present":true,"label":"Break-fix C"},{"n":"D","slug":"break-fix-am04","name":"The Forgetful Flight Computer","hue":"#E879F9","track":"breakfix","present":true,"label":"Break-fix D"},{"n":"E","slug":"break-fix-am05","name":"Close The Exposed Hyperspace Lanes","hue":"#60A5FA","track":"breakfix","present":true,"label":"Break-fix E"},{"n":"F","slug":"break-fix-am06","name":"The Leaky Captain's Log","hue":"#FB7185","track":"breakfix","present":true,"label":"Break-fix F"}];</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>

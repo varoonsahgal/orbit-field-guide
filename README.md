@@ -66,6 +66,19 @@ Students click **Set your ID** (top bar) and enter their `MY_ID` and, optionally
 - **TARGET TIME** must contain `NN–NN` (or one number) in minutes; it drives the time dial and the landing-page hours total.
 - **SKILLS** (optional, ` · `-separated) overrides the `REGISTRY` skills; 4–5 short items read best.
 
+## Break-fix track (OrbitOps: Cosmic Cargo Rescue)
+
+`student-labs/break-fix/` holds the six hint-only break-fix missions (`AMnn-ORBITOPS-*.md` → `break-fix-amnn.html`) and the track's start guide (`00-ORBITOPS-*.md`, rendered under the mission cards on `break-fix.html`). Override the folder with `BREAKFIX_DIR`. They are adapted from the public `orbitops-agentic-ai-labs` handouts. **Never put answers, debrief steps or solution screenshots in this folder**: the site is public. Presentation metadata (letter, colours, emblem, difficulty 1–6) is in `BF_REGISTRY`; the header shape is the same as a mission's, with line 2 `## BREAK-FIX A · THE LOCKED LAUNCHPAD`. Break-fix patches are counted separately from the main flight path.
+
+Extra markdown these pages use:
+
+- ```` ```chat <caption> ```` draws the OrbitOps chat console: `you:`, `bot:` (a `bot:` line in parentheses is shown as a placeholder), `error:`, `note:`, `pill+ …` (green) and `pill- …` (amber). A caption containing *broken* / *right now* is amber, *done* is green.
+- `**Your work order.** …` followed by a numbered list becomes the hazard-striped work-order card.
+- `### Goal N · Title` becomes a numbered goal banner. Under it: an `**Expected:**` line, then `<details><summary>Hint 1 · …` / `Hint 2 · …` / `Hint 3 · …` (badged *Gentle*, *Stronger*, *Almost there*), then one `- [ ]` box.
+- `<details><summary>Big clue · …` is the last-resort reveal (the fault map image).
+- `## 🏁 The finish line` lists and `## ⭐ Key takeaways` lists get their own card styles on break-fix pages.
+- A `- [ ]` item may contain a code block and an `**Expected:**` line (indent them under the item).
+
 ## Markdown the generator expects
 
 - Phases are `## <emoji> Phase N — Title (X minutes)`; they get short anchors `#phase-N`, a large outlined phase numeral, numbered TOC entries and a dot on the sticky **phase stepper**. Other `##` headings become plain TOC entries.

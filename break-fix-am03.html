@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" data-page="break-fix-am03" style="--mc:#A3E635;--mc2:#84CC16">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-fix C · The Vanishing Starport Manuals — ORBIT Field Academy</title>
+<meta name="description" content="OrbitOps has three manuals: inventory procedures, a supplier manual and a quality-control manual. Ask the flight controller what they say and it guesses. Its research assistant, a second AI agent that reads the manuals, ">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050816">
+<meta property="og:title" content="Break-fix C · The Vanishing Starport Manuals — ORBIT Field Academy"><meta property="og:description" content="OrbitOps has three manuals: inventory procedures, a supplier manual and a quality-control manual. Ask the flight controller what they say and it guesses. Its research assistant, a second AI agent that reads the manuals, "><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+</head>
+<body class="mission breakfix">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span><span class="nav-grp" aria-label="Pre-flight foundations"><a class="nav-m pre" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Pre-flight 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m pre" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Pre-flight 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a></span><span class="nav-sep"></span><span class="nav-lbl">Missions</span><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-06.html" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-07.html" data-page="mission-07" style="--mc:#F87171" title="Mission 07 · Hull Breach"><span class="nav-dot"></span><span class="nav-n">07</span><span class="nav-name">Hull Breach</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-08.html" data-page="mission-08" style="--mc:#FBBF24" title="Mission 08 · Constellation"><span class="nav-dot"></span><span class="nav-n">08</span><span class="nav-name">Constellation</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x nav-bf" href="break-fix.html" aria-current="page"><span class="nav-bf-ico" aria-hidden="true"></span>Break-fix</a><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast space bf" style="--mc:#A3E635;--mc2:#84CC16">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="200" height="200" aria-hidden="true" style="--mc:#A3E635;--mc2:#84CC16" data-patch="C">
+<defs><path id="tpC-60" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpC-60" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpC-60" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#A3E635" stop-opacity=".55"/><stop offset=".5" stop-color="#84CC16" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpC-60" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A3E635"/><stop offset="1" stop-color="#84CC16"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpC-60)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpC-60)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpC-60" startOffset="50%" text-anchor="middle">THE VANISHING STARPORT MANUALS</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpC-60" startOffset="50%" text-anchor="middle">BREAK-FIX · C</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><path d="M43 46c6-3 12-3 17 1v30c-5-4-11-4-17-1z"/><path d="M77 46c-6-3-12-3-17 1v30c5-4 11-4 17-1z"/><path d="M47 54h8M47 60h8M65 54h8M65 60h8"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg><span class="mast-earned" aria-hidden="true">★ Patch earned</span></div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Break-fix C</span> Knowledge <span class="eb-sep">/</span> OrbitOps: Cosmic Cargo Rescue</p>
+      <h1>The Vanishing Starport Manuals</h1>
+      <p class="sub">The manuals exist, but nobody connected the library or hired the librarian. Build the path from question to page.</p>
+      <p class="story"><span class="story-k">The emergency</span>OrbitOps has three manuals: inventory procedures, a supplier manual and a quality-control manual. Ask the flight controller what they say and it guesses. Its research assistant, a second AI agent that reads the manuals, was never switched on, and the searchable library it would read from was never built.</p>
+      <p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>AWS Console · the broken environment is already built for you<span class="env-r">us-west-2</span></p>
+      <div class="mast-actions"><a class="btn primary lg" href="#the-emergency">Start the mission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="break-fix.html#start-guide">First time? Start guide</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel"><div class="panel"><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><g class="g-seg"><path d="M12.00 50.00A38 38 0 0 1 16.04 32.95" class="on"/><path d="M17.31 30.62A38 38 0 0 1 29.49 18.01" class="on"/><path d="M31.77 16.66A38 38 0 0 1 48.67 12.02" class="on"/><path d="M51.33 12.02A38 38 0 0 1 68.23 16.66" class="on"/><path d="M70.51 18.01A38 38 0 0 1 82.69 30.62" class=""/><path d="M83.96 32.95A38 38 0 0 1 88.00 50.00" class=""/></g><text x="50" y="50" text-anchor="middle" class="g-big">4<tspan class="g-of">/6</tspan></text></svg><div class="g-lbl"><b>Difficulty</b><span>Hard</span></div></div><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><path d="M12.00 50.00A38 38 0 0 1 88.00 50.00" class="g-track"/><path d="M31.00 17.09A38 38 0 0 1 32.75 16.14" class="g-band"/><g class="g-ticks"><path d="M8.0 50.0L4.0 50.0"/><path d="M13.6 29.0L10.2 27.0"/><path d="M29.0 13.6L27.0 10.2"/><path d="M50.0 8.0L50.0 4.0"/><path d="M71.0 13.6L73.0 10.2"/><path d="M86.4 29.0L89.8 27.0"/><path d="M92.0 50.0L96.0 50.0"/></g><path d="M50 50L35.0 24.0" class="g-needle"/><circle cx="50" cy="50" r="3.2" class="g-hub"/></svg><div class="g-lbl"><b>Target time</b><span>60 min</span></div></div><div class="gauge gauge-n"><span class="g-num">3</span><div class="g-lbl"><b>Goals</b><span>to repair</span></div></div><div class="gauge gauge-n"><span class="g-num">9</span><div class="g-lbl"><b>Hints</b><span>open only if stuck</span></div></div><div class="gauge gauge-n"><span class="g-num">9</span><div class="g-lbl"><b>Checks</b><span>saved in this browser</span></div></div><div class="gauge gauge-ring"><span class="ring" data-ring="break-fix-am03" style="--s:62px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span><div class="g-lbl"><b>Progress</b><span data-progress-t="break-fix-am03">not started</span></div></div></div></div>
+</section>
+<nav class="stepper" aria-label="Mission phases" style="--n:3"><div class="stepper-in"><div class="stepper-now"><span class="stepper-k">Phase</span><b data-step-now>1</b><span class="stepper-of">/ 3</span><span class="stepper-t" data-step-title>Look before you touch</span></div><ol class="steps-rail"><li><a href="#phase-1" data-step="phase-1" title="Phase 1 · Look before you touch · 10 minutes"><span class="st-dot"><span>1</span></span><span class="st-l">Look before you touch</span></a></li><li><a href="#phase-2" data-step="phase-2" title="Phase 2 · Find and fix · 45 minutes"><span class="st-dot"><span>2</span></span><span class="st-l">Find and fix</span></a></li><li><a href="#phase-3" data-step="phase-3" title="Phase 3 · Flight test · 5 minutes"><span class="st-dot"><span>3</span></span><span class="st-l">Flight test</span></a></li></ol><span class="ring" data-ring="break-fix-am03" style="--s:34px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span></div></nav>
+<div class="page" style="--mc:#A3E635;--mc2:#84CC16">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#the-emergency" data-toc="the-emergency"><span class="toc-n toc-dot"></span><span class="toc-l">The emergency</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#the-finish-line" data-toc="the-finish-line"><span class="toc-n toc-dot"></span><span class="toc-l">The finish line</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#ideas-you-need-first" data-toc="ideas-you-need-first"><span class="toc-n toc-dot"></span><span class="toc-l">Ideas you need first</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#what-you-start-with" data-toc="what-you-start-with"><span class="toc-n toc-dot"></span><span class="toc-l">What you start with</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Look before you touch</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">Find and fix</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Flight test</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#stuck" data-toc="stuck"><span class="toc-n toc-dot"></span><span class="toc-l">Stuck?</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#key-takeaways" data-toc="key-takeaways"><span class="toc-n toc-dot"></span><span class="toc-l">Key takeaways</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#think-about-it" data-toc="think-about-it"><span class="toc-n toc-dot"></span><span class="toc-l">Think about it</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#after-the-mission" data-toc="after-the-mission"><span class="toc-n toc-dot"></span><span class="toc-l">After the mission</span><span class="toc-p" aria-hidden="true"></span></a></li></ol>
+      <a class="side-link" href="break-fix.html#start-guide"><span>Start guide</span>Chat console, trace and pills explained →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="break-fix-am03">
+<section class="sec" data-sec="the-emergency"><h2 id="the-emergency"><span>The emergency</span><a class="anchor" href="#the-emergency" aria-label="Link to this section">#</a></h2>
+<figure class="chatmock tone-bad"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Right now (broken)</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">What do our cargo handling procedures say about inventory checks?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">Typically, inventory checks involve regular counts… (a generic guess, not OrbitOps policy)</span></div></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill off">specialist: not configured</span><span class="cm-pill off">tools called: none</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+<p><strong>What <em>should</em> happen:</strong> the flight controller hands document questions to a <strong>specialist</strong> agent. The specialist searches a <strong>knowledge base</strong> built from the three manuals and answers from what it finds. Right now, two of those pieces don&#39;t exist and the third doesn&#39;t know where to send questions.</p>
+</section><section class="sec" data-sec="the-finish-line"><h2 id="the-finish-line"><span>The finish line</span><a class="anchor" href="#the-finish-line" aria-label="Link to this section">#</a></h2>
+<p><strong>You&#39;re done when all of these are true:</strong></p>
+<ul>
+<li><em>What do our cargo handling procedures say about inventory checks?</em> gets an answer that mentions <strong>72-hour</strong> cycle counts (and daily counts for hazardous cargo).</li>
+<li>The <strong>specialist</strong> pill is green, and the <strong>tools called</strong> pill shows <code>consult_manuals</code>.</li>
+<li>In the trace, <code>specialist_configured</code> and <code>specialist_consulted</code> are both <code>true</code>, and <code>warnings</code> is <code>[]</code>.</li>
+</ul>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">When you're done</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">What do our cargo handling procedures say about inventory checks?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">Per Inventory Procedures IP-7, every storage bay is cycle-counted every 72 hours…</span></div><p class="cm-note">There&#39;s no tool gateway in this mission, so the gateway pill stays amber. That&#39;s expected.</p></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">specialist: configured</span><span class="cm-pill on">tools called: consult_manuals</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+</section><section class="sec" data-sec="ideas-you-need-first"><h2 id="ideas-you-need-first"><span>Ideas you need first</span><a class="anchor" href="#ideas-you-need-first" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Knowledge base = a searchable library.</strong> Amazon Bedrock <strong>Knowledge Bases</strong> turns documents into something an AI can search by <em>meaning</em>, not just by exact words.</li>
+<li><strong>Embeddings = turning text into numbers.</strong> An <strong>embedding model</strong> turns each chunk of text into a long list of numbers (a <em>vector</em>). Text with similar meaning gets similar numbers. This mission uses <strong>Titan Text Embeddings V2</strong>, which can make lists of 256, 512 or 1,024 numbers.</li>
+<li><strong>Vector store = the shelves.</strong> The vectors are stored in a <strong>vector index</strong>. Yours already exists in <strong>Amazon S3 Vectors</strong>, and it was built for lists of exactly 1,024 numbers. If the model makes a different length, it won&#39;t fit on the shelves.</li>
+<li><strong>Data source + sync = stocking the shelves.</strong> Pointing the knowledge base at the manuals in Amazon S3 isn&#39;t enough: you must <strong>sync</strong> it. Syncing reads the files, splits them into chunks, embeds them and stores them. Until then, the library is empty.</li>
+<li><strong>The specialist = a librarian agent.</strong> It&#39;s a second AI agent, packaged as code in a zip file. You deploy it to <strong>AgentCore Runtime</strong>, give it settings (which model, which knowledge base) and a bouncer (an authorizer) that checks tokens.</li>
+<li><strong>Hand-off = agent-to-agent.</strong> The flight controller calls the specialist and passes along the same token it received. So the specialist&#39;s bouncer must trust the same client as the flight controller&#39;s.</li>
+</ul>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    U[&quot;🧑 You&quot;] --&gt; O[&quot;🤖 Flight controller&quot;]
+    O --&gt;|&quot;document question&lt;br/&gt;+ same token&quot;| S[&quot;📚 Specialist agent&lt;br/&gt;(you deploy it)&quot;]
+    S --&gt;|&quot;search&quot;| KB[&quot;🗂️ Knowledge base&lt;br/&gt;(you create it)&quot;]
+    KB --&gt; V[&quot;🧮 Vector index&lt;br/&gt;S3 Vectors · 1024&quot;]
+    D[&quot;📄 3 manuals in S3&quot;] -.-&gt;|&quot;sync&quot;| KB">flowchart LR
+    U[&quot;🧑 You&quot;] --&gt; O[&quot;🤖 Flight controller&quot;]
+    O --&gt;|&quot;document question&lt;br/&gt;+ same token&quot;| S[&quot;📚 Specialist agent&lt;br/&gt;(you deploy it)&quot;]
+    S --&gt;|&quot;search&quot;| KB[&quot;🗂️ Knowledge base&lt;br/&gt;(you create it)&quot;]
+    KB --&gt; V[&quot;🧮 Vector index&lt;br/&gt;S3 Vectors · 1024&quot;]
+    D[&quot;📄 3 manuals in S3&quot;] -.-&gt;|&quot;sync&quot;| KB</pre></figure>
+</section><section class="sec" data-sec="what-you-start-with"><h2 id="what-you-start-with"><span>What you start with</span><a class="anchor" href="#what-you-start-with" aria-label="Link to this section">#</a></h2>
+<p>These are in your mission card under <code>solution_resources_kb</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>KnowledgeBaseBucketName</code> + <code>KnowledgeBaseDocsPrefix</code></td>
+<td>The S3 bucket and <code>docs/</code> folder holding the three manuals</td>
+</tr>
+<tr>
+<td><code>VectorBucketName</code>, <code>VectorBucketArn</code></td>
+<td>Your S3 Vectors bucket</td>
+</tr>
+<tr>
+<td><code>VectorIndexName</code>, <code>VectorIndexArn</code></td>
+<td>The vector index, <code>bedrock-knowledge-base-index</code>: <strong>1024 dimensions, float32, cosine</strong></td>
+</tr>
+<tr>
+<td><code>EmbeddingModelId</code>, <code>EmbeddingDimensions</code></td>
+<td><code>amazon.titan-embed-text-v2:0</code> and <code>1024</code></td>
+</tr>
+<tr>
+<td><code>KnowledgeBaseRoleArn</code></td>
+<td>The IAM role the knowledge base uses</td>
+</tr>
+<tr>
+<td><code>KBSpecialistRoleArn</code></td>
+<td>The IAM role the specialist agent runs as</td>
+</tr>
+<tr>
+<td><code>KBSpecialistAgentCodeS3Uri</code></td>
+<td>The specialist&#39;s code: a zip file in S3 (its main file is <code>main.py</code>)</td>
+</tr>
+<tr>
+<td><code>KBSpecialistModelId</code></td>
+<td>The model the specialist should use</td>
+</tr>
+</tbody></table></div>
+<p>You also need <code>cognito_discovery_url</code>, <code>m2m_client_ids</code> and <code>orchestrator_runtime_ids</code> from the main part of your card.</p>
+<aside class="callout caution"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 16h.01"/><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z"/></svg></div><div class="callout-body"><span class="callout-lbl">Caution</span><p><strong>Reuse what&#39;s provided.</strong> The vector index, roles and code already exist. If a wizard offers to <em>create</em> a new vector store, that&#39;s the expensive wrong turn: some store types cost hundreds of dollars a month.</p>
+</div></aside>
+</section><section class="sec sec-phase" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-big" aria-hidden="true">01</span><span class="phase-meta"><span class="phase-num">Phase 1</span><span class="phase-time">10 minutes</span></span><span class="phase-title">Look before you touch</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:0" aria-label="Mark done"><div class="task-t">Ask the document question above. In the trace, note <code>specialist_configured</code>, <code>specialist_consulted</code> and <code>tools_called</code>.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:1" aria-label="Mark done"><div class="task-t">Copy every value from <code>solution_resources_kb</code> into your notes. Circle <code>EmbeddingDimensions</code>.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:2" aria-label="Mark done"><div class="task-t">Open your flight controller (<strong>Bedrock AgentCore → Runtime →</strong> yours). Note how it&#39;s set up: code source, Python version, entry point, protocol, authorizer, environment variables. You&#39;ll copy most of this shape for the specialist.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:3" aria-label="Mark done"><div class="task-t">Open the bucket named in <code>KnowledgeBaseBucketName</code>: what&#39;s under <code>agents/</code> and under <code>docs/</code>?</div></li>
+</ul>
+<p><strong class="cue-pill predict">Predict first</strong> a knowledge base can show <em>Available</em> and still answer nothing. What step might be missing?</p>
+</section><section class="sec sec-phase" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-big" aria-hidden="true">02</span><span class="phase-meta"><span class="phase-num">Phase 2</span><span class="phase-time">45 minutes</span></span><span class="phase-title">Find and fix</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<div class="workorder"><div class="wo-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>Your work order</div><p class="wo-intro">This is how the assessment phrases the job. It tells you <em>what</em> must be true at the end; the hints help with <em>how</em>.</p><ol>
+<li><p>Create a <strong>Bedrock knowledge base</strong> on the <strong>existing</strong> S3 Vectors bucket and index, with <strong><code>amazon.titan-embed-text-v2:0</code></strong> at <strong>1024</strong> dimensions (float32), using <strong><code>KnowledgeBaseRoleArn</code></strong>. Don&#39;t create a new index.</p>
+</li>
+<li><p>Add the S3 bucket (folder <code>docs/</code>) as the knowledge base&#39;s <strong>data source</strong>, then <strong>sync</strong> it.</p>
+</li>
+<li><p>Deploy the <strong>specialist</strong> to AgentCore Runtime with these settings:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Code source</td>
+<td><code>KBSpecialistAgentCodeS3Uri</code></td>
+</tr>
+<tr>
+<td>Entry point</td>
+<td><code>main.py</code></td>
+</tr>
+<tr>
+<td>Python version</td>
+<td><code>PYTHON_3_12</code></td>
+</tr>
+<tr>
+<td>Protocol</td>
+<td><code>HTTP</code></td>
+</tr>
+<tr>
+<td>Network</td>
+<td><code>PUBLIC</code></td>
+</tr>
+<tr>
+<td>Execution role</td>
+<td><code>KBSpecialistRoleArn</code></td>
+</tr>
+<tr>
+<td>Inbound authorizer</td>
+<td>JWT: discovery URL = <code>cognito_discovery_url</code>, allowed client = <code>m2m_client_ids</code></td>
+</tr>
+</tbody></table></div>
+</li>
+<li><p>Name it with <strong><code>kb</code></strong>, <strong><code>specialist</code></strong> or <strong><code>knowledge</code></strong> in it, using letters, digits and underscores only (for example <code>student07_kb_specialist</code>).</p>
+</li>
+<li><p>Give the specialist two environment variables: <strong><code>MODEL_ID</code></strong> = <code>KBSpecialistModelId</code>, and <strong><code>KNOWLEDGE_BASE_ID</code></strong> = your new knowledge base&#39;s ID.</p>
+</li>
+<li><p>Confirm its <strong><code>DEFAULT</code></strong> endpoint is <code>READY</code>.</p>
+</li>
+<li><p>Set <strong><code>KB_SPECIALIST_RUNTIME_ARN</code></strong> on the <strong>flight controller</strong> to the specialist&#39;s ARN.</p>
+</li>
+</ol></div>
+<aside class="callout tip"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="callout-body"><span class="callout-lbl">Tip</span><p><strong>Test from the inside out.</strong> Prove the library works on its own, then the librarian, then the hand-off. If you test only at the end, you won&#39;t know which link broke.</p>
+</div></aside>
+<h3 id="goal-1-build-the-library-and-stock-the-shelves" class="goal-h"><span class="goal-n"><small>Goal</small>1</span><span class="goal-t">Build the library and stock the shelves</span><a class="anchor" href="#goal-1-build-the-library-and-stock-the-shelves" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> the data source&#39;s last sync is <strong>Complete</strong> with <strong>3</strong> documents indexed, and the knowledge base&#39;s <strong>Test</strong> panel returns a passage when you ask about cycle counts.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>Amazon Bedrock → Knowledge Bases → Create.</strong> Read every step of the wizard <em>before</em> filling anything in. There&#39;s a step about the IAM role, one about the data source, and one about embeddings and the vector store. Each one asks a question your mission card already answers.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>The vector-store step has two paths: one <strong>creates</strong> a store for you, the other <strong>uses an existing</strong> one. You were given an existing bucket and index. Then compare the embedding model&#39;s dimension options with <code>EmbeddingDimensions</code>: only one choice fits your shelves.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>After you create it, the knowledge base has one status and the data source has another, and <em>neither</em> means anything was read yet. There&#39;s a button on the data source that starts the reading; its job report shows how many documents it indexed (you want 3). Then try the <strong>Test</strong> panel. Copy the knowledge base <strong>ID</strong> (10 characters) before you leave the page.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:4" aria-label="Mark done"><div class="task-t">My knowledge base synced 3 documents, and its Test panel finds a passage about cycle counts.</div></li>
+</ul>
+<h3 id="goal-2-hire-the-librarian" class="goal-h"><span class="goal-n"><small>Goal</small>2</span><span class="goal-t">Hire the librarian</span><a class="anchor" href="#goal-2-hire-the-librarian" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> a new runtime whose name contains your lab id and <code>kb</code>, <code>specialist</code> or <code>knowledge</code>, with status <code>READY</code> and a <code>DEFAULT</code> endpoint.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>Bedrock AgentCore → Runtime → Create runtime.</strong> Open your flight controller in a second tab: it was deployed the same way, so its page shows you the shape of every field.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>The flight controller passes the <em>caller&#39;s</em> token to the specialist. Whose token is that, and which client made it? Compare the flight controller&#39;s authorizer (discovery URL and allowed clients) with what the specialist must accept. Then compare the two environment variables the specialist needs with what you copied in Goal 1.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>The code is a zip in S3, so choose the S3 source, Python 3.12 and <code>main.py</code>. <code>KNOWLEDGE_BASE_ID</code> wants the short 10-character ID, not the name or the ARN. When the specialist is <code>READY</code>, the value Goal 3 needs is on its page: an <strong>ARN</strong>, not an ID.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:5" aria-label="Mark done"><div class="task-t">My specialist runtime is <code>READY</code> with a <code>DEFAULT</code> endpoint, the right authorizer and both environment variables.</div></li>
+</ul>
+<h3 id="goal-3-tell-the-flight-controller-to-use-the-librarian" class="goal-h"><span class="goal-n"><small>Goal</small>3</span><span class="goal-t">Tell the flight controller to use the librarian</span><a class="anchor" href="#goal-3-tell-the-flight-controller-to-use-the-librarian" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> <code>specialist_configured</code> flips to <code>true</code>, and the pill now reads <em>specialist: configured</em>. It stays amber until a question is actually handed over. When you ask a document question, <code>specialist_consulted</code> is <code>true</code>, the pill turns green, and <code>consult_manuals</code> appears in <strong>tools called</strong>.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p>The flight controller&#39;s <strong>environment variables</strong>. One of them is named for the specialist, and it&#39;s empty. The trace&#39;s <code>specialist_configured</code> simply reports whether it&#39;s set.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>The variable&#39;s name tells you what kind of value it wants. The specialist&#39;s page shows a name, an ID and an ARN. Expect <code>specialist_configured</code> to flip first; <code>specialist_consulted</code> only turns true when the agent actually hands a document question over.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>Saving starts a new version of the flight controller, so test after it&#39;s <code>READY</code>. If <code>consult_manuals</code> shows up with an error, the error names the broken link: <code>401</code> or <code>403</code> points at the specialist&#39;s authorizer, <em>0 passages retrieved</em> points at the sync, and <code>424</code> means the specialist&#39;s code crashed (its CloudWatch log says why).</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am03:6" aria-label="Mark done"><div class="task-t">A document question shows <code>specialist_consulted: true</code> and <code>consult_manuals</code> in tools called.</div></li>
+</ul>
+</section><section class="sec sec-phase" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-big" aria-hidden="true">03</span><span class="phase-meta"><span class="phase-num">Phase 3</span><span class="phase-time">5 minutes</span></span><span class="phase-title">Flight test</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<ul>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am03:7" aria-label="Mark done"><div class="task-t"><p>Ask:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">What do our cargo handling procedures say about inventory checks?</code></pre></div>
+<p class="expect"><strong>Expected:</strong> the answer mentions <strong>72-hour</strong> cycle counts. The specialist pill is green, <strong>tools called</strong> shows <code>consult_manuals</code>, and <code>warnings</code> is <code>[]</code>.</p>
+</div></li>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am03:8" aria-label="Mark done"><div class="task-t"><p>Ask a second question the manuals answer:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">How often are hazardous cargo bays counted?</code></pre></div>
+<p class="expect"><strong>Expected:</strong> <strong>daily</strong>, countersigned by the safety officer.</p>
+</div></li>
+</ul>
+<p class="proved"><strong>What you just proved:</strong> a question travelled from the flight controller to a second agent you deployed, into a knowledge base you built, and back with real evidence from the manuals.</p>
+</section><section class="sec" data-sec="stuck"><h2 id="stuck"><span>Stuck?</span><a class="anchor" href="#stuck" aria-label="Link to this section">#</a></h2>
+<h3 id="read-the-signals">Read the signals<a class="anchor" href="#read-the-signals" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What it usually means</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>specialist_configured: false</code></td>
+<td>The flight controller has no specialist ARN yet</td>
+<td>Goal 3 (after Goals 1 and 2)</td>
+</tr>
+<tr>
+<td>No <code>consult_manuals</code> in tools called</td>
+<td>The question didn&#39;t sound like a manuals question</td>
+<td>Ask <em>&quot;What do our procedures say about…&quot;</em></td>
+</tr>
+<tr>
+<td><code>consult_manuals</code> error: <em>Specialist runtime returned 401</em> or <em>403</em></td>
+<td>The specialist&#39;s bouncer doesn&#39;t trust the token</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td><code>consult_manuals</code> error: <em>Specialist runtime returned 424</em></td>
+<td>The specialist&#39;s code crashed</td>
+<td>Its CloudWatch log</td>
+</tr>
+<tr>
+<td><em>KNOWLEDGE_BASE_ID is not configured</em></td>
+<td>The specialist is missing a setting</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td><em>0 passages retrieved</em></td>
+<td>The library is empty: no sync, or wrong dimensions</td>
+<td>Goal 1</td>
+</tr>
+<tr>
+<td>An answer mentioning <strong>IP-7</strong> and <strong>72 hours</strong></td>
+<td>Everything works</td>
+<td>Flight test</td>
+</tr>
+</tbody></table></div>
+<h3 id="don-t-waste-time-on">Don&#39;t waste time on<a class="anchor" href="#don-t-waste-time-on" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Creating a new vector index or bucket.</strong> The index exists with the right size. A wizard-created store is the expensive wrong turn.</li>
+<li><strong>Editing the agent code.</strong> Both agents are correct; the zip is ready to deploy as it is.</li>
+<li><strong>The flight controller&#39;s authorizer.</strong> It works. The <em>specialist</em> is the one that needs one.</li>
+<li><strong>Chunking settings.</strong> The defaults are fine. Fancy chunking won&#39;t fix a library that was never synced.</li>
+</ul>
+<h3 id="before-you-ask-for-help">Before you ask for help<a class="anchor" href="#before-you-ask-for-help" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>Knowledge base: existing S3 Vectors store, index <code>bedrock-knowledge-base-index</code>, Titan V2 at <strong>1024</strong>, role <code>KnowledgeBaseRoleArn</code>?</li>
+<li>Data source: last sync <strong>Complete</strong>, <strong>3</strong> documents indexed? Does the Test panel return a passage?</li>
+<li>Specialist: S3 zip, Python 3.12, <code>main.py</code>, HTTP, Public, role <code>KBSpecialistRoleArn</code>, <code>READY</code>, <code>DEFAULT</code> endpoint?</li>
+<li>Specialist authorizer: same discovery URL and <strong>same client ID</strong> as the flight controller?</li>
+<li><code>KNOWLEDGE_BASE_ID</code> is the 10-character ID? <code>KB_SPECIALIST_RUNTIME_ARN</code> is the specialist&#39;s <strong>ARN</strong>, and the flight controller is <code>READY</code> again?</li>
+</ul>
+<details class="reveal clue"><summary><span>Big clue · the fault map</span></summary><div class="reveal-body">
+
+<p>This diagram marks <strong>what&#39;s missing</strong>. It doesn&#39;t tell you how to build it. Use it only after the hints.</p>
+<figure class="shot" data-fig="C.01"><div class="shot-frame"><div class="shot-bar" aria-hidden="true"><span class="shot-dots"><i></i><i></i><i></i></span><span class="shot-fig">Fig C.01</span><span class="shot-zoom-hint">Click to enlarge</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot: The fault map for Mission C: the missing specialist and knowledge base"><img src="img/bf-am03-fault-map.webp" alt="The fault map for Mission C: the missing specialist and knowledge base" width="1600" height="1000" loading="lazy" decoding="async"></button></div><figcaption><span class="fig-n">Fig C.01</span>The fault map for Mission C: the missing specialist and knowledge base</figcaption></figure>
+</div></details>
+
+</section><section class="sec" data-sec="key-takeaways"><h2 id="key-takeaways"><span>Key takeaways</span><a class="anchor" href="#key-takeaways" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>The model and the index must agree on size.</strong> A 1,024-number index needs a 1,024-number embedding model.</li>
+<li><strong>&quot;Created&quot; isn&#39;t &quot;ingested&quot;.</strong> A data source does nothing until you sync it. Always check how many documents were indexed.</li>
+<li><strong>Deploying an agent is mostly configuration:</strong> code location, Python version, entry point, role, protocol, authorizer and settings.</li>
+<li><strong>Hand-offs need two things:</strong> the caller must know the specialist&#39;s address (its ARN), and the specialist must trust the caller&#39;s token.</li>
+</ul>
+</section><section class="sec" data-sec="think-about-it"><h2 id="think-about-it"><span>Think about it</span><a class="anchor" href="#think-about-it" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Why does the knowledge base need its own IAM role, separate from the specialist&#39;s? What does each one touch?</li>
+<li>What would happen if you picked 512 dimensions? At which step would you find out?</li>
+<li>The flight controller passes your token to the specialist. What would change if the specialist belonged to another team with its own login system?</li>
+</ol>
+</section><section class="sec" data-sec="after-the-mission"><h2 id="after-the-mission"><span>After the mission</span><a class="anchor" href="#after-the-mission" aria-label="Link to this section">#</a></h2>
+<p>Your instructor walks through the fix live, then shares the debrief guide for this mission. Try the hints first: you&#39;ll remember what you worked out far better than what you were told.</p>
+</section>
+    <section class="debrief" data-debrief="break-fix-am03" style="--mc:#A3E635;--mc2:#84CC16">
+      <div class="debrief-patch"><svg class="patch" viewBox="0 0 120 120" width="132" height="132" aria-hidden="true" style="--mc:#A3E635;--mc2:#84CC16" data-patch="C">
+<defs><path id="tpC-61" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpC-61" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpC-61" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#A3E635" stop-opacity=".55"/><stop offset=".5" stop-color="#84CC16" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpC-61" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A3E635"/><stop offset="1" stop-color="#84CC16"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpC-61)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpC-61)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpC-61" startOffset="50%" text-anchor="middle">THE VANISHING STARPORT MANUALS</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpC-61" startOffset="50%" text-anchor="middle">BREAK-FIX · C</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><path d="M43 46c6-3 12-3 17 1v30c-5-4-11-4-17-1z"/><path d="M77 46c-6-3-12-3-17 1v30c5-4 11-4 17-1z"/><path d="M47 54h8M47 60h8M65 54h8M65 60h8"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg></div>
+      <div class="debrief-t"><p class="eyebrow">Mission debrief</p><h2 class="debrief-h" data-debrief-h>9 checks between you and the The Vanishing Starport Manuals patch</h2><p data-debrief-p>Tick every check above. Your progress is saved in this browser; finish them all to earn the patch.</p></div>
+      <span class="ring" data-ring="break-fix-am03" style="--s:92px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span>
+    </section>
+    <nav class="pager" aria-label="Break-fix navigation">
+      <a class="pg prev" href="break-fix-am02.html" style="--mc:#22D3EE"><small>← Previous</small><span>B · The Misrouted Cargo Droids</span></a>
+      <a class="pg next" href="break-fix-am04.html" style="--mc:#E879F9"><small>Next break-fix →</small><span>D · The Forgetful Flight Computer</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer"><div class="lb-top"><span class="lb-n"></span><span class="lb-hint">← → to browse · click image for actual size · Esc to close</span><button class="lb-close" type="button" aria-label="Close">×</button></div><button class="lb-nav lb-prev" type="button" aria-label="Previous screenshot">‹</button><div class="lb-stage"><img alt=""></div><button class="lb-nav lb-next" type="button" aria-label="Next screenshot">›</button><p class="lb-cap"></p></dialog>
+<dialog class="award" id="award" aria-labelledby="aw-t"><div class="award-in"><canvas class="award-fx" aria-hidden="true"></canvas><div class="award-patch"></div><p class="eyebrow">Mission complete</p><h2 id="aw-t">Patch earned</h2><p class="award-sub"></p><div class="award-actions"><a class="btn primary" data-award-next href="index.html#flight-path">Back to the flight path</a><button class="btn ghost" type="button" data-award-close>Keep reading</button></div></div></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":22,"mission-03":7,"mission-04":11,"mission-05":10,"mission-06":26,"mission-07":23,"mission-08":18,"break-fix-am01":9,"break-fix-am02":11,"break-fix-am03":9,"break-fix-am04":8,"break-fix-am05":10,"break-fix-am06":9,"notes-03":6,"notes-04":8,"notes-05":12};window.ORBIT_MISSIONS=[{"n":"01","slug":"mission-01","name":"Ground Control","hue":"#38BDF8","track":"foundation","present":true,"label":"Pre-flight 01"},{"n":"02","slug":"mission-02","name":"Ignition","hue":"#FB923C","track":"foundation","present":true,"label":"Pre-flight 02"},{"n":"03","slug":"mission-03","name":"The Knowledge Heist","hue":"#A78BFA","track":"main","present":true,"label":"Mission 03"},{"n":"04","slug":"mission-04","name":"Launch Control","hue":"#2DD4BF","track":"main","present":true,"label":"Mission 04"},{"n":"05","slug":"mission-05","name":"Identity Lockdown","hue":"#34D399","track":"main","present":true,"label":"Mission 05"},{"n":"06","slug":"mission-06","name":"Mission Assurance","hue":"#F472B6","track":"main","present":true,"label":"Mission 06"},{"n":"07","slug":"mission-07","name":"Hull Breach","hue":"#F87171","track":"main","present":true,"label":"Mission 07"},{"n":"08","slug":"mission-08","name":"Constellation","hue":"#FBBF24","track":"main","present":true,"label":"Mission 08"},{"n":"A","slug":"break-fix-am01","name":"The Locked Launchpad","hue":"#FB923C","track":"breakfix","present":true,"label":"Break-fix A"},{"n":"B","slug":"break-fix-am02","name":"The Misrouted Cargo Droids","hue":"#22D3EE","track":"breakfix","present":true,"label":"Break-fix B"},{"n":"C","slug":"break-fix-am03","name":"The Vanishing Starport Manuals","hue":"#A3E635","track":"breakfix","present":true,"label":"Break-fix C"},{"n":"D","slug":"break-fix-am04","name":"The Forgetful Flight Computer","hue":"#E879F9","track":"breakfix","present":true,"label":"Break-fix D"},{"n":"E","slug":"break-fix-am05","name":"Close The Exposed Hyperspace Lanes","hue":"#60A5FA","track":"breakfix","present":true,"label":"Break-fix E"},{"n":"F","slug":"break-fix-am06","name":"The Leaky Captain's Log","hue":"#FB7185","track":"breakfix","present":true,"label":"Break-fix F"}];</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en" data-page="break-fix-am01" style="--mc:#FB923C;--mc2:#F97316">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break-fix A · The Locked Launchpad — ORBIT Field Academy</title>
+<meta name="description" content="Cargo ships are ready to launch, but every message in the OrbitOps chat console ends with Authentication service unavailable. During a migration, someone replaced the chat app's login key with one that can't work, and wi">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050816">
+<meta property="og:title" content="Break-fix A · The Locked Launchpad — ORBIT Field Academy"><meta property="og:description" content="Cargo ships are ready to launch, but every message in the OrbitOps chat console ends with Authentication service unavailable. During a migration, someone replaced the chat app's login key with one that can't work, and wi"><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+</head>
+<body class="mission breakfix">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span><span class="nav-grp" aria-label="Pre-flight foundations"><a class="nav-m pre" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Pre-flight 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m pre" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Pre-flight 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a></span><span class="nav-sep"></span><span class="nav-lbl">Missions</span><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-06.html" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-07.html" data-page="mission-07" style="--mc:#F87171" title="Mission 07 · Hull Breach"><span class="nav-dot"></span><span class="nav-n">07</span><span class="nav-name">Hull Breach</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-08.html" data-page="mission-08" style="--mc:#FBBF24" title="Mission 08 · Constellation"><span class="nav-dot"></span><span class="nav-n">08</span><span class="nav-name">Constellation</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x nav-bf" href="break-fix.html" aria-current="page"><span class="nav-bf-ico" aria-hidden="true"></span>Break-fix</a><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast space bf" style="--mc:#FB923C;--mc2:#F97316">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="200" height="200" aria-hidden="true" style="--mc:#FB923C;--mc2:#F97316" data-patch="A">
+<defs><path id="tpA-56" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpA-56" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpA-56" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#FB923C" stop-opacity=".55"/><stop offset=".5" stop-color="#F97316" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpA-56" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FB923C"/><stop offset="1" stop-color="#F97316"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpA-56)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpA-56)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpA-56" startOffset="50%" text-anchor="middle">THE LOCKED LAUNCHPAD</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpA-56" startOffset="50%" text-anchor="middle">BREAK-FIX · A</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><rect x="46" y="55" width="28" height="22" rx="4"/><path d="M51 55v-6a9 9 0 0 1 18 0v6"/><circle cx="60" cy="64.5" r="2.6"/><path d="M60 67v4.5"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg><span class="mast-earned" aria-hidden="true">★ Patch earned</span></div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Break-fix A</span> Identity <span class="eb-sep">/</span> OrbitOps: Cosmic Cargo Rescue</p>
+      <h1>The Locked Launchpad</h1>
+      <p class="sub">The chat app can&#39;t get past security to reach its AI flight controller. Rebuild the login chain, one link at a time.</p>
+      <p class="story"><span class="story-k">The emergency</span>Cargo ships are ready to launch, but every message in the OrbitOps chat console ends with <em>Authentication service unavailable</em>. During a migration, someone replaced the chat app&#39;s login key with one that can&#39;t work, and wiped the app&#39;s settings. Until the chat app can prove who it is, the AI flight controller won&#39;t talk to it.</p>
+      <p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>AWS Console · the broken environment is already built for you<span class="env-r">us-west-2</span></p>
+      <div class="mast-actions"><a class="btn primary lg" href="#the-emergency">Start the mission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="break-fix.html#start-guide">First time? Start guide</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel"><div class="panel"><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><g class="g-seg"><path d="M12.00 50.00A38 38 0 0 1 16.04 32.95" class="on"/><path d="M17.31 30.62A38 38 0 0 1 29.49 18.01" class="on"/><path d="M31.77 16.66A38 38 0 0 1 48.67 12.02" class="on"/><path d="M51.33 12.02A38 38 0 0 1 68.23 16.66" class=""/><path d="M70.51 18.01A38 38 0 0 1 82.69 30.62" class=""/><path d="M83.96 32.95A38 38 0 0 1 88.00 50.00" class=""/></g><text x="50" y="50" text-anchor="middle" class="g-big">3<tspan class="g-of">/6</tspan></text></svg><div class="g-lbl"><b>Difficulty</b><span>Medium</span></div></div><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><path d="M12.00 50.00A38 38 0 0 1 88.00 50.00" class="g-track"/><path d="M20.89 25.57A38 38 0 0 1 22.21 24.08" class="g-band"/><g class="g-ticks"><path d="M8.0 50.0L4.0 50.0"/><path d="M13.6 29.0L10.2 27.0"/><path d="M29.0 13.6L27.0 10.2"/><path d="M50.0 8.0L50.0 4.0"/><path d="M71.0 13.6L73.0 10.2"/><path d="M86.4 29.0L89.8 27.0"/><path d="M92.0 50.0L96.0 50.0"/></g><path d="M50 50L27.0 30.7" class="g-needle"/><circle cx="50" cy="50" r="3.2" class="g-hub"/></svg><div class="g-lbl"><b>Target time</b><span>40 min</span></div></div><div class="gauge gauge-n"><span class="g-num">3</span><div class="g-lbl"><b>Goals</b><span>to repair</span></div></div><div class="gauge gauge-n"><span class="g-num">9</span><div class="g-lbl"><b>Hints</b><span>open only if stuck</span></div></div><div class="gauge gauge-n"><span class="g-num">9</span><div class="g-lbl"><b>Checks</b><span>saved in this browser</span></div></div><div class="gauge gauge-ring"><span class="ring" data-ring="break-fix-am01" style="--s:62px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span><div class="g-lbl"><b>Progress</b><span data-progress-t="break-fix-am01">not started</span></div></div></div></div>
+</section>
+<nav class="stepper" aria-label="Mission phases" style="--n:3"><div class="stepper-in"><div class="stepper-now"><span class="stepper-k">Phase</span><b data-step-now>1</b><span class="stepper-of">/ 3</span><span class="stepper-t" data-step-title>Look before you touch</span></div><ol class="steps-rail"><li><a href="#phase-1" data-step="phase-1" title="Phase 1 · Look before you touch · 10 minutes"><span class="st-dot"><span>1</span></span><span class="st-l">Look before you touch</span></a></li><li><a href="#phase-2" data-step="phase-2" title="Phase 2 · Find and fix · 25 minutes"><span class="st-dot"><span>2</span></span><span class="st-l">Find and fix</span></a></li><li><a href="#phase-3" data-step="phase-3" title="Phase 3 · Flight test · 5 minutes"><span class="st-dot"><span>3</span></span><span class="st-l">Flight test</span></a></li></ol><span class="ring" data-ring="break-fix-am01" style="--s:34px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span></div></nav>
+<div class="page" style="--mc:#FB923C;--mc2:#F97316">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#the-emergency" data-toc="the-emergency"><span class="toc-n toc-dot"></span><span class="toc-l">The emergency</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#the-finish-line" data-toc="the-finish-line"><span class="toc-n toc-dot"></span><span class="toc-l">The finish line</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#ideas-you-need-first" data-toc="ideas-you-need-first"><span class="toc-n toc-dot"></span><span class="toc-l">Ideas you need first</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#what-you-start-with" data-toc="what-you-start-with"><span class="toc-n toc-dot"></span><span class="toc-l">What you start with</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Look before you touch</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">Find and fix</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Flight test</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#stuck" data-toc="stuck"><span class="toc-n toc-dot"></span><span class="toc-l">Stuck?</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#key-takeaways" data-toc="key-takeaways"><span class="toc-n toc-dot"></span><span class="toc-l">Key takeaways</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#think-about-it" data-toc="think-about-it"><span class="toc-n toc-dot"></span><span class="toc-l">Think about it</span><span class="toc-p" aria-hidden="true"></span></a></li><li class="toc-sec"><a href="#after-the-mission" data-toc="after-the-mission"><span class="toc-n toc-dot"></span><span class="toc-l">After the mission</span><span class="toc-p" aria-hidden="true"></span></a></li></ol>
+      <a class="side-link" href="break-fix.html#start-guide"><span>Start guide</span>Chat console, trace and pills explained →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="break-fix-am01">
+<section class="sec" data-sec="the-emergency"><h2 id="the-emergency"><span>The emergency</span><a class="anchor" href="#the-emergency" aria-label="Link to this section">#</a></h2>
+<p>Open your chat console and send any message. Instead of an answer, you get a red error:</p>
+<figure class="chatmock tone-bad"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Right now (broken)</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Flight control, are you receiving my cargo dispatch requests?</span></div><div class="cm-msg err"><span class="cm-who">Error</span><span class="cm-text">⚠ Authentication service unavailable</span></div><p class="cm-note">No trace link and no pills: the request never reached the flight controller. That&#39;s a clue in itself.</p></div></div></figure>
+<p><strong>What <em>should</em> happen:</strong> the chat app gets a <strong>token</strong> (a digital pass) from Amazon Cognito, shows it to the flight controller, and the flight controller shows the same pass to the tool gateway. Every link in that chain is broken or misconfigured somewhere.</p>
+</section><section class="sec" data-sec="the-finish-line"><h2 id="the-finish-line"><span>The finish line</span><a class="anchor" href="#the-finish-line" aria-label="Link to this section">#</a></h2>
+<p><strong>You&#39;re done when all four of these are true:</strong></p>
+<ul>
+<li>The question <em>&quot;Flight control, are you receiving my cargo dispatch requests?&quot;</em> gets a normal reply, with no red ⚠ line.</li>
+<li>In that reply&#39;s <strong>trace</strong>, <code>token_source</code> is <code>&quot;inbound&quot;</code> and <code>warnings</code> is an empty list: <code>[]</code>.</li>
+<li>The <strong>gateway</strong> pill is green and says <strong>9 tools</strong>.</li>
+<li>The question <em>&quot;Check our cargo stock levels&quot;</em> turns the <strong>tools called</strong> pill green, with a tool whose name starts with <code>inventory-target___</code>.</li>
+</ul>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">When you're done</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Check our cargo stock levels</span></div><div class="cm-msg bot ph"><span class="cm-who">Flight controller</span><span class="cm-text">(a stock report: SKUs, quantities and low-stock items)</span></div><p class="cm-note">The memory, specialist and guardrail pills stay amber in this mission. They belong to other missions.</p></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">gateway: 9 tools</span><span class="cm-pill on">tools called: inventory-target___get_stock_summary</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+</section><section class="sec" data-sec="ideas-you-need-first"><h2 id="ideas-you-need-first"><span>Ideas you need first</span><a class="anchor" href="#ideas-you-need-first" aria-label="Link to this section">#</a></h2>
+<p>Think of the system as a concert with <strong>wristbands</strong>.</p>
+<ul>
+<li><strong>Token = wristband.</strong> A token is a signed digital pass. Amazon <strong>Cognito</strong> is the ticket booth that hands them out.</li>
+<li><strong>App client = an account at the ticket booth.</strong> Each app that wants tokens needs its own <em>app client</em> in Cognito. It has a <strong>client ID</strong> (like a username) and, for apps that run on a server, a <strong>client secret</strong> (like a password).</li>
+<li><strong>Client credentials = software logging in as itself.</strong> There&#39;s no human typing a password here: the chat app is a Lambda function. It logs in with its client ID and secret. This is called the <strong>client credentials</strong> flow (or <em>machine-to-machine</em>). Cognito only allows it for an app client that <strong>has a secret</strong>.</li>
+<li><strong>Scopes = which areas the wristband opens.</strong> OrbitOps defines two: <code>supplychain/read</code> and <code>supplychain/write</code>. An app client can only ask for scopes it has been allowed.</li>
+<li><strong>JWT authorizer = the bouncer at a door.</strong> It checks two things: is the wristband real (it asks Cognito for its public keys, via the <strong>discovery URL</strong>), and is this wristband&#39;s <strong>client ID</strong> on its guest list (<strong>allowed clients</strong>)?</li>
+<li><strong>There are two bouncers.</strong> One guards the flight controller (an <strong>AgentCore Runtime</strong>). The flight controller passes your <em>same</em> wristband to the tool <strong>Gateway</strong>, which has its own bouncer and its own guest list.</li>
+<li><strong>Environment variables = the app&#39;s settings card.</strong> The chat app reads its settings when it starts: where the ticket booth is, its client ID and secret, and where the flight controller lives.</li>
+</ul>
+<figure class="diagram"><pre class="mermaid" data-src="flowchart LR
+    U[&quot;🧑 You&quot;] --&gt; C[&quot;💬 Chat app&lt;br/&gt;(Lambda)&quot;]
+    C --&gt;|&quot;① client ID + secret&quot;| COG[&quot;🎟️ Cognito&lt;br/&gt;ticket booth&quot;]
+    COG --&gt;|&quot;② token&quot;| C
+    C --&gt;|&quot;③ token&quot;| R[&quot;🚪 Bouncer 1&lt;br/&gt;Flight controller&lt;br/&gt;(AgentCore Runtime)&quot;]
+    R --&gt;|&quot;④ same token&quot;| G[&quot;🚪 Bouncer 2&lt;br/&gt;Tool Gateway&quot;]
+    G --&gt; T[&quot;🛠️ 4 tool functions&quot;]">flowchart LR
+    U[&quot;🧑 You&quot;] --&gt; C[&quot;💬 Chat app&lt;br/&gt;(Lambda)&quot;]
+    C --&gt;|&quot;① client ID + secret&quot;| COG[&quot;🎟️ Cognito&lt;br/&gt;ticket booth&quot;]
+    COG --&gt;|&quot;② token&quot;| C
+    C --&gt;|&quot;③ token&quot;| R[&quot;🚪 Bouncer 1&lt;br/&gt;Flight controller&lt;br/&gt;(AgentCore Runtime)&quot;]
+    R --&gt;|&quot;④ same token&quot;| G[&quot;🚪 Bouncer 2&lt;br/&gt;Tool Gateway&quot;]
+    G --&gt; T[&quot;🛠️ 4 tool functions&quot;]</pre></figure>
+</section><section class="sec" data-sec="what-you-start-with"><h2 id="what-you-start-with"><span>What you start with</span><a class="anchor" href="#what-you-start-with" aria-label="Link to this section">#</a></h2>
+<p>Your mission card has these values. You&#39;ll copy several of them, so keep the card open.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>chat_urls</code></td>
+<td>Your chat console. Add <code>health</code> to the end for the health page.</td>
+</tr>
+<tr>
+<td><code>cognito_user_pool_id</code></td>
+<td>The class&#39;s Cognito <strong>user pool</strong> (shared). Looks like <code>us-west-2_</code> followed by letters.</td>
+</tr>
+<tr>
+<td><code>cognito_domain</code></td>
+<td>The pool&#39;s web address. Its token endpoint is <code>https://&lt;domain&gt;/oauth2/token</code>.</td>
+</tr>
+<tr>
+<td><code>cognito_discovery_url</code></td>
+<td>The address both bouncers use to check that a token is real.</td>
+</tr>
+<tr>
+<td><code>legacy_client_ids</code></td>
+<td>The broken app client both bouncers trust right now.</td>
+</tr>
+<tr>
+<td><code>gateway_ids</code>, <code>gateway_urls</code></td>
+<td>Your tool Gateway.</td>
+</tr>
+<tr>
+<td><code>orchestrator_runtime_ids</code>, <code>orchestrator_runtime_arns</code></td>
+<td>Your flight controller.</td>
+</tr>
+<tr>
+<td><code>chat_function_names</code></td>
+<td>Your chat app&#39;s Lambda function.</td>
+</tr>
+</tbody></table></div>
+<aside class="callout warning"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div class="callout-body"><span class="callout-lbl">Warning</span><p>The <strong>user pool is shared by the whole class.</strong> Create and edit only <em>your own</em> app client, and put your lab id in its name.</p>
+</div></aside>
+</section><section class="sec sec-phase" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-big" aria-hidden="true">01</span><span class="phase-meta"><span class="phase-num">Phase 1</span><span class="phase-time">10 minutes</span></span><span class="phase-title">Look before you touch</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<p>Collect the evidence first. Write each answer down: you&#39;ll compare against it later.</p>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:0" aria-label="Mark done"><div class="task-t">Send the test message. Copy the ⚠ error <strong>and</strong> the detail line under it.</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:1" aria-label="Mark done"><div class="task-t">Open your health page (<code>&lt;chat URL&gt;health</code>). Which settings say <code>MISSING</code>? What does <code>token</code> say?</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:2" aria-label="Mark done"><div class="task-t"><strong>Cognito → User pools →</strong> the class pool <strong>→ App clients.</strong> Open <em>your</em> legacy client. Does it have a <strong>client secret</strong>? Which <strong>OAuth grant types</strong> does it allow? Which <strong>custom scopes</strong>?</div></li>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:3" aria-label="Mark done"><div class="task-t">Write down the <strong>allowed clients</strong> on your Gateway (<strong>Bedrock AgentCore → Gateways →</strong> yours <strong>→ Inbound Auth</strong>) and on your Runtime (<strong>Bedrock AgentCore → Runtime →</strong> yours).</div></li>
+</ul>
+<p><strong class="cue-pill predict">Predict first</strong> if you filled in every missing setting on the chat app and changed nothing else, would the chat start working? Write down why or why not, then keep going.</p>
+</section><section class="sec sec-phase" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-big" aria-hidden="true">02</span><span class="phase-meta"><span class="phase-num">Phase 2</span><span class="phase-time">25 minutes</span></span><span class="phase-title">Find and fix</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<div class="workorder"><div class="wo-hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg>Your work order</div><p class="wo-intro">This is how the assessment phrases the job. It tells you <em>what</em> must be true at the end; the hints help with <em>how</em>.</p><ol>
+<li>Create a new <strong>Cognito app client</strong> that can use the <strong>client credentials</strong> grant. It must have a <strong>client secret</strong> and a name that contains your lab id.</li>
+<li>Allow the existing scopes <strong><code>supplychain/read</code></strong> and <strong><code>supplychain/write</code></strong> on that client.</li>
+<li>Add the new client ID to the <strong>allowed clients</strong> on <strong>both</strong> your Gateway and your Runtime.</li>
+<li>Fill in the chat app&#39;s five settings: <code>ORCHESTRATOR_RUNTIME_ARN</code>, <code>COGNITO_DOMAIN</code>, <code>COGNITO_CLIENT_ID</code>, <code>COGNITO_CLIENT_SECRET</code>, <code>COGNITO_USER_POOL_ID</code>.</li>
+</ol></div>
+<p>Don&#39;t create a new pool, gateway or runtime, and don&#39;t rename the scopes.</p>
+<aside class="callout tip"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="callout-body"><span class="callout-lbl">Tip</span><p><strong>One goal at a time.</strong> Each goal below says how you&#39;ll know it worked. Open Hint 1, try it, and only open Hint 2 if you&#39;re still stuck.</p>
+</div></aside>
+<h3 id="goal-1-give-the-chat-app-a-key-that-can-work" class="goal-h"><span class="goal-n"><small>Goal</small>1</span><span class="goal-t">Give the chat app a key that can work</span><a class="anchor" href="#goal-1-give-the-chat-app-a-key-that-can-work" aria-label="Link to this section">#</a></h3>
+<p>Right now the only app client is a <em>public web client</em>: the kind a browser uses. It can&#39;t prove who it is without a human, so the chat app can&#39;t use it.</p>
+<p class="expect"><strong>Expected:</strong> your new app client&#39;s page shows a <strong>client secret</strong>, the <strong>client credentials</strong> grant, and both custom scopes.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>Cognito → User pools →</strong> the class pool <strong>→ App clients.</strong> Open the legacy client and notice two things it <em>doesn&#39;t</em> have. Then choose <strong>Create app client</strong> and read the very first question it asks you.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Look at the five settings the chat app needs: one of them is a <em>secret</em>. Now look at what the legacy client has. An app with nothing secret can&#39;t prove who it is. Which <strong>type</strong> of application logs in without a person signing in?</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>The first choice in the create form is the <strong>application type</strong>. One option is named for software talking to software; picking it creates a secret automatically. The form does <strong>not</strong> ask which scopes to allow: it picks a default scope of its own. So after you create the client, open its <strong>Login pages</strong> tab and check the <strong>custom scopes</strong> against the two the chat app asks for. Copy the client ID and the client secret for Goal 2.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:4" aria-label="Mark done"><div class="task-t">My new app client has a secret, allows client credentials, and allows both <code>supplychain</code> scopes.</div></li>
+</ul>
+<h3 id="goal-2-fill-in-the-chat-app-s-settings-card" class="goal-h"><span class="goal-n"><small>Goal</small>2</span><span class="goal-t">Fill in the chat app&#39;s settings card</span><a class="anchor" href="#goal-2-fill-in-the-chat-app-s-settings-card" aria-label="Link to this section">#</a></h3>
+<p>The chat app can&#39;t ask for a token until it knows where the ticket booth is and what its own ID and secret are.</p>
+<p class="expect"><strong>Expected:</strong> your health page shows all five settings as <code>set</code>, and <code>token</code> says <code>ok</code>.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p><strong>Lambda →</strong> your chat app function <strong>→ Configuration → Environment variables.</strong> The health page tells you which ones are empty; your mission card and Goal 1 give you most of the values.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Two values look alike and often get swapped: the <strong>user pool ID</strong> (it starts with <code>us-west-2_</code>) and the <strong>domain</strong> (a web address ending in <code>amazoncognito.com</code>). Match each setting&#39;s <em>name</em> to the <em>shape</em> of the value you&#39;re pasting. The chat app adds <code>https://</code> to the domain itself.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>The health page does more than list settings. Once all five are filled, it <em>tries to get a token</em> and shows the result. If <code>token</code> isn&#39;t <code>ok</code>, the message quotes Cognito&#39;s own complaint (such as <code>invalid_client</code>), which sends you back to Goal 1. When you save, keep the two settings that are already there (<code>STUDENT_ID</code> and <code>MODULE</code>).</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:5" aria-label="Mark done"><div class="task-t">My health page shows every setting as <code>set</code> and <code>token: ok</code>.</div></li>
+</ul>
+<h3 id="goal-3-put-the-new-client-on-both-guest-lists" class="goal-h"><span class="goal-n"><small>Goal</small>3</span><span class="goal-t">Put the new client on both guest lists</span><a class="anchor" href="#goal-3-put-the-new-client-on-both-guest-lists" aria-label="Link to this section">#</a></h3>
+<p>Now the chat app has a real wristband. But both bouncers still have only the <em>old</em> client on their guest lists.</p>
+<p class="expect"><strong>Expected:</strong> the test message gets a normal reply. The trace shows <code>token_source: &quot;inbound&quot;</code> and <code>warnings: []</code>, and the gateway pill is green with <strong>9 tools</strong>.</p>
+<details class="reveal hint lvl lvl-1"><summary><span>Hint 1 · Where to look</span></summary><div class="reveal-body">
+
+<p>Two places, not one. <strong>Bedrock AgentCore → Gateways →</strong> yours <strong>→ Inbound Auth.</strong> And <strong>Bedrock AgentCore → Runtime →</strong> your flight controller <strong>→</strong> its inbound identity (authorizer) settings. Each one has its own <strong>allowed clients</strong> list.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-2"><summary><span>Hint 2 · What to compare</span></summary><div class="reveal-body">
+
+<p>Compare your new client ID with each allowed-clients list. Then read the error to see <em>which</em> bouncer is saying no. If the chat app reports that the <strong>runtime rejected the token</strong>, it&#39;s bouncer 1. If you get a reply but <code>warnings</code> says <strong>Gateway rejected our token</strong>, it&#39;s bouncer 2.</p>
+</div></details>
+
+<details class="reveal hint lvl lvl-3"><summary><span>Hint 3 · The nudge</span></summary><div class="reveal-body">
+
+<p>Leave the discovery URL alone: only the guest list is wrong. After you edit the runtime, its status leaves <code>READY</code> for about a minute while a new version starts, and the old version keeps answering until then. If you&#39;ve fixed one bouncer but not the other, the error <em>changes</em>. Read it again before deciding your edit &quot;did nothing&quot;.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="break-fix-am01:6" aria-label="Mark done"><div class="task-t">Both bouncers (Gateway and Runtime) list my new client ID.</div></li>
+</ul>
+</section><section class="sec sec-phase" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-big" aria-hidden="true">03</span><span class="phase-meta"><span class="phase-num">Phase 3</span><span class="phase-time">5 minutes</span></span><span class="phase-title">Flight test</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<p>Run both tests in your chat console and expand the trace each time.</p>
+<ul>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am01:7" aria-label="Mark done"><div class="task-t"><p>Ask the flight controller:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">Flight control, are you receiving my cargo dispatch requests?</code></pre></div>
+<p class="expect"><strong>Expected:</strong> a normal reply. Trace: <code>token_source: &quot;inbound&quot;</code>, <code>warnings: []</code>. The gateway pill is green and says <strong>9 tools</strong>.</p>
+</div></li>
+<li class="task task-loose"><input type="checkbox" class="chk" data-k="break-fix-am01:8" aria-label="Mark done"><div class="task-t"><p>Ask:</p>
+<div class="code" data-lines="1"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Text</span><button class="copy" type="button" aria-label="Copy Text code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-text">Check our cargo stock levels</code></pre></div>
+<p class="expect"><strong>Expected:</strong> a stock report. The <strong>tools called</strong> pill is green and shows a tool starting with <code>inventory-target___</code>.</p>
+</div></li>
+</ul>
+<p class="proved"><strong>What you just proved:</strong> a token from <em>your</em> new client got past both bouncers: the flight controller&#39;s, and the gateway&#39;s when the flight controller passed it along.</p>
+</section><section class="sec" data-sec="stuck"><h2 id="stuck"><span>Stuck?</span><a class="anchor" href="#stuck" aria-label="Link to this section">#</a></h2>
+<h3 id="read-the-signals">Read the signals<a class="anchor" href="#read-the-signals" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What it usually means</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Health page shows any setting as <code>MISSING</code></td>
+<td>The settings card is incomplete. Nothing else can be tested yet.</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td><code>token</code> mentions <code>invalid_client</code> or <code>unauthorized_client</code></td>
+<td>The app client can&#39;t do client credentials</td>
+<td>Goal 1</td>
+</tr>
+<tr>
+<td><code>token</code> mentions <code>invalid_grant</code> or a scope</td>
+<td>The client isn&#39;t allowed the scopes it asks for</td>
+<td>Goal 1</td>
+</tr>
+<tr>
+<td><code>token</code> says <em>could not reach … /oauth2/token</em></td>
+<td><code>COGNITO_DOMAIN</code> has the wrong shape</td>
+<td>Goal 2</td>
+</tr>
+<tr>
+<td>Chat error: <em>the orchestrator runtime rejected the token (HTTP 401/403)</em></td>
+<td>Bouncer 1 doesn&#39;t know your client</td>
+<td>Goal 3</td>
+</tr>
+<tr>
+<td>A reply arrives, but <code>warnings</code> says <em>Gateway rejected our token</em>, and the gateway pill is green but says <strong>0 tools</strong></td>
+<td>Bouncer 2 doesn&#39;t know your client</td>
+<td>Goal 3</td>
+</tr>
+<tr>
+<td>HTTP 424 or <em>Flight controller fault</em></td>
+<td>The agent&#39;s code crashed. That isn&#39;t one of this mission&#39;s faults.</td>
+<td>Ask your instructor</td>
+</tr>
+</tbody></table></div>
+<h3 id="don-t-waste-time-on">Don&#39;t waste time on<a class="anchor" href="#don-t-waste-time-on" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>The discovery URL.</strong> It&#39;s correct on both bouncers. Changing it creates new problems.</li>
+<li><strong>The scope names.</strong> <code>supplychain/read</code> and <code>supplychain/write</code> already exist. Don&#39;t create a new resource server.</li>
+<li><strong>A new gateway or runtime.</strong> They&#39;re healthy. Only their guest lists are wrong.</li>
+<li><strong>&quot;Upgrading&quot; the legacy client.</strong> It&#39;s the wrong kind of client. Leave it alone and create the right kind.</li>
+</ul>
+<h3 id="before-you-ask-for-help">Before you ask for help<a class="anchor" href="#before-you-ask-for-help" aria-label="Link to this section">#</a></h3>
+<ul>
+<li>Does my new client show a <strong>client secret</strong> and the <strong>client credentials</strong> grant?</li>
+<li>Are <strong>both</strong> custom scopes allowed on it?</li>
+<li>Is my new client ID on <strong>both</strong> guest lists, Gateway <strong>and</strong> Runtime?</li>
+<li>Is the runtime back to <code>READY</code> since my last edit?</li>
+<li>Does <code>COGNITO_DOMAIN</code> have no <code>https://</code> and no path, and does <code>COGNITO_USER_POOL_ID</code> start with <code>us-west-2_</code>?</li>
+</ul>
+<details class="reveal clue"><summary><span>Big clue · the fault map</span></summary><div class="reveal-body">
+
+<p>This diagram marks <strong>where</strong> each planted fault is. It doesn&#39;t tell you how to fix them. Use it only after the hints.</p>
+<figure class="shot" data-fig="A.01"><div class="shot-frame"><div class="shot-bar" aria-hidden="true"><span class="shot-dots"><i></i><i></i><i></i></span><span class="shot-fig">Fig A.01</span><span class="shot-zoom-hint">Click to enlarge</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot: The fault map for Mission A: where the three planted faults are"><img src="img/bf-am01-fault-map.webp" alt="The fault map for Mission A: where the three planted faults are" width="1600" height="1000" loading="lazy" decoding="async"></button></div><figcaption><span class="fig-n">Fig A.01</span>The fault map for Mission A: where the three planted faults are</figcaption></figure>
+</div></details>
+
+</section><section class="sec" data-sec="key-takeaways"><h2 id="key-takeaways"><span>Key takeaways</span><a class="anchor" href="#key-takeaways" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Software that logs in as itself needs a secret.</strong> No secret means no client credentials. Cognito&#39;s machine-to-machine app type sets this up for you.</li>
+<li><strong>Scopes are allowed one client at a time.</strong> A client can only ask for the scopes it was given.</li>
+<li><strong>Each bouncer keeps its own guest list.</strong> A new client ID has to be added to <em>every</em> authorizer that checks the token, not just the first one.</li>
+<li><strong>Settings are part of the security chain.</strong> Perfect identity setup still fails if the app doesn&#39;t know its domain, ID, secret or target.</li>
+</ul>
+</section><section class="sec" data-sec="think-about-it"><h2 id="think-about-it"><span>Think about it</span><a class="anchor" href="#think-about-it" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Why does the chat app get the token on the server instead of letting your browser ask Cognito directly?</li>
+<li>If you had fixed only the Gateway&#39;s guest list, where would the chain break, and what would the trace show?</li>
+<li>The chat URL has no login of its own. Why is that risky, and how would you protect it in a real product?</li>
+</ol>
+</section><section class="sec" data-sec="after-the-mission"><h2 id="after-the-mission"><span>After the mission</span><a class="anchor" href="#after-the-mission" aria-label="Link to this section">#</a></h2>
+<p>Your instructor walks through the fix live, then shares the debrief guide for this mission. Try the hints first: you&#39;ll remember what you worked out far better than what you were told.</p>
+</section>
+    <section class="debrief" data-debrief="break-fix-am01" style="--mc:#FB923C;--mc2:#F97316">
+      <div class="debrief-patch"><svg class="patch" viewBox="0 0 120 120" width="132" height="132" aria-hidden="true" style="--mc:#FB923C;--mc2:#F97316" data-patch="A">
+<defs><path id="tpA-57" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpA-57" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpA-57" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#FB923C" stop-opacity=".55"/><stop offset=".5" stop-color="#F97316" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpA-57" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FB923C"/><stop offset="1" stop-color="#F97316"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpA-57)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpA-57)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpA-57" startOffset="50%" text-anchor="middle">THE LOCKED LAUNCHPAD</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpA-57" startOffset="50%" text-anchor="middle">BREAK-FIX · A</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><rect x="46" y="55" width="28" height="22" rx="4"/><path d="M51 55v-6a9 9 0 0 1 18 0v6"/><circle cx="60" cy="64.5" r="2.6"/><path d="M60 67v4.5"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg></div>
+      <div class="debrief-t"><p class="eyebrow">Mission debrief</p><h2 class="debrief-h" data-debrief-h>9 checks between you and the The Locked Launchpad patch</h2><p data-debrief-p>Tick every check above. Your progress is saved in this browser; finish them all to earn the patch.</p></div>
+      <span class="ring" data-ring="break-fix-am01" style="--s:92px"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring-bg"/><circle cx="18" cy="18" r="15.5" class="ring-fg" pathLength="100"/></svg><span class="ring-t">0%</span></span>
+    </section>
+    <nav class="pager" aria-label="Break-fix navigation">
+      <a class="pg prev" href="break-fix.html"><small>← Back</small><span>Break-fix track</span></a>
+      <a class="pg next" href="break-fix-am02.html" style="--mc:#22D3EE"><small>Next break-fix →</small><span>B · The Misrouted Cargo Droids</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer"><div class="lb-top"><span class="lb-n"></span><span class="lb-hint">← → to browse · click image for actual size · Esc to close</span><button class="lb-close" type="button" aria-label="Close">×</button></div><button class="lb-nav lb-prev" type="button" aria-label="Previous screenshot">‹</button><div class="lb-stage"><img alt=""></div><button class="lb-nav lb-next" type="button" aria-label="Next screenshot">›</button><p class="lb-cap"></p></dialog>
+<dialog class="award" id="award" aria-labelledby="aw-t"><div class="award-in"><canvas class="award-fx" aria-hidden="true"></canvas><div class="award-patch"></div><p class="eyebrow">Mission complete</p><h2 id="aw-t">Patch earned</h2><p class="award-sub"></p><div class="award-actions"><a class="btn primary" data-award-next href="index.html#flight-path">Back to the flight path</a><button class="btn ghost" type="button" data-award-close>Keep reading</button></div></div></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":22,"mission-03":7,"mission-04":11,"mission-05":10,"mission-06":26,"mission-07":23,"mission-08":18,"break-fix-am01":9,"break-fix-am02":11,"break-fix-am03":9,"break-fix-am04":8,"break-fix-am05":10,"break-fix-am06":9,"notes-03":6,"notes-04":8,"notes-05":12};window.ORBIT_MISSIONS=[{"n":"01","slug":"mission-01","name":"Ground Control","hue":"#38BDF8","track":"foundation","present":true,"label":"Pre-flight 01"},{"n":"02","slug":"mission-02","name":"Ignition","hue":"#FB923C","track":"foundation","present":true,"label":"Pre-flight 02"},{"n":"03","slug":"mission-03","name":"The Knowledge Heist","hue":"#A78BFA","track":"main","present":true,"label":"Mission 03"},{"n":"04","slug":"mission-04","name":"Launch Control","hue":"#2DD4BF","track":"main","present":true,"label":"Mission 04"},{"n":"05","slug":"mission-05","name":"Identity Lockdown","hue":"#34D399","track":"main","present":true,"label":"Mission 05"},{"n":"06","slug":"mission-06","name":"Mission Assurance","hue":"#F472B6","track":"main","present":true,"label":"Mission 06"},{"n":"07","slug":"mission-07","name":"Hull Breach","hue":"#F87171","track":"main","present":true,"label":"Mission 07"},{"n":"08","slug":"mission-08","name":"Constellation","hue":"#FBBF24","track":"main","present":true,"label":"Mission 08"},{"n":"A","slug":"break-fix-am01","name":"The Locked Launchpad","hue":"#FB923C","track":"breakfix","present":true,"label":"Break-fix A"},{"n":"B","slug":"break-fix-am02","name":"The Misrouted Cargo Droids","hue":"#22D3EE","track":"breakfix","present":true,"label":"Break-fix B"},{"n":"C","slug":"break-fix-am03","name":"The Vanishing Starport Manuals","hue":"#A3E635","track":"breakfix","present":true,"label":"Break-fix C"},{"n":"D","slug":"break-fix-am04","name":"The Forgetful Flight Computer","hue":"#E879F9","track":"breakfix","present":true,"label":"Break-fix D"},{"n":"E","slug":"break-fix-am05","name":"Close The Exposed Hyperspace Lanes","hue":"#60A5FA","track":"breakfix","present":true,"label":"Break-fix E"},{"n":"F","slug":"break-fix-am06","name":"The Leaky Captain's Log","hue":"#FB7185","track":"breakfix","present":true,"label":"Break-fix F"}];</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>
