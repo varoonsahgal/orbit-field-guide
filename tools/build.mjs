@@ -28,7 +28,7 @@ const SANITIZE = [
   [/`?Ignition-Recruit-2026!`?/g, 'the temporary password your instructor gives you'],
 ];
 // OrbitOps break-fix class values (AM01 roster): pool, domain prefix and console alias must never be published either.
-const FORBIDDEN = ['962804699607', 'TZHtlxeIE', '5eq3s8mpp6j5506lq11pu5g0kl', 'wn4dc', 'Recruit-2026!', 'IDiqMUxKo', 'orbit-am01-96280469', 'dc-lab.signin'];
+const FORBIDDEN = ['962804699607', 'TZHtlxeIE', '5eq3s8mpp6j5506lq11pu5g0kl', 'wn4dc', 'Recruit-2026!', 'IDiqMUxKo', 'orbit-am01-96280469', 'dc-lab.signin', 'k5qcaSCys', 'CgOZJLonT', 'orbit-cargo-am0'];
 const sanitize = s => SANITIZE.reduce((t, [re, rep]) => t.replace(re, rep), s);
 
 // ── Missions ────────────────────────────────────────────────────────────────
@@ -536,6 +536,62 @@ const BF_TRACK = (() => {
   return { title: (h.mission.split(/[·—]/)[1] || h.mission).trim(), subtitle: h.subtitle, ...renderBody(h.rest, 'break-fix', 'S') };
 })();
 
+// ── Break-fix debriefs (instructor solution walkthroughs) ──────────────────
+// `AMnn-*.md` in DEBRIEF_DIR become debrief-amnn-<token>.html. They are published on the site but
+// deliberately NOT linked from any nav, card, pager or index, and carry a noindex robots tag:
+// the instructor hands the URL out after the mission. Same header shape and markdown extras as a break-fix.
+const DEBRIEF_DIR = path.resolve(process.env.DEBRIEF_DIR || path.join(ROOT, '..', 'instructor-kit', 'solutions', 'break-fix'));
+const DEBRIEF_TOKEN = process.env.DEBRIEF_TOKEN || 'rx7q2m';
+const DEBRIEFS = (fs.existsSync(DEBRIEF_DIR) ? fs.readdirSync(DEBRIEF_DIR).sort() : [])
+  .map(f => /^(AM\d{2})-.+\.md$/.exec(f)).filter(Boolean).map(([f, code]) => {
+    const m = BF.find(b => b.code === code);
+    if (!m) return null;
+    const h = parseHeader(sanitize(fs.readFileSync(path.join(DEBRIEF_DIR, f), 'utf8')));
+    const slug = `debrief-${code.toLowerCase()}-${DEBRIEF_TOKEN}`;
+    const r = renderBody(h.rest, slug, `${m.n}S`);
+    return { ...m, mission: m, slug, file: slug + '.html', src: f, name: m.name, subtitle: h.subtitle, meta: h.meta, story: h.story, ...r,
+      faults: (r.html.match(/class="goal-h"/g) || []).length };
+  }).filter(Boolean);
+
+function debriefPage(d) {
+  const m = d.mission;
+  const tocHtml = d.toc.map(t => `<li class="toc-${t.kind}"><a href="#${t.id}" data-toc="${t.id}">${t.kind === 'phase' ? `<span class="toc-n">${t.num}</span>` : '<span class="toc-n toc-dot"></span>'}<span class="toc-l">${esc(t.label)}</span></a></li>`).join('');
+  const panel = `<div class="panel">${counter(d.faults, 'Faults', 'planted on purpose')}${counter(m.goals, 'Goals', 'in the student handout')}${gaugeTime(d)}${counter(d.imgCount, 'Figures', 'fault map and screens')}</div>`;
+  const body = `
+<section class="mast space bf" style="--mc:${m.hue};--mc2:${m.hue2}">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch">${patch(m, 200)}</div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Debrief · Break-fix ${esc(m.n)}</span> ${esc(m.tag)} <span class="eb-sep">/</span> Instructor solution walkthrough</p>
+      <h1>${esc(titleCase(m.name))}: the fix</h1>
+      <p class="sub">${md1(d.subtitle)}</p>
+      ${d.story ? `<p class="story"><span class="story-k">Read this after</span>${md1(d.story)}</p>` : ''}
+      ${d.meta.env ? `<p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>${md1(d.meta.env)}<span class="env-r">us-west-2</span></p>` : ''}
+      <div class="mast-actions"><a class="btn primary lg" href="#${d.toc[0]?.id || 'main'}">Start the walkthrough ${ICON.arrow}</a><a class="btn ghost" href="${m.slug}.html">Student handout</a><button class="btn ghost" type="button" data-print>${ICON.print}Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel">${panel}</div>
+</section>
+<div class="page" style="--mc:${m.hue};--mc2:${m.hue2}">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc">${tocHtml}</ol>
+      <a class="side-link" href="${m.slug}.html"><span>Student handout</span>Break-fix ${esc(m.n)} · ${esc(titleCase(m.name))} →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="${d.slug}">
+${d.html}
+    <nav class="pager" aria-label="Debrief navigation">
+      <a class="pg prev" href="${m.slug}.html" style="--mc:${m.hue}"><small>← Back</small><span>${m.n} · ${esc(titleCase(m.name))} handout</span></a>
+      <a class="pg next" href="break-fix.html"><small>All missions →</small><span>Break-fix track</span></a>
+    </nav>
+  </main>
+</div>`;
+  return shell({ id: d.slug, title: `Debrief ${m.n} · ${titleCase(m.name)} — ${SITE}`, desc: strip(md1(d.subtitle)).slice(0, 220), body, hue: m.hue, hue2: m.hue2, bodyClass: 'mission breakfix debrief-page', extraHead: '<meta name="robots" content="noindex,nofollow,noarchive">\n' });
+}
+
 function bfPage(m) {
   const pos = BF.indexOf(m), prev = BF[pos - 1], next = BF[pos + 1];
   const phases = m.toc.filter(t => t.kind === 'phase');
@@ -952,6 +1008,7 @@ rendered['index.html'] = landing();
 rendered['notes.html'] = notesIndex();
 for (const m of BF) rendered[m.slug + '.html'] = bfPage(m);
 if (BF.length) rendered['break-fix.html'] = bfTrackPage();
+for (const d of DEBRIEFS) rendered[d.file] = debriefPage(d);
 
 // Sanitization gate: check every page (and the hand-written field guide) BEFORE writing anything.
 const bad = [];
@@ -961,12 +1018,13 @@ for (const s of FORBIDDEN) if (fg.includes(s)) bad.push(`field-guide.html: ${s}`
 if (bad.length) { console.error('SANITIZATION FAILED — private values in output (nothing written):\n  ' + bad.join('\n  ')); process.exit(1); }
 for (const [f, html] of Object.entries(rendered)) fs.writeFileSync(path.join(ROOT, f), html);
 // A mission page whose markdown has gone away must not linger on the site.
-for (const f of fs.readdirSync(ROOT)) if (/^(mission-\d{2}|notes-\d{2}|break-fix(-am\d{2})?)\.html$/.test(f) && !rendered[f]) { fs.unlinkSync(path.join(ROOT, f)); console.log(`  removed stale ${f}`); }
+for (const f of fs.readdirSync(ROOT)) if (/^(mission-\d{2}|notes-\d{2}|break-fix(-am\d{2})?|debrief-am\d{2}-[a-z0-9]+)\.html$/.test(f) && !rendered[f]) { fs.unlinkSync(path.join(ROOT, f)); console.log(`  removed stale ${f}`); }
 
 const { made, missing } = convertImages();
 console.log(`built ${Object.keys(rendered).length} pages from ${LABS}`);
 for (const m of MISSIONS) console.log(`  ${m.present ? '✓' : '·'} ${m.track === 'foundation' ? 'pre-flight' : 'mission   '} ${m.n} ${m.name}${m.present ? ` — ${m.phases} phases, ${PAGE_TOTALS[m.slug]} checks, ${m.imgCount} images` : ' (no markdown yet: listed as in preparation)'}`);
 for (const m of BF) console.log(`  ✓ break-fix  ${m.n} ${m.name} — ${m.phases} phases, ${m.goals} goals, ${m.hints} hints, ${PAGE_TOTALS[m.slug]} checks, ${m.imgCount} images`);
 if (BF.length && !BF_START) console.warn('WARNING: no 00-ORBITOPS-*.md start guide in ' + BF_DIR);
+for (const d of DEBRIEFS) console.log(`  ✓ debrief    ${d.n} ${d.name} — ${d.faults} faults, ${d.imgCount} images → ${d.file} (unlinked, noindex)`);
 console.log(`images: ${allImages.size} referenced, ${made} converted${missing.length ? `, MISSING: ${missing.join(', ')}` : ''}`);
 if (missing.length) { console.warn(`WARNING: ${missing.length} referenced image(s) missing from ${path.join(LABS, 'images')}; those figures will be broken on the site.`); if (process.env.STRICT_IMAGES) process.exitCode = 1; }

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en" data-page="debrief-am01-rx7q2m" style="--mc:#FB923C;--mc2:#F97316">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Debrief A · The Locked Launchpad — ORBIT Field Academy</title>
+<meta name="description" content="Instructor debrief: the three planted faults, the evidence that gives each one away, and the exact clicks that repair them.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050816">
+<meta property="og:title" content="Debrief A · The Locked Launchpad — ORBIT Field Academy"><meta property="og:description" content="Instructor debrief: the three planted faults, the evidence that gives each one away, and the exact clicks that repair them."><meta property="og:type" content="website">
+<script>try{var t=localStorage.getItem('orbit:theme');document.documentElement.dataset.theme=t||'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23070B1A'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='9' fill='none' stroke='%2338BDF8' stroke-width='3' transform='rotate(-24 32 32)'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%23F472B6'/%3E%3Ccircle cx='53' cy='22' r='4' fill='%23FDE68A'/%3E%3C/svg%3E">
+<meta name="robots" content="noindex,nofollow,noarchive">
+</head>
+<body class="mission breakfix debrief-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><span class="brand-t">ORBIT <b>Field Academy</b></span></a>
+  <nav class="nav" aria-label="Missions"><span class="nav-lbl">Pre-flight</span><span class="nav-grp" aria-label="Pre-flight foundations"><a class="nav-m pre" href="mission-01.html" data-page="mission-01" style="--mc:#38BDF8" title="Pre-flight 01 · Ground Control"><span class="nav-dot"></span><span class="nav-n">01</span><span class="nav-name">Ground Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m pre" href="mission-02.html" data-page="mission-02" style="--mc:#FB923C" title="Pre-flight 02 · Ignition"><span class="nav-dot"></span><span class="nav-n">02</span><span class="nav-name">Ignition</span><span class="nav-star" aria-hidden="true">★</span></a></span><span class="nav-sep"></span><span class="nav-lbl">Missions</span><a class="nav-m" href="mission-03.html" data-page="mission-03" style="--mc:#A78BFA" title="Mission 03 · The Knowledge Heist"><span class="nav-dot"></span><span class="nav-n">03</span><span class="nav-name">The Knowledge Heist</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-04.html" data-page="mission-04" style="--mc:#2DD4BF" title="Mission 04 · Launch Control"><span class="nav-dot"></span><span class="nav-n">04</span><span class="nav-name">Launch Control</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-05.html" data-page="mission-05" style="--mc:#34D399" title="Mission 05 · Identity Lockdown"><span class="nav-dot"></span><span class="nav-n">05</span><span class="nav-name">Identity Lockdown</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-06.html" data-page="mission-06" style="--mc:#F472B6" title="Mission 06 · Mission Assurance"><span class="nav-dot"></span><span class="nav-n">06</span><span class="nav-name">Mission Assurance</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-07.html" data-page="mission-07" style="--mc:#F87171" title="Mission 07 · Hull Breach"><span class="nav-dot"></span><span class="nav-n">07</span><span class="nav-name">Hull Breach</span><span class="nav-star" aria-hidden="true">★</span></a><a class="nav-m" href="mission-08.html" data-page="mission-08" style="--mc:#FBBF24" title="Mission 08 · Constellation"><span class="nav-dot"></span><span class="nav-n">08</span><span class="nav-name">Constellation</span><span class="nav-star" aria-hidden="true">★</span></a><span class="nav-sep"></span><a class="nav-x nav-bf" href="break-fix.html"><span class="nav-bf-ico" aria-hidden="true"></span>Break-fix</a><a class="nav-x" href="notes.html">Field notes</a><a class="nav-x" href="field-guide.html">Quick ref</a></nav>
+  <div class="tools">
+    <button class="id-chip" type="button" data-open-id aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="12" r="2.4"/><path d="M14 10h4M14 14h3"/></svg><span class="id-chip-v" data-myid-label>Set your ID</span></button>
+    <button class="iconbtn" id="theme" type="button" aria-label="Toggle light or dark theme"><span class="i-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="i-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div><div id="readbar" aria-hidden="true"></div></header>
+
+<section class="mast space bf" style="--mc:#FB923C;--mc2:#F97316">
+  <canvas class="mast-fx" aria-hidden="true"></canvas>
+  <div class="mast-in">
+    <div class="mast-patch"><svg class="patch" viewBox="0 0 120 120" width="200" height="200" aria-hidden="true" style="--mc:#FB923C;--mc2:#F97316" data-patch="A">
+<defs><path id="tpA-75" d="M17,60 A43,43 0 0,1 103,60"/><path id="bpA-75" d="M21,62 A39,39 0 0,0 99,62"/>
+<radialGradient id="gpA-75" cx="38%" cy="30%" r="85%"><stop offset="0" stop-color="#FB923C" stop-opacity=".55"/><stop offset=".5" stop-color="#F97316" stop-opacity=".16"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<linearGradient id="rpA-75" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FB923C"/><stop offset="1" stop-color="#F97316"/></linearGradient></defs>
+<circle cx="60" cy="60" r="58" class="p-disc"/><circle cx="60" cy="60" r="58" fill="url(#gpA-75)"/>
+<circle cx="60" cy="60" r="55.5" class="p-ring" stroke="url(#rpA-75)"/><circle cx="60" cy="60" r="34" class="p-ring2"/>
+<text class="p-arc"><textPath href="#tpA-75" startOffset="50%" text-anchor="middle">THE LOCKED LAUNCHPAD</textPath></text>
+<text class="p-arc p-arc-b"><textPath href="#bpA-75" startOffset="50%" text-anchor="middle">BREAK-FIX · A</textPath></text>
+<circle cx="60" cy="60" r="31" class="p-core"/>
+<g class="p-emblem"><rect x="46" y="55" width="28" height="22" rx="4"/><path d="M51 55v-6a9 9 0 0 1 18 0v6"/><circle cx="60" cy="64.5" r="2.6"/><path d="M60 67v4.5"/></g>
+<ellipse cx="60" cy="61" rx="54" ry="13" class="p-orbit" transform="rotate(-20 60 61)"/>
+<circle cx="10.5" cy="76" r="3.8" class="p-sat"/><circle cx="101" cy="37" r="1.8" class="p-star"/><circle cx="25" cy="33" r="1.2" class="p-star"/><circle cx="92" cy="88" r="1.3" class="p-star"/>
+</svg></div>
+    <div class="mast-text">
+      <p class="eyebrow"><span class="bf-tape">Debrief · Break-fix A</span> Identity <span class="eb-sep">/</span> Instructor solution walkthrough</p>
+      <h1>The Locked Launchpad: the fix</h1>
+      <p class="sub">Instructor debrief: the three planted faults, the evidence that gives each one away, and the exact clicks that repair them.</p>
+      <p class="story"><span class="story-k">Read this after</span>You&#39;ve tried the hints. This page shows the whole repair, in the order a calm engineer would do it, and explains <em>why</em> each symptom looks the way it does. Keep your own notes from Phase 1 next to it and compare: the point of a debrief isn&#39;t the answer, it&#39;s noticing which clue you missed.</p>
+      <p class="env"><span class="env-led" aria-hidden="true"></span><b>Environment</b>AWS Console, with a CloudShell alternative for every step<span class="env-r">us-west-2</span></p>
+      <div class="mast-actions"><a class="btn primary lg" href="#the-three-faults-at-a-glance">Start the walkthrough <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="break-fix-am01.html">Student handout</a><button class="btn ghost" type="button" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>Print</button></div>
+    </div>
+  </div>
+  <div class="mast-panel"><div class="panel"><div class="gauge gauge-n"><span class="g-num">3</span><div class="g-lbl"><b>Faults</b><span>planted on purpose</span></div></div><div class="gauge gauge-n"><span class="g-num">3</span><div class="g-lbl"><b>Goals</b><span>in the student handout</span></div></div><div class="gauge"><svg viewBox="0 0 100 58" aria-hidden="true"><path d="M12.00 50.00A38 38 0 0 1 88.00 50.00" class="g-track"/><path d="M20.89 25.57A38 38 0 0 1 22.21 24.08" class="g-band"/><g class="g-ticks"><path d="M8.0 50.0L4.0 50.0"/><path d="M13.6 29.0L10.2 27.0"/><path d="M29.0 13.6L27.0 10.2"/><path d="M50.0 8.0L50.0 4.0"/><path d="M71.0 13.6L73.0 10.2"/><path d="M86.4 29.0L89.8 27.0"/><path d="M92.0 50.0L96.0 50.0"/></g><path d="M50 50L27.0 30.7" class="g-needle"/><circle cx="50" cy="50" r="3.2" class="g-hub"/></svg><div class="g-lbl"><b>Target time</b><span>40 min</span></div></div><div class="gauge gauge-n"><span class="g-num">1</span><div class="g-lbl"><b>Figures</b><span>fault map and screens</span></div></div></div></div>
+</section>
+<div class="page" style="--mc:#FB923C;--mc2:#F97316">
+  <aside class="side" aria-label="On this page">
+    <div class="side-in">
+      <p class="side-h">On this page</p>
+      <ol class="toc"><li class="toc-sec"><a href="#the-three-faults-at-a-glance" data-toc="the-three-faults-at-a-glance"><span class="toc-n toc-dot"></span><span class="toc-l">The three faults at a glance</span></a></li><li class="toc-sec"><a href="#how-the-chain-is-supposed-to-work" data-toc="how-the-chain-is-supposed-to-work"><span class="toc-n toc-dot"></span><span class="toc-l">How the chain is supposed to work</span></a></li><li class="toc-phase"><a href="#phase-1" data-toc="phase-1"><span class="toc-n">1</span><span class="toc-l">Reading the evidence</span></a></li><li class="toc-phase"><a href="#phase-2" data-toc="phase-2"><span class="toc-n">2</span><span class="toc-l">The fix, click by click</span></a></li><li class="toc-phase"><a href="#phase-3" data-toc="phase-3"><span class="toc-n">3</span><span class="toc-l">Flight test and how to read the trace</span></a></li><li class="toc-sec"><a href="#if-it-still-fails" data-toc="if-it-still-fails"><span class="toc-n toc-dot"></span><span class="toc-l">If it still fails</span></a></li><li class="toc-sec"><a href="#think-about-it-the-answers" data-toc="think-about-it-the-answers"><span class="toc-n toc-dot"></span><span class="toc-l">Think about it: the answers</span></a></li><li class="toc-sec"><a href="#key-takeaways" data-toc="key-takeaways"><span class="toc-n toc-dot"></span><span class="toc-l">Key takeaways</span></a></li></ol>
+      <a class="side-link" href="break-fix-am01.html"><span>Student handout</span>Break-fix A · The Locked Launchpad →</a>
+    </div>
+  </aside>
+  <main id="main" class="prose" data-page="debrief-am01-rx7q2m">
+<section class="sec" data-sec="the-three-faults-at-a-glance"><h2 id="the-three-faults-at-a-glance"><span>The three faults at a glance</span><a class="anchor" href="#the-three-faults-at-a-glance" aria-label="Link to this section">#</a></h2>
+<p>Someone &quot;migrated&quot; the identity layer and left the chat app with a key that can&#39;t open anything, a blank settings card, and two bouncers who have never heard of the new key. Everything else in the platform is healthy.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Where it&#39;s planted</th>
+<th>What&#39;s wrong</th>
+<th>The clue that gives it away</th>
+<th>The fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td>Cognito → the class user pool → <strong>App clients</strong></td>
+<td>The only app client for your lab id is <code>orbit-student07-am01-web-client-legacy</code>: a <strong>public</strong> web client with <strong>no client secret</strong> and <strong>no <code>client_credentials</code> grant</strong></td>
+<td>The client&#39;s page has no <em>Client secret</em> row, and <em>OAuth grant types</em> doesn&#39;t list <em>Client credentials</em></td>
+<td>Create a <strong>machine-to-machine</strong> app client with both <code>supplychain</code> scopes</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Lambda → <code>orbit-student07-am01-chat-handler</code> → <strong>Environment variables</strong></td>
+<td><code>ORCHESTRATOR_RUNTIME_ARN</code>, <code>COGNITO_DOMAIN</code>, <code>COGNITO_CLIENT_ID</code>, <code>COGNITO_CLIENT_SECRET</code>, <code>COGNITO_USER_POOL_ID</code> are all empty strings</td>
+<td>The health page lists all five as <code>MISSING</code> and <code>token</code> says <em>missing environment configuration</em></td>
+<td>Fill in the five values from your mission card and the new app client</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Both</strong> JWT authorizers: the Gateway&#39;s <em>Inbound Auth</em> and the Runtime&#39;s inbound authorizer</td>
+<td><code>allowedClients</code> contains only the legacy client id</td>
+<td><em>the orchestrator runtime rejected the token (HTTP 401/403)</em>, then <em>Gateway rejected our token</em> in <code>warnings</code></td>
+<td>Add the new client id to <strong>both</strong> allowed-client lists</td>
+</tr>
+</tbody></table></div>
+<aside class="callout important"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v6M12 17h.01"/><path d="M5 4h14v12H9l-4 4z"/></svg></div><div class="callout-body"><span class="callout-lbl">Important</span><p>The faults are chained: you can&#39;t see fault 3 until fault 2 is fixed, and fault 2 can&#39;t be fixed usefully until fault 1 is. That&#39;s why the handout says <em>do the goals in order</em>. In every example below, replace <code>student07</code> with <strong>your</strong> lab id.</p>
+</div></aside>
+</section><section class="sec" data-sec="how-the-chain-is-supposed-to-work"><h2 id="how-the-chain-is-supposed-to-work"><span>How the chain is supposed to work</span><a class="anchor" href="#how-the-chain-is-supposed-to-work" aria-label="Link to this section">#</a></h2>
+<figure class="diagram"><pre class="mermaid" data-src="sequenceDiagram
+    participant B as Browser
+    participant C as Chat app (Lambda)
+    participant K as Cognito /oauth2/token
+    participant R as Runtime authorizer (bouncer 1)
+    participant A as Orchestrator agent
+    participant G as Gateway authorizer (bouncer 2)
+    B-&gt;&gt;C: POST /chat {prompt}
+    C-&gt;&gt;K: client_credentials + Basic(client id:secret)&lt;br/&gt;scope = supplychain/read supplychain/write
+    K--&gt;&gt;C: access_token (JWT, client_id = M2M client)
+    C-&gt;&gt;R: POST /runtimes/{arn}/invocations&lt;br/&gt;Authorization: Bearer token
+    R-&gt;&gt;R: signature OK? (discovery URL)&lt;br/&gt;client_id in allowedClients?
+    R-&gt;&gt;A: forward request + Authorization header
+    A-&gt;&gt;G: MCP initialize + tools/list&lt;br/&gt;Authorization: Bearer same token
+    G-&gt;&gt;G: signature OK? client_id in allowedClients?
+    G--&gt;&gt;A: 9 tools
+    A--&gt;&gt;C: reply + trace {token_source: inbound, tools_discovered: 9}">sequenceDiagram
+    participant B as Browser
+    participant C as Chat app (Lambda)
+    participant K as Cognito /oauth2/token
+    participant R as Runtime authorizer (bouncer 1)
+    participant A as Orchestrator agent
+    participant G as Gateway authorizer (bouncer 2)
+    B-&gt;&gt;C: POST /chat {prompt}
+    C-&gt;&gt;K: client_credentials + Basic(client id:secret)&lt;br/&gt;scope = supplychain/read supplychain/write
+    K--&gt;&gt;C: access_token (JWT, client_id = M2M client)
+    C-&gt;&gt;R: POST /runtimes/{arn}/invocations&lt;br/&gt;Authorization: Bearer token
+    R-&gt;&gt;R: signature OK? (discovery URL)&lt;br/&gt;client_id in allowedClients?
+    R-&gt;&gt;A: forward request + Authorization header
+    A-&gt;&gt;G: MCP initialize + tools/list&lt;br/&gt;Authorization: Bearer same token
+    G-&gt;&gt;G: signature OK? client_id in allowedClients?
+    G--&gt;&gt;A: 9 tools
+    A--&gt;&gt;C: reply + trace {token_source: inbound, tools_discovered: 9}</pre></figure>
+<p>Three ideas carry the whole mission:</p>
+<ul>
+<li><strong>A confidential client has a secret; a public client doesn&#39;t.</strong> Cognito will only hand a token to software logging in <em>as itself</em> (<code>client_credentials</code>) if the app client has a secret. The legacy client was created as a browser-style public client, so it can never mint this kind of token.</li>
+<li><strong>The chat app reads its settings from environment variables at cold start.</strong> Five of them are blank. The health page is literally <code>os.environ.get(...)</code> printed as <code>set</code>/<code>MISSING</code>, followed by one live attempt to get a token.</li>
+<li><strong>Every JWT authorizer keeps its own guest list.</strong> The Runtime checks <code>allowedClients</code>; the agent then passes the <em>same</em> token to the Gateway, which checks its <em>own</em> <code>allowedClients</code>. A client that&#39;s on one list and not the other produces a different error for each.</li>
+</ul>
+</section><section class="sec sec-phase" data-sec="phase-1"><h2 id="phase-1" class="phase-h"><span class="phase-big" aria-hidden="true">01</span><span class="phase-meta"><span class="phase-num">Phase 1</span><span class="phase-time">10 minutes</span></span><span class="phase-title">Reading the evidence</span><a class="anchor" href="#phase-1" aria-label="Link to this section">#</a></h2>
+<p>Before changing anything, here is what each observation from the handout&#39;s Phase 1 tells you.</p>
+<h3 id="the-chat-error">The chat error<a class="anchor" href="#the-chat-error" aria-label="Link to this section">#</a></h3>
+<figure class="chatmock tone-bad"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Right now (broken)</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Flight control, are you receiving my cargo dispatch requests?</span></div><div class="cm-msg err"><span class="cm-who">Error</span><span class="cm-text">⚠ Authentication service unavailable</span></div><p class="cm-note">Detail line: missing environment configuration: COGNITO_DOMAIN, COGNITO_CLIENT_ID, COGNITO_CLIENT_SECRET</p></div></div></figure>
+<p>The chat handler never got as far as calling the agent. The error is raised inside its own <code>get_token()</code> because three of the variables it needs are empty. <strong>No trace, no pills</strong> confirms the request died inside the Lambda.</p>
+<h3 id="the-health-page">The health page<a class="anchor" href="#the-health-page" aria-label="Link to this section">#</a></h3>
+<p>Open <code>&lt;chat URL&gt;health</code>. Broken, it reads:</p>
+<div class="code" data-lines="13"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">JSON</span><button class="copy" type="button" aria-label="Copy JSON code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;student&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;student07&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;module&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;am01&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;region&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;us-west-2&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;config&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;ORCHESTRATOR_RUNTIME_ARN&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MISSING&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_DOMAIN&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MISSING&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_CLIENT_ID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MISSING&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_CLIENT_SECRET&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MISSING&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_USER_POOL_ID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MISSING&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Authentication service unavailable: missing environment configuration: COGNITO_DOMAIN, COGNITO_CLIENT_ID, COGNITO_CLIENT_SECRET&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></div>
+<p>Two things to notice. First, <code>config</code> only tells you whether a value is <em>present</em>, not whether it&#39;s <em>right</em>: a wrong value still shows <code>set</code>. Second, the <code>token</code> line is a <strong>live test</strong>: every time you reload the page, the Lambda tries to get a token with whatever is configured right now, so it&#39;s your fastest feedback loop for Goals 1 and 2.</p>
+<h3 id="the-legacy-app-client">The legacy app client<a class="anchor" href="#the-legacy-app-client" aria-label="Link to this section">#</a></h3>
+<p><strong>Amazon Cognito → User pools →</strong> the class pool (named on your mission card) <strong>→ App clients →</strong> <code>orbit-student07-am01-web-client-legacy</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>What you look at</th>
+<th>What you see</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>Client secret</em> row</td>
+<td>Not there at all (or &quot;–&quot;)</td>
+<td>No secret = Cognito cannot authenticate this client for <code>client_credentials</code></td>
+</tr>
+<tr>
+<td><em>Authentication flows</em></td>
+<td><code>ALLOW_USER_SRP_AUTH</code>, <code>ALLOW_REFRESH_TOKEN_AUTH</code></td>
+<td>These are <strong>human</strong> sign-in flows. There&#39;s no machine flow here</td>
+</tr>
+<tr>
+<td><em>Login pages</em> tab → <em>OAuth 2.0 grant types</em></td>
+<td>Nothing selected, or no custom scopes</td>
+<td>Even with a secret it couldn&#39;t ask for <code>supplychain/read</code></td>
+</tr>
+</tbody></table></div>
+<p><strong class="cue-pill predict">Predict first</strong> the handout asks whether filling in the settings alone would fix the chat. Answer: <strong>no</strong>. Which client id would you even paste? The legacy one has no secret, so <code>COGNITO_CLIENT_SECRET</code> has nothing to hold, and Cognito would answer <code>invalid_client</code> (or <code>unauthorized_client</code>) to the token request. Fault 1 has to go first.</p>
+<h3 id="the-two-guest-lists">The two guest lists<a class="anchor" href="#the-two-guest-lists" aria-label="Link to this section">#</a></h3>
+<ul>
+<li><strong>Bedrock AgentCore → Gateways →</strong> <code>orbit-student07-am01-gateway</code> <strong>→ Inbound Auth</strong> (sometimes labelled <em>Inbound authorization</em>): <em>Allowed clients</em> shows exactly one id. It&#39;s the legacy client&#39;s id (compare with <code>legacy_client_ids</code> on your card).</li>
+<li><strong>Bedrock AgentCore → Runtime →</strong> <code>orbit_student07_am01_orchestrator</code> <strong>→</strong> the inbound identity / authorizer section: the same single legacy id.</li>
+</ul>
+<p>Both discovery URLs are correct and identical. Write the legacy id down: you&#39;ll keep it in both lists (removing it isn&#39;t required and avoids a needless runtime redeploy) and add a second id next to it.</p>
+</section><section class="sec sec-phase" data-sec="phase-2"><h2 id="phase-2" class="phase-h"><span class="phase-big" aria-hidden="true">02</span><span class="phase-meta"><span class="phase-num">Phase 2</span><span class="phase-time">25 minutes</span></span><span class="phase-title">The fix, click by click</span><a class="anchor" href="#phase-2" aria-label="Link to this section">#</a></h2>
+<h3 id="goal-1-create-the-machine-to-machine-app-client" class="goal-h"><span class="goal-n"><small>Goal</small>1</span><span class="goal-t">Create the machine-to-machine app client</span><a class="anchor" href="#goal-1-create-the-machine-to-machine-app-client" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> a new app client whose page shows a <em>Client secret</em>, the <em>Client credentials</em> grant and both <code>supplychain</code> custom scopes.</p>
+<ol>
+<li><strong>Amazon Cognito → User pools →</strong> open the class pool named on your mission card. Check the Region selector says <strong>us-west-2</strong> first.</li>
+<li>In the left menu choose <strong>Applications → App clients</strong>, then <strong>Create app client</strong>.</li>
+<li>Under <strong>Application type</strong>, choose <strong>Machine-to-machine application</strong>. This is the choice that matters: it tells Cognito to generate a client secret and enable the <code>client_credentials</code> grant.</li>
+<li><strong>Name</strong>: <code>orbit-student07-am01-m2m</code> (any name works, but it <strong>must contain your lab id</strong> so you and your classmates can tell the clients apart).</li>
+<li>If the form shows a <strong>Custom scopes</strong> picker for the <code>supplychain</code> resource server, tick <strong><code>supplychain/read</code></strong> and <strong><code>supplychain/write</code></strong> now. If it doesn&#39;t, continue; you&#39;ll add them in step 7.</li>
+<li>Choose <strong>Create app client</strong>. You land on the new client&#39;s page.</li>
+<li>Open the <strong>Login pages</strong> tab. Under <em>Managed login pages configuration</em> (or <em>Hosted UI</em>) choose <strong>Edit</strong>. In <strong>OAuth 2.0 grant types</strong> make sure <strong>Client credentials</strong> is selected. In <strong>Custom scopes</strong>, select <strong><code>supplychain/read</code></strong> and <strong><code>supplychain/write</code></strong>. <strong>Save changes</strong>.</li>
+<li>Back on the <strong>App client information</strong> panel, copy two values into a scratch note:<ul>
+<li><strong>Client ID</strong> (26 lowercase characters)</li>
+<li><strong>Client secret</strong> → <strong>Show client secret</strong>, then copy (about 50 characters)</li>
+</ul>
+</li>
+</ol>
+<aside class="callout warning"><div class="callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div class="callout-body"><span class="callout-lbl">Warning</span><p>Don&#39;t create a new resource server or new scopes. <code>supplychain</code> with <code>read</code> and <code>write</code> already exists on the pool; you&#39;re only <em>allowing</em> the existing scopes on your new client.</p>
+</div></aside>
+<details class="reveal plain"><summary><span>CloudShell alternative for Goal 1</span></summary><div class="reveal-body">
+
+<p>Open CloudShell (the <code>&gt;_</code> icon) and run, with your pool id from the mission card:</p>
+<div class="code" data-lines="12"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Shell</span><button class="copy" type="button" aria-label="Copy Shell code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-bash">POOL=us-west-2_EXAMPLE      <span class="hljs-comment"># cognito_user_pool_id from your card</span>
+ME=student07                <span class="hljs-comment"># your lab id</span>
+
+aws cognito-idp create-user-pool-client \
+  --user-pool-id <span class="hljs-string">&quot;<span class="hljs-variable">$POOL</span>&quot;</span> \
+  --client-name <span class="hljs-string">&quot;orbit-<span class="hljs-variable">$ME</span>-am01-m2m&quot;</span> \
+  --generate-secret \
+  --allowed-o-auth-flows-user-pool-client \
+  --allowed-o-auth-flows client_credentials \
+  --allowed-o-auth-scopes supplychain/read supplychain/write \
+  --supported-identity-providers COGNITO \
+  --query <span class="hljs-string">&#x27;UserPoolClient.{ClientId:ClientId,ClientSecret:ClientSecret,Flows:AllowedOAuthFlows,Scopes:AllowedOAuthScopes}&#x27;</span></code></pre></div>
+<p>The output shows the id, the secret, <code>[&quot;client_credentials&quot;]</code> and both scopes in one go.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="debrief-am01-rx7q2m:0" aria-label="Mark done"><div class="task-t">The new client page shows a client secret, the client credentials grant, and both custom scopes.</div></li>
+</ul>
+<h3 id="goal-2-fill-in-the-chat-app-s-five-settings" class="goal-h"><span class="goal-n"><small>Goal</small>2</span><span class="goal-t">Fill in the chat app&#39;s five settings</span><a class="anchor" href="#goal-2-fill-in-the-chat-app-s-five-settings" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> the health page shows every setting as <code>set</code> and <code>token: ok</code>.</p>
+<ol>
+<li><strong>Lambda → Functions →</strong> <code>orbit-student07-am01-chat-handler</code> (filter the list by your lab id).</li>
+<li><strong>Configuration</strong> tab <strong>→ Environment variables → Edit</strong>.</li>
+<li>You&#39;ll see seven keys. Leave <code>STUDENT_ID</code> and <code>MODULE</code> as they are and fill the five empty ones exactly as below:</li>
+</ol>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Paste</th>
+<th>Shape check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ORCHESTRATOR_RUNTIME_ARN</code></td>
+<td><code>orchestrator_runtime_arns</code> from your mission card</td>
+<td>starts <code>arn:aws:bedrock-agentcore:us-west-2:…:runtime/orbit_student07_am01_orchestrator-…</code></td>
+</tr>
+<tr>
+<td><code>COGNITO_DOMAIN</code></td>
+<td><code>cognito_domain</code> from your card</td>
+<td>a host name ending in <code>.amazoncognito.com</code>; <strong>no</strong> <code>https://</code>, <strong>no</strong> trailing <code>/</code> or path</td>
+</tr>
+<tr>
+<td><code>COGNITO_CLIENT_ID</code></td>
+<td>the <strong>new</strong> client id from Goal 1</td>
+<td>26 lowercase letters/digits</td>
+</tr>
+<tr>
+<td><code>COGNITO_CLIENT_SECRET</code></td>
+<td>the <strong>new</strong> client secret from Goal 1</td>
+<td>~50 characters, mixed case</td>
+</tr>
+<tr>
+<td><code>COGNITO_USER_POOL_ID</code></td>
+<td><code>cognito_user_pool_id</code> from your card</td>
+<td>starts with <code>us-west-2_</code></td>
+</tr>
+</tbody></table></div>
+<ol start="4">
+<li><strong>Save</strong>. Lambda replaces its containers, so the new values apply within a few seconds.</li>
+<li>Reload <code>&lt;chat URL&gt;health</code>:</li>
+</ol>
+<div class="code" data-lines="11"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">JSON</span><button class="copy" type="button" aria-label="Copy JSON code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;config&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;ORCHESTRATOR_RUNTIME_ARN&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;set&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_DOMAIN&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;set&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_CLIENT_ID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;set&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_CLIENT_SECRET&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;set&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;COGNITO_USER_POOL_ID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;set&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;cognito_discovery&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://cognito-idp.us-west-2.amazonaws.com/us-west-2_EXAMPLE/.well-known/openid-configuration&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;http_status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;token&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ok&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre></div>
+<p><code>token: ok</code> means Cognito accepted your client id + secret <strong>and</strong> the two scopes. If instead you see:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><code>token</code> says</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Cognito token endpoint returned 400: {&quot;error&quot;:&quot;invalid_client&quot;}</code></td>
+<td>wrong client id or secret, or you pasted the legacy id</td>
+<td>Re-copy both values from the <strong>new</strong> client</td>
+</tr>
+<tr>
+<td><code>… returned 400: {&quot;error&quot;:&quot;invalid_scope&quot;}</code></td>
+<td>the client isn&#39;t allowed one of the scopes</td>
+<td>Goal 1 step 7</td>
+</tr>
+<tr>
+<td><code>… returned 400: {&quot;error&quot;:&quot;unauthorized_client&quot;}</code></td>
+<td><code>client_credentials</code> isn&#39;t enabled on the client</td>
+<td>Goal 1 step 7</td>
+</tr>
+<tr>
+<td><code>could not reach Cognito token endpoint https://https://…</code> or <code>…/oauth2/token: [Errno -2]</code></td>
+<td><code>COGNITO_DOMAIN</code> has a scheme, a path or a typo</td>
+<td>Paste the bare host name</td>
+</tr>
+<tr>
+<td><code>cognito_discovery.http_status</code> is <code>400</code>/<code>404</code></td>
+<td><code>COGNITO_USER_POOL_ID</code> is wrong</td>
+<td>Copy the pool id again (it starts <code>us-west-2_</code>)</td>
+</tr>
+</tbody></table></div>
+<details class="reveal plain"><summary><span>CloudShell alternative for Goal 2</span></summary><div class="reveal-body">
+
+<div class="code" data-lines="9"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Shell</span><button class="copy" type="button" aria-label="Copy Shell code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-bash">FN=orbit-student07-am01-chat-handler
+aws lambda update-function-configuration --function-name <span class="hljs-string">&quot;<span class="hljs-variable">$FN</span>&quot;</span> --environment <span class="hljs-string">&quot;Variables={
+  STUDENT_ID=student07,MODULE=am01,
+  ORCHESTRATOR_RUNTIME_ARN=&lt;runtime arn&gt;,
+  COGNITO_DOMAIN=&lt;cognito_domain&gt;,
+  COGNITO_CLIENT_ID=&lt;new client id&gt;,
+  COGNITO_CLIENT_SECRET=&lt;new client secret&gt;,
+  COGNITO_USER_POOL_ID=&lt;pool id&gt;}&quot;</span> --query <span class="hljs-string">&#x27;Environment.Variables&#x27;</span> 
+curl -s <span class="hljs-string">&quot;&lt;chat url&gt;health&quot;</span> | jq .</code></pre></div>
+<p><code>update-function-configuration</code> replaces the <strong>whole</strong> variable map, which is why <code>STUDENT_ID</code> and <code>MODULE</code> are repeated.</p>
+</div></details>
+
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="debrief-am01-rx7q2m:1" aria-label="Mark done"><div class="task-t">Health page: all five <code>set</code>, <code>token: ok</code>.</div></li>
+</ul>
+<p>Now send the test message again. The error <strong>changes</strong>, which is progress:</p>
+<figure class="chatmock tone-bad"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Still broken, but differently</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Flight control, are you receiving my cargo dispatch requests?</span></div><div class="cm-msg err"><span class="cm-who">Error</span><span class="cm-text">⚠ Authentication service unavailable</span></div><p class="cm-note">Detail: the orchestrator runtime rejected the token (HTTP 401 or 403). Is this client id in the runtime&#39;s JWT authorizer allowedClients?</p></div></div></figure>
+<p>The chat app now <em>has</em> a valid token; bouncer 1 (the Runtime) looked at its <code>client_id</code> claim and didn&#39;t find it on the guest list. That&#39;s fault 3.</p>
+<h3 id="goal-3-put-the-new-client-on-both-guest-lists" class="goal-h"><span class="goal-n"><small>Goal</small>3</span><span class="goal-t">Put the new client on both guest lists</span><a class="anchor" href="#goal-3-put-the-new-client-on-both-guest-lists" aria-label="Link to this section">#</a></h3>
+<p class="expect"><strong>Expected:</strong> a normal reply; trace shows <code>token_source: &quot;inbound&quot;</code> and <code>warnings: []</code>; the gateway pill is green with <strong>9 tools</strong>.</p>
+<p>Do the Gateway first (it updates in seconds), then the Runtime (which starts a new version and takes about a minute).</p>
+<p><strong>3a · The Gateway (bouncer 2)</strong></p>
+<ol>
+<li><strong>Bedrock AgentCore → Gateways →</strong> <code>orbit-student07-am01-gateway</code>.</li>
+<li>Find the <strong>Inbound Auth</strong> section and choose <strong>Edit</strong>.</li>
+<li>Leave <em>Discovery URL</em> exactly as it is. Under <strong>Allowed clients</strong>, choose <strong>Add</strong> and paste your <strong>new client id</strong>. Keep the legacy id in the list.</li>
+<li><strong>Save</strong>. The gateway status briefly shows <code>UPDATING</code>, then <code>READY</code>.</li>
+</ol>
+<p><strong>3b · The Runtime (bouncer 1)</strong></p>
+<ol>
+<li><strong>Bedrock AgentCore → Runtime →</strong> <code>orbit_student07_am01_orchestrator</code>.</li>
+<li>Choose <strong>Edit</strong> (top right of the runtime page).</li>
+<li>Scroll to the <strong>Inbound identity</strong> / <strong>Authorizer configuration</strong> section (the one that shows the discovery URL and the legacy client id). <strong>Add</strong> your new client id to <strong>Allowed clients</strong>. Change nothing else on the form: the code location, role, network mode and environment variables must stay as they are.</li>
+<li><strong>Save</strong> / <strong>Update runtime</strong>. The status changes from <code>READY</code> to <code>UPDATING</code> while AgentCore builds a new version (v2). The old version keeps answering, and rejecting, until the new one is live, so <strong>wait until the status is <code>READY</code> again</strong> before testing.</li>
+</ol>
+<details class="reveal plain"><summary><span>CloudShell alternative for Goal 3</span></summary><div class="reveal-body">
+
+<p>Both update calls require the full current configuration, so read it first and only change <code>allowedClients</code>:</p>
+<div class="code" data-lines="16"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">Shell</span><button class="copy" type="button" aria-label="Copy Shell code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-bash">GW=orbit-student07-am01-gateway-xxxxxxxxxx         <span class="hljs-comment"># gateway_ids from your card</span>
+RT=orbit_student07_am01_orchestrator-xxxxxxxxxx    <span class="hljs-comment"># orchestrator_runtime_ids from your card</span>
+NEW=&lt;new client <span class="hljs-built_in">id</span>&gt;
+
+<span class="hljs-comment"># Gateway</span>
+aws bedrock-agentcore-control get-gateway --gateway-identifier <span class="hljs-string">&quot;<span class="hljs-variable">$GW</span>&quot;</span> &gt; gw.json
+jq --arg c <span class="hljs-string">&quot;<span class="hljs-variable">$NEW</span>&quot;</span> <span class="hljs-string">&#x27;{gatewayIdentifier:.gatewayId,name,roleArn,protocolType,protocolConfiguration,authorizerType,
+  authorizerConfiguration:(.authorizerConfiguration|.customJWTAuthorizer.allowedClients += [$c])}&#x27;</span> gw.json &gt; gw-update.json
+aws bedrock-agentcore-control update-gateway --cli-input-json file://gw-update.json --query status
+
+<span class="hljs-comment"># Runtime</span>
+aws bedrock-agentcore-control get-agent-runtime --agent-runtime-id <span class="hljs-string">&quot;<span class="hljs-variable">$RT</span>&quot;</span> &gt; rt.json
+jq --arg c <span class="hljs-string">&quot;<span class="hljs-variable">$NEW</span>&quot;</span> <span class="hljs-string">&#x27;{agentRuntimeId,agentRuntimeArtifact,roleArn,networkConfiguration,protocolConfiguration,
+  environmentVariables,requestHeaderConfiguration,
+  authorizerConfiguration:(.authorizerConfiguration|.customJWTAuthorizer.allowedClients += [$c])}&#x27;</span> rt.json &gt; rt-update.json
+aws bedrock-agentcore-control update-agent-runtime --cli-input-json file://rt-update.json --query <span class="hljs-string">&#x27;{status:status,version:agentRuntimeVersion}&#x27;</span></code></pre></div>
+<p>Then poll <code>aws bedrock-agentcore-control get-agent-runtime --agent-runtime-id &quot;$RT&quot; --query status</code> until it prints <code>READY</code>.</p>
+</div></details>
+
+<p>If you fix the <strong>Runtime but not the Gateway</strong>, you get a reply, but it&#39;s a hollow one:</p>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">Runtime fixed, gateway not yet</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Flight control, are you receiving my cargo dispatch requests?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">I&#39;m online, but I don&#39;t currently have any tools connected…</span></div><p class="cm-note">trace.warnings: [&quot;gateway: Gateway rejected our token (401). Check the gateway&#39;s JWT authorizer allowedClients. …&quot;]</p></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">gateway: 0 tools</span><span class="cm-pill off">tools called: none</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+<p>The pill is green because <code>GATEWAY_URL</code> is configured, but <strong>0 tools</strong> and the warning say bouncer 2 turned the token away. The handout&#39;s &quot;green isn&#39;t proof&quot; rule in action.</p>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="debrief-am01-rx7q2m:2" aria-label="Mark done"><div class="task-t">Both the Gateway and the Runtime list the new client id, and the runtime is <code>READY</code>.</div></li>
+</ul>
+</section><section class="sec sec-phase" data-sec="phase-3"><h2 id="phase-3" class="phase-h"><span class="phase-big" aria-hidden="true">03</span><span class="phase-meta"><span class="phase-num">Phase 3</span><span class="phase-time">5 minutes</span></span><span class="phase-title">Flight test and how to read the trace</span><a class="anchor" href="#phase-3" aria-label="Link to this section">#</a></h2>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">When you're done</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Flight control, are you receiving my cargo dispatch requests?</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">I&#39;m online, Flight Control. I&#39;m your OrbitOps flight controller, ready to assist with cargo inventory, shipment tracking, suppliers and quality inspections…</span></div></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">gateway: 9 tools</span><span class="cm-pill off">tools called: none</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+<p>Expand <strong>trace</strong> under the reply. The fields that prove the chain:</p>
+<div class="code" data-lines="7"><div class="code-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="code-lang">JSON</span><button class="copy" type="button" aria-label="Copy JSON code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Copy</span></button></div><pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;token_source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;inbound&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;gateway_configured&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tools_discovered&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">9</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tools_called&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;warnings&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre></div>
+<ul>
+<li><code>token_source: &quot;inbound&quot;</code>: the agent used the token the chat app sent (passed through by the Runtime&#39;s <code>Authorization</code> header allow-list), not one it minted itself.</li>
+<li><code>tools_discovered: 9</code>: the Gateway accepted that same token and answered <code>tools/list</code> with 3 inventory + 2 supplier + 2 logistics + 2 quality tools.</li>
+<li><code>warnings: []</code>: nothing failed on the way.</li>
+</ul>
+<p>Second test:</p>
+<figure class="chatmock tone-good"><div class="cm-bar"><span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="cm-title">OrbitOps chat console</span><span class="cm-cap">When you're done</span></div><div class="cm-body"><div class="cm-log"><div class="cm-msg you"><span class="cm-who">You</span><span class="cm-text">Check our cargo stock levels</span></div><div class="cm-msg bot"><span class="cm-who">Flight controller</span><span class="cm-text">Here&#39;s our current cargo stock status: ION-COIL-7 (Ion Thruster Coil) 42 on hand, reorder point 50 … CRYO-SEAL-2 310 on hand …</span></div></div><div class="cm-side"><span class="cm-k">Last reply trace</span><div class="cm-pills"><span class="cm-pill on">gateway: 9 tools</span><span class="cm-pill on">tools called: inventory-target___get_stock_summary</span></div></div></div><figcaption class="cm-foot">Illustration: the flight controller's exact words will differ.</figcaption></figure>
+<p><code>tools_called[0].tool</code> is <code>inventory-target___get_stock_summary</code>: target name, three underscores, tool name. The Gateway invoked your <code>orbit-student07-am01-inventory</code> Lambda using its own IAM role and relayed the result.</p>
+<p class="proved"><strong>What you just proved:</strong> one token, minted by your new confidential client, passed two independent JWT authorizers, and the agent used it to discover and call tools.</p>
+<ul>
+<li class="task"><input type="checkbox" class="chk" data-k="debrief-am01-rx7q2m:3" aria-label="Mark done"><div class="task-t">Both flight tests pass with the traces above.</div></li>
+</ul>
+</section><section class="sec" data-sec="if-it-still-fails"><h2 id="if-it-still-fails"><span>If it still fails</span><a class="anchor" href="#if-it-still-fails" aria-label="Link to this section">#</a></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Where the chain broke</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Health shows <code>MISSING</code></td>
+<td>Lambda env vars</td>
+<td>Did you <strong>Save</strong> the environment variables? Are you looking at <em>your</em> function?</td>
+</tr>
+<tr>
+<td><code>token</code> says <code>invalid_client</code></td>
+<td>Cognito</td>
+<td>Client id/secret mismatch, or the legacy id was pasted. Secrets copied from a PDF often lose characters: re-copy from the console</td>
+</tr>
+<tr>
+<td><code>token: ok</code>, chat says <em>runtime rejected the token (HTTP 403)</em></td>
+<td>Runtime authorizer</td>
+<td>New id not in the Runtime&#39;s allowed clients, or the runtime is still <code>UPDATING</code></td>
+</tr>
+<tr>
+<td>Reply arrives, <code>warnings</code> has <em>Gateway rejected our token (401)</em>, <strong>0 tools</strong></td>
+<td>Gateway authorizer</td>
+<td>New id not in the Gateway&#39;s allowed clients</td>
+</tr>
+<tr>
+<td><code>warnings</code> has <em>Gateway rejected our token (403)</em></td>
+<td>Gateway authorizer</td>
+<td>Same as above; 403 appears when the token is valid but the client isn&#39;t allowed</td>
+</tr>
+<tr>
+<td>HTTP 424 / <em>Flight controller fault</em></td>
+<td>Agent code</td>
+<td>Not a planted fault. Usually the runtime is mid-update; wait and retry. If it persists, ask the instructor to check the runtime logs</td>
+</tr>
+<tr>
+<td>Everything green but <strong>7 tools</strong></td>
+<td>Gateway targets</td>
+<td>A target is missing: that&#39;s Mission B&#39;s territory. Mission A environments always have 4 targets</td>
+</tr>
+</tbody></table></div>
+</section><section class="sec" data-sec="think-about-it-the-answers"><h2 id="think-about-it-the-answers"><span>Think about it: the answers</span><a class="anchor" href="#think-about-it-the-answers" aria-label="Link to this section">#</a></h2>
+<ol>
+<li><strong>Why does the chat app get the token on the server instead of letting the browser ask Cognito?</strong> Because the <code>client_credentials</code> grant needs the client <strong>secret</strong>, and anything sent to a browser is public. A browser would use a user-facing flow (authorization code + PKCE) and a <em>human</em> would sign in. Here the chat app is the client, so it keeps the secret in its environment and mints the token server-side.</li>
+<li><strong>If you had fixed only the Gateway&#39;s guest list, where would the chain break?</strong> At bouncer 1. The chat app would still get <em>the orchestrator runtime rejected the token (HTTP 403)</em> and no trace at all, because the request never reaches the agent, so the agent never calls the Gateway. Fixing the &quot;second&quot; bouncer first produces no visible change: a classic trap.</li>
+<li><strong>The chat URL has no login of its own. Why is that risky?</strong> Anyone with the URL can spend your account&#39;s Bedrock and AgentCore budget and read your tool data. In a product you&#39;d put the Function URL behind <code>AWS_IAM</code> auth, API Gateway with a Cognito authorizer, or CloudFront + WAF, and the user would sign in with their <em>own</em> Cognito identity so each token carries a real user rather than one shared machine identity.</li>
+</ol>
+</section><section class="sec" data-sec="key-takeaways"><h2 id="key-takeaways"><span>Key takeaways</span><a class="anchor" href="#key-takeaways" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>Machine-to-machine = confidential client.</strong> No secret, no <code>client_credentials</code>. Cognito&#39;s <em>Machine-to-machine application</em> type sets up both.</li>
+<li><strong>Scopes are granted per client.</strong> A token can only carry scopes its client was allowed; the chat app asks for both <code>supplychain</code> scopes every time.</li>
+<li><strong>Each JWT authorizer has its own <code>allowedClients</code>.</strong> The Runtime and the Gateway each check the same token independently. Update both, and read the error to learn which one is still saying no.</li>
+<li><strong>Configuration is part of the security chain.</strong> The health page&#39;s live token test is the quickest way to separate &quot;wrong settings&quot; from &quot;wrong identity&quot;.</li>
+<li><strong>Runtime edits create a version.</strong> Nothing you change on an AgentCore Runtime takes effect until the status is back to <code>READY</code>.</li>
+</ul>
+<details class="reveal clue"><summary><span>Big clue · the fault map</span></summary><div class="reveal-body">
+
+<figure class="shot" data-fig="AS.01"><div class="shot-frame"><div class="shot-bar" aria-hidden="true"><span class="shot-dots"><i></i><i></i><i></i></span><span class="shot-fig">Fig AS.01</span><span class="shot-zoom-hint">Click to enlarge</span></div><button class="zoom" type="button" aria-label="Enlarge screenshot: The fault map for Mission A: where the three planted faults are"><img src="img/bf-am01-fault-map.webp" alt="The fault map for Mission A: where the three planted faults are" width="1600" height="1000" loading="lazy" decoding="async"></button></div><figcaption><span class="fig-n">Fig AS.01</span>The fault map for Mission A: where the three planted faults are</figcaption></figure>
+</div></details>
+</section>
+    <nav class="pager" aria-label="Debrief navigation">
+      <a class="pg prev" href="break-fix-am01.html" style="--mc:#FB923C"><small>← Back</small><span>A · The Locked Launchpad handout</span></a>
+      <a class="pg next" href="break-fix.html"><small>All missions →</small><span>Break-fix track</span></a>
+    </nav>
+  </main>
+</div>
+<footer class="foot"><div class="foot-in">
+  <div class="foot-brand"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset="1" stop-color="#F472B6"/></linearGradient></defs><circle cx="20" cy="20" r="7.5" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.2" fill="none" stroke="url(#lg)" stroke-width="1.8" transform="rotate(-24 20 20)"/><circle cx="35" cy="13.4" r="2.4" fill="#FDE68A"/></svg><div><b>ORBIT Field Academy</b><span>Hands-on Amazon Bedrock AgentCore missions · AWS Console only</span></div></div>
+  <p>Screenshots were captured in a real training account in US West (Oregon). Account IDs in text are shown as <code>111122223333</code>; set your own with the <button class="linkish" type="button" data-open-id>mission ID</button> button.</p>
+</div></footer>
+<dialog class="id-dialog" id="id-dialog" aria-labelledby="idd-t">
+<form method="dialog" class="id-form">
+  <h2 id="idd-t">Your mission ID</h2>
+  <p>Every resource you create carries your personal <code>MY_ID</code>. Enter it once and every page, table and code block on this site shows <em>your</em> names, ready to copy.</p>
+  <label>MY_ID <span>3–10 lowercase letters or digits, e.g. <code>p07x42</code></span><input name="myid" autocomplete="off" spellcheck="false" pattern="[a-z0-9]{3,10}" placeholder="p07x42" required></label>
+  <label>AWS account ID <span>optional · 12 digits · top-right account menu in the console</span><input name="acct" inputmode="numeric" autocomplete="off" pattern="[0-9]{12}" placeholder="123456789012"></label>
+  <p class="id-err" role="alert"></p>
+  <div class="id-actions"><button value="clear" type="button" class="btn ghost" data-id-clear>Clear</button><button value="cancel" type="button" class="btn ghost" data-id-cancel>Cancel</button><button value="save" class="btn primary" data-id-save>Save</button></div>
+</form></dialog>
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer"><div class="lb-top"><span class="lb-n"></span><span class="lb-hint">← → to browse · click image for actual size · Esc to close</span><button class="lb-close" type="button" aria-label="Close">×</button></div><button class="lb-nav lb-prev" type="button" aria-label="Previous screenshot">‹</button><div class="lb-stage"><img alt=""></div><button class="lb-nav lb-next" type="button" aria-label="Next screenshot">›</button><p class="lb-cap"></p></dialog>
+<dialog class="award" id="award" aria-labelledby="aw-t"><div class="award-in"><canvas class="award-fx" aria-hidden="true"></canvas><div class="award-patch"></div><p class="eyebrow">Mission complete</p><h2 id="aw-t">Patch earned</h2><p class="award-sub"></p><div class="award-actions"><a class="btn primary" data-award-next href="index.html#flight-path">Back to the flight path</a><button class="btn ghost" type="button" data-award-close>Keep reading</button></div></div></dialog>
+<script>window.ORBIT_PAGES={"mission-01":17,"mission-02":22,"mission-03":7,"mission-04":11,"mission-05":10,"mission-06":26,"mission-07":23,"mission-08":18,"break-fix-am01":9,"break-fix-am02":11,"break-fix-am03":9,"break-fix-am04":8,"break-fix-am05":10,"break-fix-am06":9,"notes-03":6,"notes-04":8,"notes-05":12};window.ORBIT_MISSIONS=[{"n":"01","slug":"mission-01","name":"Ground Control","hue":"#38BDF8","track":"foundation","present":true,"label":"Pre-flight 01"},{"n":"02","slug":"mission-02","name":"Ignition","hue":"#FB923C","track":"foundation","present":true,"label":"Pre-flight 02"},{"n":"03","slug":"mission-03","name":"The Knowledge Heist","hue":"#A78BFA","track":"main","present":true,"label":"Mission 03"},{"n":"04","slug":"mission-04","name":"Launch Control","hue":"#2DD4BF","track":"main","present":true,"label":"Mission 04"},{"n":"05","slug":"mission-05","name":"Identity Lockdown","hue":"#34D399","track":"main","present":true,"label":"Mission 05"},{"n":"06","slug":"mission-06","name":"Mission Assurance","hue":"#F472B6","track":"main","present":true,"label":"Mission 06"},{"n":"07","slug":"mission-07","name":"Hull Breach","hue":"#F87171","track":"main","present":true,"label":"Mission 07"},{"n":"08","slug":"mission-08","name":"Constellation","hue":"#FBBF24","track":"main","present":true,"label":"Mission 08"},{"n":"A","slug":"break-fix-am01","name":"The Locked Launchpad","hue":"#FB923C","track":"breakfix","present":true,"label":"Break-fix A"},{"n":"B","slug":"break-fix-am02","name":"The Misrouted Cargo Droids","hue":"#22D3EE","track":"breakfix","present":true,"label":"Break-fix B"},{"n":"C","slug":"break-fix-am03","name":"The Vanishing Starport Manuals","hue":"#A3E635","track":"breakfix","present":true,"label":"Break-fix C"},{"n":"D","slug":"break-fix-am04","name":"The Forgetful Flight Computer","hue":"#E879F9","track":"breakfix","present":true,"label":"Break-fix D"},{"n":"E","slug":"break-fix-am05","name":"Close The Exposed Hyperspace Lanes","hue":"#60A5FA","track":"breakfix","present":true,"label":"Break-fix E"},{"n":"F","slug":"break-fix-am06","name":"The Leaky Captain's Log","hue":"#FB7185","track":"breakfix","present":true,"label":"Break-fix F"}];</script>
+<script src="assets/site.js" defer></script>
+<script type="module" src="assets/diagrams.js"></script>
+</body></html>
